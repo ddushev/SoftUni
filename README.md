@@ -12,7 +12,9 @@ Some fun exercises from the JS application course.
 
 -You can use the following credentials to login or you can register a new username
 
--peter@abv.bg : 123456\n
+-peter@abv.bg : 123456
+
 -george@abv.bg : 123456
+
 -admin@abv.bg : admin
 
