@@ -13,4 +13,4 @@
 
 -peter@abv.bg : 123456
 
--mary@abv.bg : 123456
+-john@abv.bg : 123456
