@@ -6,8 +6,11 @@ const dashboardTemplate = (data) => html``;
 // ${data.length > 0 
 //     ? html`
 //         ${data.map(itemTemplate)}`
-//     : html`
-//         `}
+//     : null}
+
+// ${data.length == 0 
+//     ? html`<h2>There are no items added yet.</h2>`
+//     : null}
 
 const itemTemplate = (item) => html``;
 

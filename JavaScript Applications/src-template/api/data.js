@@ -25,7 +25,7 @@ function deleteData(id) {
 }
 
 function getOwnerData(userId) {
-    return api.get(`/data/books?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
+    return api.get(`/data/fruits?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
 }
 
 function searchData(query) {
