@@ -1,12 +1,24 @@
-<section>
-    <h1>All accomodations</h1>
+<section id="catalog-section" class="spaced">
+
+    <h1 class="item">Accomodation</h1>
+
     {{#if rooms}}
-    <ul>
+
+    <ul class="catalog cards">
         {{#each rooms}}
-            {{> roomCard}}
+        {{> roomCard}}
         {{/each}}
     </ul>
+
     {{else}}
-    <p>There are no rooms available</p>
+
+    <main class="item pad-large align-center">
+        <p>Nothing has been listed yet. Be the first!</p>
+        <div>
+            <a class="action" href="/create">Host Accomodation</a>
+        </div>
+    </main>
+
     {{/if}}
+
 </section>

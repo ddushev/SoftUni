@@ -3,23 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/site.css">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/site.css">
 </head>
 
 <body>
     <div id="page-content">
         <header>
+            <a href="/" class="title-logo">
+                <img src="/static/assets/logo.png">
+                <span>SoftUni Sleepover</span>
+            </a>
+            <nav class="main-nav nav-mid">
                 <ul>
-                    <li><a href="/catalog">Catalog</a></li>
+                    <li>
+                        <a href="/catalog">Browse Accomodation</a>
+                    </li>
+                    <li>
+                        <a href="/create">Host</a>
+                    </li>
                 </ul>
+            </nav>
         </header>
+
         <main>
             {{{body}}}
         </main>
+
+        <footer>Daniel Dushev &copy; 2023</footer>
     </div>
-    <footer>Daniel Dushev &copy; 2023</footer>
 </body>
 
 </html>
