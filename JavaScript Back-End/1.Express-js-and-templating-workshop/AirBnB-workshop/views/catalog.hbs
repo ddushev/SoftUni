@@ -1,1 +1,12 @@
-<h1>All accomodations</h1>
+<section>
+    <h1>All accomodations</h1>
+    {{#if rooms}}
+    <ul>
+        {{#each rooms}}
+            {{> roomCard}}
+        {{/each}}
+    </ul>
+    {{else}}
+    <p>There are no rooms available</p>
+    {{/if}}
+</section>
