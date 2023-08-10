@@ -15,8 +15,8 @@ async function persist() {
     });
 }
 
-function getAll() {
-    return data;
+function getAll(search) {
+    return data.filter(r => r.name.toLowerCase().includes(search.toLowerCase()));
 }
 
 function getById(id) {
@@ -24,7 +24,6 @@ function getById(id) {
 }
 
 async function create(roomData) {
-    console.log(roomData);
     const room = {
         id: getId(),
         name: roomData.name,
@@ -33,6 +32,10 @@ async function create(roomData) {
         beds: Number(roomData.beds),
         price: Number(roomData.price),
         description: roomData.description
+    }
+    const missing = Object.entries(room).filter(([k, v]) => !v);
+    if (missing.length > 0) {
+        throw new Error(missing.map(m => `${m[0]} is required`).join('\n'));
     }
     data.push(room);
     await persist();
