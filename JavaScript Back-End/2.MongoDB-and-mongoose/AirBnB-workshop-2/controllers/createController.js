@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { create } = require('../services/accomodationService');
+const { create } = require('../services/roomService');
 
 
 router.get('/', (req, res) => {
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
     try {
         const result = await create(req.body);
-        res.redirect('/catalog/' + result.id);
+        res.redirect('/catalog/' + result._id);
     } catch (error) {
         res.render('create', {
             title: 'Request Error',
