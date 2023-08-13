@@ -5,7 +5,7 @@ async function getAll(search) {
 }
 
 async function getById(id) {
-    return Room.findById(id).lean();
+    return Room.findById(id).populate('facilities').lean();
 }
 
 async function create(roomData) {
