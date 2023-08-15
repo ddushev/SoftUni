@@ -1,0 +1,23 @@
+<section id="create-section" class="">
+
+    <h1 class="item">Login</h1>
+
+    <main class="item padded align-center">
+        {{#if error}}
+        <div class="error-box">
+            {{#each error}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+        <form class="layout left large" method="post" action="/auth/login">
+
+            <div class="aligned">
+                <label><span>Username</span><input type="text" name="username"></label>
+                <label><span>Password</span><input type="password" name="password"></label>
+            </div>
+            <input class="action" type="submit" value="Sign in">
+        </form>
+    </main>
+
+</section>
