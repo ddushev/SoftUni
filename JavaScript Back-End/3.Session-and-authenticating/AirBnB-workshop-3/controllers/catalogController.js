@@ -4,9 +4,6 @@ const router = require('express').Router();
 
 router.get('/', async (req,res) => {
 
-    const user = req.user;
-    console.log(user);
-
     const search = req.query.search || '';
     const rooms = await getAll(search);
     res.render('catalog', {

@@ -9,6 +9,7 @@ const jwtSecret = 'secret';
 const cookieParser = require('cookie-parser');
 const defaultTitle = require('../middlewares/defaultTitle');
 const auth = require('../middlewares/auth');
+const userNav = require('../middlewares/userNav');
 
 
 module.exports = (app) => {
@@ -17,8 +18,9 @@ module.exports = (app) => {
     
     app.use(express.urlencoded({ extended: true })); // adding the middleware for handling forms
     app.use('/static', express.static('static')); // adding static folder to load static files
-    app.use(cookieParser());
-    app.use(auth(jwtSecret));
+    app.use(cookieParser()); // adding cookie-parser library
+    app.use(auth(jwtSecret)); // authenticating user based on his token on every request
+    app.use(userNav()); // checks if there is a logged in user
     
     app.use(defaultTitle('AirBnB'));
 }

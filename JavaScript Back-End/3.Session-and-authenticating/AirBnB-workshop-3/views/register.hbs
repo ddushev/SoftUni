@@ -1,6 +1,6 @@
 <section id="create-section" class="">
 
-    <h1 class="item">Login</h1>
+    <h1 class="item">Register</h1>
     <div class="padded">
         <main class="item align-center">
             {{#if error}}
@@ -10,15 +10,16 @@
                 {{/each}}
             </div>
             {{/if}}
-            <form class="layout left large" method="post" action="/auth/login">
+            <form class="layout left large" method="post" action="/auth/register">
 
                 <div class="aligned">
                     <label><span>Username</span><input type="text" name="username"></label>
                     <label><span>Password</span><input type="password" name="password"></label>
-                    <input class="cta action" type="submit" value="Sign in">
+                    <label><span>Repeat password</span><input type="password" name="rePass"></label>
+                    <input class="action" type="submit" value="Sign up">
                 </div>
             </form>
-            <footer>Don't have an account? <a href="/auth/register">Sign up here.</a></footer>
+            <footer>Already have an account? <a href="/auth/login">Sign in here.</a></footer>
         </main>
     </div>
 

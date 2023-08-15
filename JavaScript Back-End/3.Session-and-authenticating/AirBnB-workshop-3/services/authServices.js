@@ -1,17 +1,42 @@
-async function login(username, password) {
-    return new Promise((res, rej) => {
-        if (username.toLowerCase() == 'peter' && password == '123456') {
-            res({
-                _id: '123456asdf',
-                username: 'Peter',
-                roles: ['user']
-            });
-        }else {
-            rej(new Error('Invalid username or password'))
-        }
+const bcrypt = require('bcrypt');
+const User = require('../models/User');
+
+async function register(username, password) {
+    const existing = await User.findOne({ username: { $regex: new RegExp(username), $options: 'i'} });
+    if (existing) {
+        throw new Error('Username is taken');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({
+        username,
+        hashedPassword
     })
+
+    return {
+        username,
+        roles: user.roles
+    }
+}
+
+async function login(username, password) {
+    const user = await User.findOne({ username: { $regex: new RegExp(username), $options: 'i'} });
+    if (!user) {
+        throw new Error('Invalid username or password');
+    }
+
+    const match = await bcrypt.compare(password, user.hashedPassword);
+    if (!match) {
+        throw new Error('Invalid username or password');
+    }
+
+    return {
+        username: user.username,
+        roles: user.roles
+    }
 }
 
 module.exports = {
-    login
+    login,
+    register
 }
