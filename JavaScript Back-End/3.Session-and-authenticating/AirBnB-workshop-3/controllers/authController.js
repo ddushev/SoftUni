@@ -45,8 +45,12 @@ authController.post('/register', async (req, res) => {
             error: error.message.split('\n')
         })
     }
-
 });
+
+authController.get('/logout', (req, res) => {
+    res.clearCookie('jwt');
+    return res.redirect('/');
+})
 
 function attachToken(req, res, data) {
     const token = req.signJwt(data);

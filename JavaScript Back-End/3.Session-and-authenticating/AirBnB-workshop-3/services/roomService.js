@@ -8,14 +8,15 @@ async function getById(id) {
     return Room.findById(id).populate('facilities').lean();
 }
 
-async function create(roomData) {
+async function create(roomData, ownerId) {
     const room = {
         name: roomData.name,
         city: roomData.city,
         imgUrl: roomData.imgUrl,
         beds: Number(roomData.beds),
         price: Number(roomData.price),
-        description: roomData.description
+        description: roomData.description,
+        owner: ownerId
     }
     const missing = Object.entries(room).filter(([k, v]) => !v);
     if (missing.length > 0) {
