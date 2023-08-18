@@ -5,19 +5,19 @@
         <main class="item align-center">
             {{#if error}}
             <div class="error-box">
-                {{#each error}}
+                {{#each error.messages}}
                 <p>{{this}}</p>
                 {{/each}}
             </div>
             {{/if}}
             <form class="layout left large" method="post" action="/auth/register">
-
                 <div class="aligned">
-                    <label><span>Username</span><input type="text" name="username"></label>
-                    <label><span>Password</span><input type="password" name="password"></label>
-                    <label><span>Repeat password</span><input type="password" name="rePass"></label>
+                    <label><span>Username</span><input {{#if error.fields.username}} class="field-error" {{/if}} type="text" name="username" value="{{body.username}}"></label>
+                    <label><span>Password</span><input {{#if error.fields.password}} class="field-error" {{/if}} type="password" name="password"></label>
+                    <label><span>Repeat password</span><input {{#if error.fields.rePass}} class="field-error" {{/if}} type="password" name="rePass"></label>
                     <input class="action" type="submit" value="Sign up">
                 </div>
+               
             </form>
             <footer>Already have an account? <a href="/auth/login">Sign in here.</a></footer>
         </main>
