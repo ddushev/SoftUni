@@ -1,6 +1,300 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+/* Global styles */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    font-family: 'Raleway';
+    font-size: 16px;
+    color: var(--text-heading-normal);
+}
+
+
+:root {
+    --bg-pink: #efefef;
+    --text-heading-bold: #222222;
+    --text-heading-normal: #888888;
+    --text-paragraphs: #626262;
+    --icons-gray: #909090;
+}
+
+.section {
+    background-color: var(--bg-pink);
+    max-width: 95vw;
+    min-height: calc(90vh - 4rem);
+    margin: 2.5rem auto 2.5rem auto;
+    position: relative;
+}
+
+.flex-layout {
+    display: flex;
+}
+
+.info-left {
+    margin: 10rem 0 0 9rem;
+    color: var(--text-paragraphs);
+    font-style: italic;
+    line-height: 1.9;
+    font-size: 1.2rem;
+    font-weight: 600;
+    width: 35%;
+}
+
+.title {
+    font-weight: 200;
+    margin-bottom: 2rem;
+    font-size: 3.5rem;
+}
+
+h2 b {
+    color: var(--text-heading-bold)
+}
+
+.vertical-divider {
+    margin-top: 2rem;
+    height: 6rem;
+    border-left: 1.5px solid black;
+}
+
+.horizontal-divider {
+    display: inline-block;
+    width: 6rem;
+    height: 1.2rem;
+    border-top: 1.5px solid black;
+    margin-right: 2.2rem;
+}
+
+
+/* First section */
+.menu {
+    display: flex;
+    gap: 0.9rem;
+    justify-content: end;
+    padding: 2rem 2.5rem 0 0;
+    color: var(--text-heading-bold)
+}
+
+.menu p {
+    font-size: 1.2rem;
+}
+
+
+.menu i {
+    font-size: 1.5rem;
+}
+
+.first-img {
+    position: absolute;
+    bottom: 0;
+    right: 8rem;
+    width: 50%;
+}
+
+
+/* Second section */
+
+.second {
+    display: flex;
+    align-items: center;
+
+}
+
+.second .flex-layout {
+    justify-content: space-evenly;
+}
+
+.second-img {
+    max-width: 33%;
+}
+
+.info-right {
+    padding-top: 3rem;
+    max-width: 42%;
+}
+
+.info-right h2 {
+    display: inline-block;
+}
+
+.second .desc {
+    color: var(--text-paragraphs);
+    font-style: italic;
+    line-height: 1.9;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.second .desc:nth-of-type(1) {
+    margin-bottom: 2rem;
+}
+
+.second .desc:nth-of-type(2) {
+    margin-bottom: 3.5rem;
+}
+
+.second .social-icons {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+}
+
+.second .social-icons .icon {
+    background-color: var(--icons-gray);
+    color: white;
+    width: 2.5rem;
+    position: relative;
+    height: 2.5rem;
+}
+
+.second .social-icons .icon i {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Third section */
+.third {
+    font-size: 0;
+}
+
+.third-img {
+    width: 100%;
+}
+
+/* Fourth section */
+
+.section.fourth {
+    display: flex;
+}
+
+.fourth-img {
+    width: 45%;
+}
+
+.fourth .info-left {
+    width: 30%;
+    margin: 0;
+}
+
+.fourth .flex-layout {
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Fifth section */
+
+.section.fifth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.thumbs-container {
+    display: flex;
+    width: 75%;
+}
+
+.thumbs {
+    width: 33.33%;
+    transform: scale(1.3);
+}
+
+.thumbs.infront {
+    z-index: 2;
+    transform: scale(1.7);
+}
+
+/* Sixth section */
+
+
+
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 5rem;
+}
+
+.sixth .desc {
+    color: var(--text-paragraphs);
+    font-style: italic;
+    line-height: 1.9;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+
+form {
+    display: grid;
+    grid-template-areas: "email subject"
+    "message message"
+    "submit submit";
+    gap: 2rem;
+    width: 60%;
+    margin: 0 auto 8rem auto;
+}
+
+.email {
+    grid-area: email;
+}
+.subject {
+    grid-area: subject;
+}
+
+.message {
+    grid-area: message;
+}
+
+.submit {
+    grid-area: submit;
+}
+
+
+.form-elem {
+    width: 100%;
+    position: relative;
+}
+
+label {
+    position: absolute;
+    left: 1rem;
+    top: 0.7rem;
+    color: var(--text-heading-bold);
+    font-size: 1.2rem;
+}
+
+input {
+    width: 100%;
+    height: 3rem;
+    border: 1.5px solid black;
+    background-color: var(--bg-pink);
+}
+
+input[type="textarea"] {
+    height: 10rem;
+}
+
+.submit input {
+    font-size: 1.2rem;
+}
+
+.submit input {
+    background-color: var(--text-heading-bold);
+    color: #fff;
+}
+
+footer p {
+    color: var(--text-heading-bold);
+    font-size: 1rem;
+}
