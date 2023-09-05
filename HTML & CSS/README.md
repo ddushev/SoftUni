@@ -1,4 +1,4 @@
-# Exam preperations for HTML & CSS course from the Front-end modulein SoftUni
+# Exam preperations for HTML & CSS course from the Front-end module in SoftUni
 
 # Overview
 Exam preparations to practice the material from the course
