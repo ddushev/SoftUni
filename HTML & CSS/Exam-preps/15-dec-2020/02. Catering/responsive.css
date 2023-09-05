@@ -1,0 +1,77 @@
+@media (max-width: 600px) {
+    /* Global */
+
+.w3-xxlarge, h1 {
+    font-size: 44px;
+}
+
+h4 {
+    font-size: 26px;
+}
+
+h5 {
+    font-size: 22px;
+}
+
+/* Header */
+
+.w3-top {
+    position: static;
+
+}
+
+.w3-display-container .w3-image {
+    height: 230px;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+.w3-right.w3-hide-small {
+    display: none;
+}
+
+.w3-bar .w3-bar-item {
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 18px;
+}
+
+
+/* About  */
+
+.w3-hide-small {
+    display: none;
+}
+
+.w3-col.m6 {
+    width: 100%;
+}
+
+.w3-large {
+    font-size: 22px;
+}
+
+/* Menu */
+
+#menu .w3-col.l6 {
+    width: 100%;
+}
+
+#menu .w3-text-grey {
+    font-size: 18px;
+}
+
+
+/* Contact */
+
+#contact p:nth-of-type(odd) {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#contact form p {
+    font-size: 18px;
+}
+
+}
+
