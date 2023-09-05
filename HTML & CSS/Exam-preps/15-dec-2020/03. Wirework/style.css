@@ -1,0 +1,236 @@
+@import url(https://use.fontawesome.com/releases/v5.6.3/css/all.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    font-family: Helvetica;
+}
+
+:root {
+    --bg-oranage: #e24e2a;
+    --bg-light-gray: #ececec;
+    --bg-dark-gray: #383838;
+    --bg-green: #1b9772;
+    --bg-green-footer: #1b9772;
+    --logo: #2c383b;
+    --h2: #555555;
+    --h3: #a6a9ae;
+    --p: #6b6b6c;
+    --p-white: #f4c3ba;
+}
+
+/* Global */
+
+/* Header */
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px 30px 50px;
+}
+
+.logo {
+    display: flex;
+    align-items:center;
+    margin-top:30px;
+    gap: 25px
+}
+
+.logo p {
+    border-right: 1px solid var(--h2);
+    color: var(--logo);
+    font-size: 56px;
+    font-weight: bold;
+    padding-right: 25px;
+}
+
+.logo span {
+    font-size: 20px;
+}
+
+.nav-right ul{
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-right ul li {
+    background-color: var(--bg-light-gray);
+    padding: 30px;
+}
+
+.nav-right ul li:not(:last-of-type) {
+    border-right: 1px solid #fff;
+}
+
+.nav-right ul li.active {
+    background-color: var(--bg-oranage);
+}
+
+.nav-right ul li.active a {
+    color: #fff;
+}
+
+.nav-right ul a {
+    font-size: 24px;
+    text-decoration: none;
+    color: var(--h2);
+    letter-spacing: 2px;
+}
+
+/* Showcase */
+
+#showcase {
+
+    font-size: 0;
+}
+
+#showcase img {
+    width: 100%;
+    height: 650px;
+    object-fit: cover;
+}
+
+.showcase-footer {
+    background-color: var(--bg-oranage);
+}
+
+.showcase-footer p {
+    padding: 60px 220px;
+    font-size: 22px;
+    color: var(--p-white);
+    line-height: 2;
+    text-align: center;
+    font-weight: normal;
+}
+
+#showcase .highlighted {
+    color: #fff;
+}
+
+#showcase .underlined {
+    text-decoration: underline;
+}
+
+/* Icons section */
+
+#icons-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: var(--bg-dark-gray);
+    padding: 140px 50px;
+    gap: 40px
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#icons-section i {
+    color: #fff;
+    background-color: var(--bg-oranage);
+    font-size: 80px;
+    padding: 35px;
+}
+
+#icons-section h5 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: normal;
+    padding: 15px 0 25px 0;
+}
+
+#icons-section .pushed{
+    padding-top:30px
+}
+
+#icons-section p {
+    color: var(--p);
+    font-size: 22px;
+    text-align: center;
+    line-height: 1.8;
+    padding-top: 25px;
+    border-top: 1px solid var(--h2);
+}
+
+/* CTA-section */
+
+#cta-section {
+    padding: 100px 200px;
+    text-align: center;
+}
+
+#cta-section .cta-title {
+    color: var(--h2);
+    font-size: 52px;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+#cta-section .cta-subtitle {
+    color: var(--h3);
+    font-size: 26px;
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+#cta-section .btn {
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 25px 85px 30px 85px;
+    background-color: var(--bg-green);
+}
+
+/* Reviews */
+
+#reviews {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background-color: var(--bg-dark-gray);
+    padding: 140px 50px;
+    gap: 40px
+}
+
+#reviews h5 {
+    color: #fff;
+    font-size: 34px;
+    font-weight: normal;
+    padding: 15px 0 25px 0;
+}
+
+
+#reviews p {
+    color: var(--p);
+    font-size: 22px;
+    text-align: center;
+    line-height: 1.8;
+    padding-top: 25px;
+}
+
+/* Footer */
+
+.main-footer {
+    font-size: 18px;
+    padding: 100px 250px 150px 250px;
+    background-color: var(--bg-green-footer);
+    text-align: center;
+    color: #5ab499;
+    letter-spacing: 3.5px;
+}
+.main-footer .highlighted {
+    color: #8fd4c3;
+}
+
+
+
+
