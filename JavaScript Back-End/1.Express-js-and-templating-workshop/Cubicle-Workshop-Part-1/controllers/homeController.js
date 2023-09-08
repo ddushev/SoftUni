@@ -4,10 +4,14 @@ const homeController = require('express').Router();
 
 
 homeController.get('/', (req, res) => {
-    const cubes = getData(req.query.search || '');
+    const {search , from: difficultyFrom, to: difficultyTo } = req.query;
+    const cubes = getData(search || '', difficultyFrom || '', difficultyTo || '');
     res.render('home', {
         title: 'Cubicle',
-        cubes
+        cubes,
+        search,
+        difficultyFrom,
+        difficultyTo
     });
 });
 

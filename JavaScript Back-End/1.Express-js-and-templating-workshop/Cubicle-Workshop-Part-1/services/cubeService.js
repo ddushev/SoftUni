@@ -3,8 +3,10 @@ const fs = require('fs');
 const filename = './models/database.json'
 const data = JSON.parse(fs.readFileSync(filename));
 
-function getData(search) {
-    return data.filter(x => x.name.toLowerCase().includes(search.toLowerCase()));
+function getData(search, difficultyFrom, difficultyTo) {
+    return data.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
+                .filter(cube => cube.difficultyLevel >= Number(difficultyFrom))
+                .filter(cube => cube.difficultyLevel <= Number(difficultyTo));
 }
 
 function getDataById(id) {
