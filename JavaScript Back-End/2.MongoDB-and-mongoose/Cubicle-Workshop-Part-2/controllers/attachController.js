@@ -7,8 +7,8 @@ attachController.get('/accessory/:id', async (req, res) => {
     try {
         const cube = await getDataById(req.params.id);
         let accessories = await getAccessories();
-        cube.accessories.forEach(accessoryId => {
-            accessories = accessories.filter(accessory => accessory._id.toString() != accessoryId.toString());
+        cube.accessories.forEach(accessoryRef => {
+            accessories = accessories.filter(accessory => accessory._id.toString() != accessoryRef._id.toString());
         });
         res.render('attachAccessory', {
             title: 'Attach Accessory to a Cube',

@@ -1,4 +1,3 @@
-const { findById } = require('../models/Accessory');
 const Cube = require('../models/Cube');
 
 async function getData(search, difficultyFrom, difficultyTo) {
@@ -17,7 +16,7 @@ async function getData(search, difficultyFrom, difficultyTo) {
 }
 
 async function getDataById(id) {
-    return Cube.findById(id).lean();
+    return Cube.findById(id).populate('accessories').lean();
 }
 
 async function createData(cubeData) {
