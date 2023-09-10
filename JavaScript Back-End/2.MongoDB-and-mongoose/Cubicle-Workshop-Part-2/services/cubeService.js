@@ -1,3 +1,4 @@
+const { findById } = require('../models/Accessory');
 const Cube = require('../models/Cube');
 
 async function getData(search, difficultyFrom, difficultyTo) {
@@ -29,8 +30,16 @@ async function createData(cubeData) {
     await Cube.create(cube);
 }
 
+async function updateData(cubeId, accessoryId) {
+    const cube = await Cube.findById(cubeId).lean();
+    const accessories = cube.accessories;
+    accessories.push(accessoryId);
+    await Cube.findByIdAndUpdate(cubeId, {accessories});
+}
+
 module.exports = {
     getData,
     getDataById,
-    createData
+    createData,
+    updateData
 }

@@ -8,12 +8,12 @@ async function createAccessory(accessoryData) {
     await Accessory.create(accessoryData);
 }
 
-async function getAccessoryById(id) {
-
+async function getAccessoryByName(name) {
+    return Accessory.findOne({name}).lean();
 }
 
 module.exports = {
     getAccessories,
     createAccessory,
-    getAccessoryById
+    getAccessoryByName
 }
