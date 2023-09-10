@@ -8,9 +8,16 @@ createController.get('/', (req, res) => {
     });
 });
 
-createController.post('/', (req, res) => {
-    createData(req.body);
-    res.redirect('/');
+createController.post('/', async (req, res) => {
+    try {
+        await createData(req.body);
+        res.redirect('/');
+    } catch (error) {
+        res.render('create', {
+            title: 'Failed - Create a Cube'
+        });
+    }
+
 })
 
 module.exports = createController;

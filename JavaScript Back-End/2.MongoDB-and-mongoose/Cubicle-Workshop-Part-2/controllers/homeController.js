@@ -3,9 +3,9 @@ const { getData } = require('../services/cubeService');
 const homeController = require('express').Router();
 
 
-homeController.get('/', (req, res) => {
+homeController.get('/', async (req, res) => {
     const {search , from: difficultyFrom, to: difficultyTo } = req.query;
-    const cubes = getData(search || '', difficultyFrom || '', difficultyTo || '');
+    const cubes = await getData(search || '', difficultyFrom || '', difficultyTo || '');
     res.render('home', {
         title: 'Cubicle',
         cubes,

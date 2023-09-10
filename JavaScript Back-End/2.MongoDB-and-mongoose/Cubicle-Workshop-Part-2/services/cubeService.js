@@ -1,10 +1,7 @@
-const fs = require('fs');
+const Cube = require('../models/Cube');
 
-const filename = './models/database.json'
-const data = JSON.parse(fs.readFileSync(filename));
-
-function getData(search, difficultyFrom, difficultyTo) {
-    let filteredData = data;
+async function getData(search, difficultyFrom, difficultyTo) {
+    let filteredData = await Cube.find({}).lean();
     if(search) {
         filteredData = filteredData.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
     }
@@ -18,24 +15,18 @@ function getData(search, difficultyFrom, difficultyTo) {
     return filteredData;
 }
 
-function getDataById(id) {
-    return data.find(x => x.id == id);
+async function getDataById(id) {
+    return Cube.findById(id).lean();
 }
 
-function createData(cubeData) {
+async function createData(cubeData) {
     const cube = {
-        id: createId(),
         name: cubeData.name,
         description: cubeData.description,
         imageUrl: cubeData.imageUrl,
         difficultyLevel: Number(cubeData.difficultyLevel)
     }
-    data.push(cube);
-    fs.writeFileSync(filename, JSON.stringify(data, null, 2));
-}
-
-function createId() {
-    return ('000000' + (Math.random() * 999999 | 0).toString(16)).slice(-6);
+    await Cube.create(cube);
 }
 
 module.exports = {
