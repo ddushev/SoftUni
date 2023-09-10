@@ -4,9 +4,18 @@ const filename = './models/database.json'
 const data = JSON.parse(fs.readFileSync(filename));
 
 function getData(search, difficultyFrom, difficultyTo) {
-    return data.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
-                .filter(cube => cube.difficultyLevel >= Number(difficultyFrom))
-                .filter(cube => cube.difficultyLevel <= Number(difficultyTo));
+    let filteredData = data;
+    if(search) {
+        filteredData = filteredData.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
+    }
+    if (difficultyFrom) {
+        filteredData = filteredData.filter(cube => cube.difficultyLevel >= Number(difficultyFrom));
+    }
+
+    if (difficultyTo) {
+        filteredData = filteredData.filter(cube => cube.difficultyLevel <= Number(difficultyTo));
+    }
+    return filteredData;
 }
 
 function getDataById(id) {
