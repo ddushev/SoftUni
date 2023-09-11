@@ -1,5 +1,5 @@
 const { getAccessories, getAccessoryByName } = require('../services/accessoryService');
-const { getDataById, updateData } = require('../services/cubeService');
+const { getDataById, attachAccessory } = require('../services/cubeService');
 
 const attachController = require('express').Router();
 
@@ -27,7 +27,7 @@ attachController.get('/accessory/:id', async (req, res) => {
 attachController.post('/accessory/:id', async (req, res) => {
     try {
         const accessory = await getAccessoryByName(req.body.accessory);
-        await updateData(req.params.id, accessory._id);
+        await attachAccessory(req.params.id, accessory._id);
         res.redirect(`/details/${req.params.id}`);
     } catch (error) {
         console.log(error.message);

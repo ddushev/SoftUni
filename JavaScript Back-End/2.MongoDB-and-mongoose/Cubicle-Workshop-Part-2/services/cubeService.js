@@ -1,3 +1,4 @@
+const Accessory = require('../models/Accessory');
 const Cube = require('../models/Cube');
 
 async function getData(search, difficultyFrom, difficultyTo) {
@@ -26,19 +27,21 @@ async function createData(cubeData) {
         imageUrl: cubeData.imageUrl,
         difficultyLevel: Number(cubeData.difficultyLevel)
     }
-    await Cube.create(cube);
+    return Cube.create(cube);
 }
 
-async function updateData(cubeId, accessoryId) {
-    const cube = await Cube.findById(cubeId).lean();
+async function attachAccessory(cubeId, accessoryId) {
+    const [cube, accessory] = await Promise.all([Cube.findById(cubeId).lean(), Accessory.findById(accessoryId).lean()]);
     const accessories = cube.accessories;
+    const cubes = accessory.cubes;
     accessories.push(accessoryId);
-    await Cube.findByIdAndUpdate(cubeId, {accessories});
+    cubes.push(cubeId);
+    return Promise.all([Cube.findByIdAndUpdate(cubeId, {accessories}), Accessory.findByIdAndUpdate(accessoryId, {cubes})]);
 }
 
 module.exports = {
     getData,
     getDataById,
     createData,
-    updateData
+    attachAccessory
 }

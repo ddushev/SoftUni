@@ -5,7 +5,7 @@ async function getAccessories() {
 }
 
 async function createAccessory(accessoryData) {
-    await Accessory.create(accessoryData);
+    return Accessory.create(accessoryData);
 }
 
 async function getAccessoryByName(name) {
