@@ -5,11 +5,12 @@ const attachController = require('express').Router();
 
 attachController.get('/accessory/:id', async (req, res) => {
     try {
+        //TODO Use Mongoose filtering instead of in-memory
         const cube = await getDataById(req.params.id);
-        let accessories = await getAccessories();
-        cube.accessories.forEach(accessoryRef => {
-            accessories = accessories.filter(accessory => accessory._id.toString() != accessoryRef._id.toString());
-        });
+        const accessories = await getAccessories(cube.accessories);
+        // cube.accessories.forEach(accessoryRef => {
+        //     accessories = accessories.filter(accessory => accessory._id.toString() != accessoryRef._id.toString());
+        // });
         res.render('attachAccessory', {
             title: 'Attach Accessory to a Cube',
             cube,

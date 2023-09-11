@@ -1,7 +1,7 @@
 const Accessory = require('../models/Accessory');
 
-async function getAccessories() {
-    return Accessory.find({}).lean();
+async function getAccessories(cubeAccessories) {
+    return Accessory.find({_id: {$nin: cubeAccessories}}).lean();
 }
 
 async function createAccessory(accessoryData) {
