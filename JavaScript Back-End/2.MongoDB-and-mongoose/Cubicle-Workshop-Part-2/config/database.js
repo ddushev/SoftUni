@@ -1,11 +1,10 @@
+const env = process.env.NODE_ENV || 'development';
 const mongoose = require('mongoose');
-
-const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/cubical';
-
+const config = require('./config')[env];
 
 module.exports = async (app) => {
     try {
-        await mongoose.connect(CONNECTION_STRING);
+        await mongoose.connect(config.db_uri);
     } catch (error) {
         console.log(error.message);
     }
