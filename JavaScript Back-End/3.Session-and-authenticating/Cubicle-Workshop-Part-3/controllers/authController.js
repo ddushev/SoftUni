@@ -33,6 +33,11 @@ authController.post('/register', async (req, res) => {
     res.redirect('/');
 });
 
+authController.get('/logout', (req, res)=> {
+    res.clearCookie('jwt');
+    res.redirect('/');
+})
+
 function saveToken(req, res, data) {
     const token = jwt.sign(data, secret, {expiresIn: '4h'});
     res.cookie('jwt', token);
