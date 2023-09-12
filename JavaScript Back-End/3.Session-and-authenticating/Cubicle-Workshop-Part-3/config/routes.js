@@ -1,4 +1,5 @@
 const attachController = require("../controllers/attachController");
+const authController = require("../controllers/authController");
 const catalogController = require("../controllers/catalogController");
 const createController = require("../controllers/createController");
 const defaultController = require("../controllers/defaultController");
@@ -12,6 +13,7 @@ module.exports = (app) => {
     app.use('/create', createController);
     app.use('/details', catalogController);
     app.use('/attach', attachController);
+    app.use('/auth', authController);
 
     app.all('*', defaultController);
 };
