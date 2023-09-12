@@ -2,6 +2,7 @@ const express = require('express');
 const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const auth = require('../middlewares/auth');
 
 module.exports = (app) => {
     
@@ -15,6 +16,9 @@ module.exports = (app) => {
 
     //Cookie parser
     app.use(cookieParser());
+
+    //Middleware checking for user
+    app.use(auth());
 
     //TODO: Setup the static files
     app.use('/static', express.static('static'));
