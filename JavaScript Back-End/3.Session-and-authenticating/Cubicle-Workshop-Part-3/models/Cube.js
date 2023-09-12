@@ -5,7 +5,8 @@ const cubeSchema = new mongoose.Schema({
     description: { type: String, required: true, maxLength: 50 },
     imageUrl: { type: String, required: true, match: /^(https?:\/\/.+)$/ },
     difficultyLevel: { type: Number, required: true, min: 1, max: 10 },
-    accessories: { type: [mongoose.Types.ObjectId], default: [], ref: 'Accessory' }
+    accessories: { type: [mongoose.Types.ObjectId], default: [], ref: 'Accessory' },
+    creatorId: {type: String, required: true}
 });
 
 const Cube = mongoose.model('Cube', cubeSchema);
