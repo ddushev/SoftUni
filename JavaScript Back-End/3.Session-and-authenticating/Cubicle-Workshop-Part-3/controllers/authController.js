@@ -1,5 +1,5 @@
 const authController = require('express').Router();
-const { register } = require('../services/authService');
+const { register, login } = require('../services/authService');
 const jwt = require('jsonwebtoken');
 const secret = 'mysecret';
 
@@ -11,8 +11,10 @@ authController.get('/login', (req, res) => {
     });
 });
 
-authController.post('/login', (req, res) => {
-    
+authController.post('/login', async (req, res) => {
+    const user = await login(req.body.username, req.body.password);
+    saveToken(req, res, user);
+    res.redirect('/');
 })
 
 authController.get('/register', (req, res) => {
@@ -26,10 +28,14 @@ authController.post('/register', async (req, res) => {
         throw new Error('Passwords don\'t match!');
     }
 
-    const username = await register(req.body.username, req.body.password);
-    const token = jwt.sign({username}, secret, {expiresIn: '4h'});
-    res.cookie('jwt', token);
+    const user = await register(req.body.username, req.body.password);
+    saveToken(req, res, user);
     res.redirect('/');
 });
+
+function saveToken(req, res, data) {
+    const token = jwt.sign(data, secret, {expiresIn: '4h'});
+    res.cookie('jwt', token);
+}
 
 module.exports = authController;
