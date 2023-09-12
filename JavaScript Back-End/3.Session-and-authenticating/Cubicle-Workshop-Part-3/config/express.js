@@ -17,7 +17,7 @@ module.exports = (app) => {
     //Cookie parser
     app.use(cookieParser());
 
-    //Middleware checking for user
+    //Middleware checking for verified user
     app.use(auth());
 
     //TODO: Setup the static files

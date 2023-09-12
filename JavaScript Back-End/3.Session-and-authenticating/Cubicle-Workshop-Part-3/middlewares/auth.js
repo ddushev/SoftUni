@@ -5,7 +5,8 @@ module.exports = () => (req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {
         try {
-            const verified = jwt.verify(token, secret);
+            const userVerified = jwt.verify(token, secret);
+            req.user = userVerified;
             res.locals.hasUser = true;
         } catch (error) {
             res.clearCookie('jwt');

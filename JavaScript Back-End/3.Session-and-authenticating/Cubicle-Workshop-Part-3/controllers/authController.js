@@ -3,7 +3,7 @@ const { register, login } = require('../services/authService');
 const jwt = require('jsonwebtoken');
 const secret = 'mysecret';
 
-//TODO authController
+//Login endpoints
 
 authController.get('/login', (req, res) => {
     res.render('login', {
@@ -16,6 +16,8 @@ authController.post('/login', async (req, res) => {
     saveToken(req, res, user);
     res.redirect('/');
 })
+
+//Register endpoints
 
 authController.get('/register', (req, res) => {
     res.render('register', {
@@ -32,6 +34,8 @@ authController.post('/register', async (req, res) => {
     saveToken(req, res, user);
     res.redirect('/');
 });
+
+//Logout endpoint
 
 authController.get('/logout', (req, res)=> {
     res.clearCookie('jwt');

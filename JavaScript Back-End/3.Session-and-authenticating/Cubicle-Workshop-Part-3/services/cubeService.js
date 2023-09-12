@@ -20,12 +20,13 @@ async function getDataById(id) {
     return Cube.findById(id).populate('accessories').lean();
 }
 
-async function createData(cubeData) {
+async function createData(cubeData, creatorId) {
     const cube = {
         name: cubeData.name,
         description: cubeData.description,
         imageUrl: cubeData.imageUrl,
-        difficultyLevel: Number(cubeData.difficultyLevel)
+        difficultyLevel: Number(cubeData.difficultyLevel),
+        creatorId
     }
     return Cube.create(cube);
 }

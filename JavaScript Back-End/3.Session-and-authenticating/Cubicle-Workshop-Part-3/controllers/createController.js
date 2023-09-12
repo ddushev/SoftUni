@@ -11,7 +11,7 @@ createController.get('/cube', (req, res) => {
 
 createController.post('/cube', async (req, res) => {
     try {
-        await createData(req.body);
+        await createData(req.body, req.user._id);
         res.redirect('/');
     } catch (error) {
         res.render('create', {
