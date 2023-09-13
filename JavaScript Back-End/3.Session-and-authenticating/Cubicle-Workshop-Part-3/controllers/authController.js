@@ -12,9 +12,15 @@ authController.get('/login', (req, res) => {
 });
 
 authController.post('/login', async (req, res) => {
-    const user = await login(req.body.username, req.body.password);
-    saveToken(req, res, user);
-    res.redirect('/');
+    try {
+        const user = await login(req.body.username, req.body.password);
+        saveToken(req, res, user);
+        res.redirect('/');
+    } catch (error) {
+        console.log(error.message);
+        res.render('404');
+    }
+
 })
 
 //Register endpoints
@@ -26,13 +32,19 @@ authController.get('/register', (req, res) => {
 });
 
 authController.post('/register', async (req, res) => {
-    if (req.body.password != req.body.repeatPassword) {
-        throw new Error('Passwords don\'t match!');
+    try {
+        if (req.body.password != req.body.repeatPassword) {
+            throw new Error('Passwords don\'t match!');
+        }
+    
+        const user = await register(req.body.username, req.body.password);
+        saveToken(req, res, user);
+        res.redirect('/');
+    } catch (error) {
+        console.log(error.message);
+        res.render('404');
     }
 
-    const user = await register(req.body.username, req.body.password);
-    saveToken(req, res, user);
-    res.redirect('/');
 });
 
 function saveToken(req, res, data) {

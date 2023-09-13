@@ -13,6 +13,7 @@ catalogController.get('/:id', async (req, res) => {
             cube
         });
     } catch (error) {
+        console.log(error.message);
         res.render('404');
     }
 
