@@ -31,6 +31,10 @@ async function createData(cubeData, creatorId) {
     return Cube.create(cube);
 }
 
+async function editData(cubeData, cubeId) {
+    return Cube.findByIdAndUpdate(cubeId, cubeData);
+}
+
 async function attachAccessory(cubeId, accessoryId) {
     const [cube, accessory] = await Promise.all([Cube.findById(cubeId).lean(), Accessory.findById(accessoryId).lean()]);
     const accessories = cube.accessories;
@@ -44,5 +48,6 @@ module.exports = {
     getData,
     getDataById,
     createData,
+    editData,
     attachAccessory
 }
