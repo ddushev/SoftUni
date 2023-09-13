@@ -13,8 +13,8 @@ const { hasUser, isGuest } = require("../middlewares/guards");
 module.exports = (app) => {
     // TODO...
     app.use(homeController);
-    app.use('/create', hasUser, createController);
     app.use('/details', catalogController);
+    app.use('/create', hasUser, createController);
     app.use('/attach', hasUser, attachController);
     app.use('/auth', isGuest, authController);
     app.use('/logout', hasUser, logoutController);
