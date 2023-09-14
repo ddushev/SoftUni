@@ -5,6 +5,9 @@ const cubeController = require('express').Router();
 cubeController.get('/edit/:id', async (req, res) => {
     try {
         const cube = await getDataById(req.params.id);
+        if (cube.creatorId != req.user._id) {
+            res.redirect('/404');
+        }
         res.render('edit', {
             title: `Edit cube ${req.params.id}`,
             cube
@@ -31,6 +34,9 @@ cubeController.post('/edit/:id', async (req, res) => {
 cubeController.get('/delete/:id', async (req, res) => {
     try {
         const cube = await getDataById(req.params.id);
+        if (cube.creatorId != req.user._id) {
+            res.redirect('/404');
+        }
         res.render('delete', {
             title: `Delete cube ${req.params.id}`,
             cube
