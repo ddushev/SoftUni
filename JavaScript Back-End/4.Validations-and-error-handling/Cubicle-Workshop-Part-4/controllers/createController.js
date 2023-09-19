@@ -1,5 +1,6 @@
 const { createAccessory } = require('../services/accessoryService');
 const { createData } = require('../services/cubeService');
+const errorParser = require('../utils/errorParser');
 
 const createController = require('express').Router();
 
@@ -16,7 +17,7 @@ createController.post('/cube', async (req, res) => {
     } catch (error) {
         res.render('create', {
             title: 'Failed - Create a Cube',
-            error
+            error: errorParser(error)
         });
     }
 });

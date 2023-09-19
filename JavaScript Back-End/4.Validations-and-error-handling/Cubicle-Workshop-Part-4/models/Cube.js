@@ -8,7 +8,7 @@ const cubeSchema = new mongoose.Schema({
             validator: function(v) {
                 return /^[a-zA-Z0-9\s]+$/g.test(v)
             },
-            message: 'Contains not allowed characters'
+            message: 'Cube\'s name contains not allowed characters'
         }
     },
     description: { type: String, 
