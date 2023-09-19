@@ -18,6 +18,7 @@ function parseError(error) {
     }else {
         result.messages.push(error.message);
     }
+    console.log(result);
     return result;
 }
 
