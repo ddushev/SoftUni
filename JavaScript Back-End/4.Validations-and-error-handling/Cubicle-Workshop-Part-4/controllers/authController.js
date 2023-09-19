@@ -1,6 +1,7 @@
 const authController = require('express').Router();
 const { register, login } = require('../services/authService');
 const jwt = require('jsonwebtoken');
+const errorParser = require('../utils/errorParser');
 const secret = 'mysecret';
 
 //Login endpoints
@@ -17,8 +18,10 @@ authController.post('/login', async (req, res) => {
         saveToken(req, res, user);
         res.redirect('/');
     } catch (error) {
-        console.log(error.message);
-        res.render('404');
+        res.render('login', {
+            title: 'Login Failed',
+            error: errorParser(error)
+        });
     }
 
 })
@@ -41,8 +44,10 @@ authController.post('/register', async (req, res) => {
         saveToken(req, res, user);
         res.redirect('/');
     } catch (error) {
-        console.log(error.message);
-        res.render('404');
+        res.render('register', {
+            title: 'Registration Failed',
+            error: errorParser(error)
+        });
     }
 
 });

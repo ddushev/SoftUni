@@ -1,7 +1,17 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
+const regex = new RegExp('^[a-zA-Z0-9]{3,}$');
 
 async function login(username, password) {
+
+    if (!regex.test(username)) {
+        throw new Error('Username contains not allowed characters');
+    }
+
+    if (!regex.test(password)) {
+        throw new Error('Password contains not allowed characters');
+    }
+
     const user = await User.findOne({ username }).lean();
 
     if (!user) {
@@ -23,6 +33,14 @@ async function login(username, password) {
 }
 
 async function register(username, password) {
+    if (!regex.test(username)) {
+        throw new Error('Username contains not allowed characters');
+    }
+
+    if (!regex.test(password)) {
+        throw new Error('Password contains not allowed characters');
+    }
+
     const alreadyRegistered = await User.findOne({ username }).lean();
     if (alreadyRegistered) {
         throw new Error('The username is already taken!')
