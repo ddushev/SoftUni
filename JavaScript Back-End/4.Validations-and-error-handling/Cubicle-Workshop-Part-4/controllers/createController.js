@@ -33,9 +33,9 @@ createController.post('/accessory', async (req, res) => {
         await createAccessory(req.body);
         res.redirect('/');
     } catch (error) {
-        console.log(error.message);
         res.render('createAccessory', {
-            title: 'Failed to Create Accessory'
+            title: 'Failed to Create Accessory',
+            error: errorParser(error)
         });
     }
 });
