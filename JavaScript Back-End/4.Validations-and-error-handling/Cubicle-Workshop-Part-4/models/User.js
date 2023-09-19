@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
             validator: function(v) {
                 return /^[a-zA-Z0-9]+$/g.test(v)
             },
-            message: props => `${props.value} contains not allowed characters`
+            message: 'Contains not allowed characters'
         }
     },
     hashedPassword: { type: String, required: true }

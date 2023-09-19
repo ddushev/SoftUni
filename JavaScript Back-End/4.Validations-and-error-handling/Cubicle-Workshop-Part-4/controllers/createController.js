@@ -15,7 +15,8 @@ createController.post('/cube', async (req, res) => {
         res.redirect('/');
     } catch (error) {
         res.render('create', {
-            title: 'Failed - Create a Cube'
+            title: 'Failed - Create a Cube',
+            error
         });
     }
 });
