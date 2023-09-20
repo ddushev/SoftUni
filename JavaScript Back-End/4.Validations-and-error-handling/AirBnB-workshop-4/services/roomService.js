@@ -19,9 +19,9 @@ async function create(roomData, ownerId) {
         owner: ownerId
     }
     const missing = Object.entries(room).filter(([k, v]) => !v);
-    // if (missing.length > 0) {
-    //     throw new Error(missing.map(m => `${m[0]} is required`).join('\n'));
-    // }
+    if (missing.length > 0) {
+        throw new Error(missing.map(m => `${m[0]} is required`).join('\n'));
+    }
     const result = await Room.create(room);
     return result;
 }
