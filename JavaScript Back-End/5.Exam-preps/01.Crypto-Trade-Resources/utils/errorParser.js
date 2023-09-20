@@ -1,12 +1,12 @@
-function errorParser(error) {
-    const errors = [];
+function errorParser(err) {
+    let errors = [];
 
-    if (error.name == 'ValidationError') {
-        for (const [field, err] of Object.entries(error.errors)) {
-            errors.push(err.message);
+    if (err.name == 'ValidationError') {
+        for (const [field, error] of Object.entries(err.errors)) {
+            errors.push(error.message);
         }
     }else {
-        errors.push(error.message);
+        errors = [...err];
     }
 
     return errors;
