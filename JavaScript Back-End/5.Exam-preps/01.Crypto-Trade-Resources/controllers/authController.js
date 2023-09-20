@@ -14,7 +14,7 @@ authController.get('/login', (req, res) => {
 
 authController.post('/login', async (req, res) => {
     try {
-        const user = await login(req.body.username, req.body.password);
+        const user = await login(req.body.username, req.body.password, req.body.email);
         saveToken(req, res, user);
         res.redirect('/');
     } catch (error) {

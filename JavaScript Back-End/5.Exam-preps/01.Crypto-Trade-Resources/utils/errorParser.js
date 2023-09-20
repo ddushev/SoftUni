@@ -5,8 +5,10 @@ function errorParser(err) {
         for (const [field, error] of Object.entries(err.errors)) {
             errors.push(error.message);
         }
-    }else {
+    }else if (Array.isArray(err)) {
         errors = [...err];
+    }else {
+        errors.push(err.message);
     }
 
     return errors;
