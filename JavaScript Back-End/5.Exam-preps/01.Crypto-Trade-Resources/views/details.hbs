@@ -22,7 +22,7 @@
 
             {{#unless item.isOwner}}
                 {{#unless item.bought}}
-                <a href="#" class="btn-buy">Buy</a>
+                <a href="/item/{{item._id}}/buy" class="btn-buy">Buy</a>
                 {{else}}
                 <p class="buy-message">You already bought these crypto coins.</p>
                 {{/unless}}

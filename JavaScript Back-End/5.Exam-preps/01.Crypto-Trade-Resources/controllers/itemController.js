@@ -1,4 +1,4 @@
-const { createData, getDataById } = require('../services/itemService');
+const { createData, getDataById, editData } = require('../services/itemService');
 const errorParser = require('../utils/errorParser');
 
 const itemController = require('express').Router();
@@ -41,6 +41,25 @@ itemController.post('/create', async (req, res) => {
     } catch (error) {
         res.render('create', {
             title: 'Failed - Create an Item',
+            error: errorParser(error)
+        });
+    }
+});
+
+//Buy functionality
+itemController.get('/:id/buy', async (req, res) => {
+
+    try {
+        const item = await getDataById(req.params.id);
+        if (item.creatorId == req.user._id) {
+            throw new Error('You can\'t buy your own coins!');
+        }
+        item.userCollection.push(req.user._id);
+        await editData(item, req.params.id);
+        res.redirect(`/catalog/${req.params.id}/details`)
+    } catch (error) {
+        res.render('404', {
+            title: 'Unable to purchase',
             error: errorParser(error)
         });
     }
