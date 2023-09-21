@@ -1,18 +1,7 @@
 const Item = require('../models/Item');
 
-async function getData(search, difficultyFrom, difficultyTo) {
-    let filteredData = await Item.find({}).lean();
-    // if(search) {
-    //     filteredData = filteredData.filter(cube => cube.name.toLowerCase().includes(search.toLowerCase()))
-    // }
-    // if (difficultyFrom) {
-    //     filteredData = filteredData.filter(cube => cube.difficultyLevel >= Number(difficultyFrom));
-    // }
-
-    // if (difficultyTo) {
-    //     filteredData = filteredData.filter(cube => cube.difficultyLevel <= Number(difficultyTo));
-    // }
-    return filteredData;
+async function getData() {
+    return Item.find({}).lean();
 }
 
 async function getDataById(id) {
