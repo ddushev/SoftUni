@@ -97,6 +97,10 @@ itemController.get('/:id/buy', async (req, res) => {
         if (item.creatorId == req.user._id) {
             throw new Error('You can\'t buy your own coins!');
         }
+
+        if (item.userCollection.some(id => id == req.user._id)) {
+            throw new Error('You already bought that coin!');
+        }
         item.userCollection.push(req.user._id);
         await editData(item, req.params.id);
         res.redirect(`/catalog/${req.params.id}/details`)

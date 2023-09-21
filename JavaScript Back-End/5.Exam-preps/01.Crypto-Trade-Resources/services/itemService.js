@@ -4,6 +4,18 @@ async function getData() {
     return Item.find({}).lean();
 }
 
+async function getFilteredData(name, itemOptions) {
+    let filteredData = await Item.find({}).lean();
+    if(name) {
+        filteredData = filteredData.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
+    }
+    if (itemOptions) {
+        filteredData = filteredData.filter(item => item.itemOptions == itemOptions);
+    }
+
+    return filteredData;
+}
+
 async function getDataById(id) {
     return Item.findById(id).lean();
 }
@@ -30,6 +42,7 @@ async function deleteData(itemId) {
 
 module.exports = {
     getData,
+    getFilteredData,
     getDataById,
     createData,
     editData,
