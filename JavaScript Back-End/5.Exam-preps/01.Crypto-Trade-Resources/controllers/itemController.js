@@ -1,15 +1,17 @@
 const { createData } = require('../services/itemService');
 const errorParser = require('../utils/errorParser');
 
-const createController = require('express').Router();
+const itemController = require('express').Router();
 
-createController.get('/item', (req, res) => {
+
+//Create functionality
+itemController.get('/create', (req, res) => {
     res.render('create', {
         title: 'Create an Item'
     });
 });
 
-createController.post('/item', async (req, res) => {
+itemController.post('/create', async (req, res) => {
     try {
         
         const errors = [];
@@ -46,4 +48,4 @@ createController.post('/item', async (req, res) => {
 
 
 
-module.exports = createController;
+module.exports = itemController;
