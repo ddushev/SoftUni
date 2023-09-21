@@ -1,4 +1,4 @@
-const { createData, getDataById, editData } = require('../services/itemService');
+const { createData, getDataById, editData, deleteData } = require('../services/itemService');
 const errorParser = require('../utils/errorParser');
 const validationChecker = require('../utils/validationChecker');
 
@@ -30,7 +30,7 @@ itemController.get('/:id/edit', async (req, res) => {
     try {
         const item = await getDataById(req.params.id);
         if (item.creatorId != req.user._id) {
-            throw new Error('You must be creator to edit an item!')
+            throw new Error('You must be creator to edit an item!');
         }
         res.render('edit', {
             title: `Edit item`,
@@ -66,28 +66,28 @@ itemController.get('/:id/delete', async (req, res) => {
     try {
         const item = await getDataById(req.params.id);
         if (item.creatorId != req.user._id) {
-            res.redirect('/404');
+            throw new Error('You must be creator to delete an item!');
         }
-        res.render('delete', {
-            title: `Delete item`,
-            item
-        });
-    } catch (error) {
-        console.log(error.message);
-        res.render('404');
-    }
-
-});
-
-itemController.post('/:id/delete' , async (req, res) => {
-    try {
         await deleteData(req.params.id);
-        res.redirect('/');
+        res.redirect('/catalog');
     } catch (error) {
-        console.log(error.message);
-        res.render('404');
+        res.render('404', {
+            title: 'Unable delete item',
+            error: errorParser(error)
+        });
     }
+
 });
+
+// itemController.post('/:id/delete' , async (req, res) => {
+//     try {
+//         await deleteData(req.params.id);
+//         res.redirect('/');
+//     } catch (error) {
+//         console.log(error.message);
+//         res.render('404');
+//     }
+// });
 
 //Buy functionality
 itemController.get('/:id/buy', async (req, res) => {
