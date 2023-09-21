@@ -5,7 +5,7 @@ async function getData() {
 }
 
 async function getDataById(id) {
-    return Item.findById(id).populate('userCollection').lean();
+    return Item.findById(id).lean();
 }
 
 async function createData(itemData, creatorId) {

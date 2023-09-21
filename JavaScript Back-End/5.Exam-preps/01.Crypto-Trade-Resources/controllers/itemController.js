@@ -1,4 +1,4 @@
-const { createData } = require('../services/itemService');
+const { createData, getDataById } = require('../services/itemService');
 const errorParser = require('../utils/errorParser');
 
 const itemController = require('express').Router();
@@ -45,6 +45,65 @@ itemController.post('/create', async (req, res) => {
         });
     }
 });
+
+
+
+//Edit functionality
+itemController.get('/:id/edit', async (req, res) => {
+    try {
+        const item = await getDataById(req.params.id);
+        if (item.creatorId != req.user._id) {
+            res.redirect('/404');
+        }
+        res.render('edit', {
+            title: `Edit item`,
+            item
+        });
+    } catch (error) {
+        console.log(error.message);
+        res.render('404');
+    }
+
+});
+
+itemController.post('/:id/edit', async (req, res) => {
+    try {
+        const item = await editData(req.body, req.params.id);
+        res.redirect(`/details/${item._id}`);
+    } catch (error) {
+        console.log(error.message);
+        res.render('404');
+    }
+
+});
+
+//Delete functionality
+itemController.get('/:id/delete', async (req, res) => {
+    try {
+        const item = await getDataById(req.params.id);
+        if (item.creatorId != req.user._id) {
+            res.redirect('/404');
+        }
+        res.render('delete', {
+            title: `Delete item`,
+            item
+        });
+    } catch (error) {
+        console.log(error.message);
+        res.render('404');
+    }
+
+});
+
+itemController.post('/:id/delete' , async (req, res) => {
+    try {
+        await deleteData(req.params.id);
+        res.redirect('/');
+    } catch (error) {
+        console.log(error.message);
+        res.render('404');
+    }
+})
 
 
 
