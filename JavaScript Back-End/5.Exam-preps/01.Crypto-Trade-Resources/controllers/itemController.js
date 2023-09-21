@@ -1,5 +1,6 @@
 const { createData, getDataById, editData } = require('../services/itemService');
 const errorParser = require('../utils/errorParser');
+const validationChecker = require('../utils/validationChecker');
 
 const itemController = require('express').Router();
 
@@ -13,29 +14,7 @@ itemController.get('/create', (req, res) => {
 
 itemController.post('/create', async (req, res) => {
     try {
-        
-        const errors = [];
-
-        if (req.body.name.length < 2) {
-            errors.push('Name should be atleast 2 characters long!');
-        }
-
-        if (!/^(https?:\/\/)/.test(req.body.imageUrl)) {
-            errors.push('ImageUrl should start with http:// or https://!');
-        }
-
-        if (Number(req.body.price) <= 0) {
-            errors.push('Price should be positive number!');
-        }
-
-        if (req.body.description.length < 10) {
-            errors.push('Description should be atleast 10 characters long!');
-        }
-
-        if (errors.length > 0) {
-            throw errors;
-        }
-
+        validationChecker(req);
         await createData(req.body, req.user._id);
         res.redirect('/');
     } catch (error) {
@@ -46,52 +25,38 @@ itemController.post('/create', async (req, res) => {
     }
 });
 
-//Buy functionality
-itemController.get('/:id/buy', async (req, res) => {
-
-    try {
-        const item = await getDataById(req.params.id);
-        if (item.creatorId == req.user._id) {
-            throw new Error('You can\'t buy your own coins!');
-        }
-        item.userCollection.push(req.user._id);
-        await editData(item, req.params.id);
-        res.redirect(`/catalog/${req.params.id}/details`)
-    } catch (error) {
-        res.render('404', {
-            title: 'Unable to purchase',
-            error: errorParser(error)
-        });
-    }
-});
-
-
-
 //Edit functionality
 itemController.get('/:id/edit', async (req, res) => {
     try {
         const item = await getDataById(req.params.id);
         if (item.creatorId != req.user._id) {
-            res.redirect('/404');
+            throw new Error('You must be creator to edit an item!')
         }
         res.render('edit', {
             title: `Edit item`,
             item
         });
     } catch (error) {
-        console.log(error.message);
-        res.render('404');
+        res.render('404', {
+            title: 'Unable to open edit page',
+            error: errorParser(error)
+        });
     }
 
 });
 
 itemController.post('/:id/edit', async (req, res) => {
     try {
+        validationChecker(req);
         const item = await editData(req.body, req.params.id);
-        res.redirect(`/details/${item._id}`);
+        res.redirect(`/catalog/${item._id}/details`);
     } catch (error) {
-        console.log(error.message);
-        res.render('404');
+        const item = await getDataById(req.params.id);
+        res.render('edit', {
+            title: 'Unable to edit item',
+            item,
+            error: errorParser(error)
+        });
     }
 
 });
@@ -122,8 +87,25 @@ itemController.post('/:id/delete' , async (req, res) => {
         console.log(error.message);
         res.render('404');
     }
-})
+});
 
+//Buy functionality
+itemController.get('/:id/buy', async (req, res) => {
 
+    try {
+        const item = await getDataById(req.params.id);
+        if (item.creatorId == req.user._id) {
+            throw new Error('You can\'t buy your own coins!');
+        }
+        item.userCollection.push(req.user._id);
+        await editData(item, req.params.id);
+        res.redirect(`/catalog/${req.params.id}/details`)
+    } catch (error) {
+        res.render('404', {
+            title: 'Unable to purchase',
+            error: errorParser(error)
+        });
+    }
+});
 
 module.exports = itemController;
