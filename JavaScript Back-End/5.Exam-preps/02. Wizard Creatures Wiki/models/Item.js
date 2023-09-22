@@ -1,11 +1,14 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-    name: { type: String, required: true, minLength: [2, 'The item\'s name should be atleast 2 characters!'] },
-    imageUrl: { type: String, required: true, match: [/^(https?:\/\/)/, 'Item\'s image must start with http or https'] },
-    price: { type: Number, required: true, min: [1, 'The item\'s price should be a positive number!'] },
-    description: { type: String, required: true, minLength: [10, 'The\'s description should be atleast 10 characters!'] },
-    itemOptions: { type: String, required: true, enum: ['crypto-wallet', 'credit-card', 'debit-card', 'paypal'] },
+    // price: { type: Number, required: true, min: 1 },
+    // itemOptions: { type: String, required: true, enum: ['crypto-wallet', 'credit-card', 'debit-card', 'paypal'] },
+    species: { type: String, required: true, minLength: 3 },
+    skinColor: { type: String, required: true, minLength: 3 },
+    eyeColor: { type: String, required: true, minLength: 3 },
+    name: { type: String, required: true, minLength: 2 },
+    imageUrl: { type: String, required: true, match: /^(https?:\/\/)/ },
+    description: { type: String, required: true, minLength: 10, maxLength: 500 },
     userCollection: { type: [mongoose.Types.ObjectId], default: [], ref: 'User' },
     creatorId: { type: mongoose.Types.ObjectId }
 });

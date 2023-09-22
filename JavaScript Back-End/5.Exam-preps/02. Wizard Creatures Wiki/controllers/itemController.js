@@ -16,7 +16,7 @@ itemController.post('/create', async (req, res) => {
     try {
         validationChecker(req);
         await createData(req.body, req.user._id);
-        res.redirect('/');
+        res.redirect('/catalog');
     } catch (error) {
         res.render('create', {
             title: 'Failed - Create an Item',
