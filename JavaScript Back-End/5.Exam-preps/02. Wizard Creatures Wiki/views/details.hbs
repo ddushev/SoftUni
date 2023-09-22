@@ -15,8 +15,8 @@
                 <div class="social-btn">
                     <!-- Only for registered user and author of the post -->
                     {{#if item.isOwner}}
-                    <a href="#" class="edit-btn">Edit</a>
-                    <a href="#" class="del-btn">Delete</a>
+                    <a href="/item/{{item._id}}/edit"  class="edit-btn">Edit</a>
+                    <a href="/item/{{item._id}}/delete" class="del-btn">Delete</a>
                     {{/if}}
                     {{#unless item.isOwner}}
                         {{#unless item.isInteracted}}

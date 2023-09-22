@@ -29,7 +29,7 @@ itemController.post('/create', async (req, res) => {
 itemController.get('/:id/edit', async (req, res) => {
     try {
         const item = await getDataById(req.params.id);
-        if (item.creatorId != req.user._id) {
+        if (item.creatorId._id != req.user._id) {
             throw new Error('You must be creator to edit an item!');
         }
         res.render('edit', {
@@ -65,7 +65,7 @@ itemController.post('/:id/edit', async (req, res) => {
 itemController.get('/:id/delete', async (req, res) => {
     try {
         const item = await getDataById(req.params.id);
-        if (item.creatorId != req.user._id) {
+        if (item.creatorId._id != req.user._id) {
             throw new Error('You must be creator to delete an item!');
         }
         await deleteData(req.params.id);
