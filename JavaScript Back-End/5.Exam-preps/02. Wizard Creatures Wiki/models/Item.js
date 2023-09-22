@@ -10,7 +10,7 @@ const itemSchema = new mongoose.Schema({
     imageUrl: { type: String, required: true, match: /^(https?:\/\/)/ },
     description: { type: String, required: true, minLength: 10, maxLength: 500 },
     userCollection: { type: [mongoose.Types.ObjectId], default: [], ref: 'User' },
-    creatorId: { type: mongoose.Types.ObjectId }
+    creatorId: { type: mongoose.Types.ObjectId, ref: 'User' }
 });
 
 const Item = mongoose.model('Item', itemSchema);

@@ -89,24 +89,24 @@ itemController.get('/:id/delete', async (req, res) => {
 //     }
 // });
 
-//Buy functionality
-itemController.get('/:id/buy', async (req, res) => {
+//Interact functionality
+itemController.get('/:id/interact', async (req, res) => {
 
     try {
         const item = await getDataById(req.params.id);
-        if (item.creatorId == req.user._id) {
-            throw new Error('You can\'t buy your own coins!');
+        if (item.creatorId._id == req.user._id) {
+            throw new Error('You can\'t interact with your own items!');
         }
 
-        if (item.userCollection.some(id => id == req.user._id)) {
-            throw new Error('You already bought that coin!');
+        if (item.userCollection.some(user => user._id == req.user._id)) {
+            throw new Error('You already interacted with that item!');
         }
         item.userCollection.push(req.user._id);
         await editData(item, req.params.id);
         res.redirect(`/catalog/${req.params.id}/details`)
     } catch (error) {
         res.render('404', {
-            title: 'Unable to purchase',
+            title: 'Unable to interact',
             error: errorParser(error)
         });
     }

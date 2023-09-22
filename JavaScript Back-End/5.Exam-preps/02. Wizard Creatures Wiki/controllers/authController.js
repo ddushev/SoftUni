@@ -65,7 +65,7 @@ authController.post('/register', async (req, res) => {
         if (errors.length > 0) {
             throw errors;
         }
-    
+
         const user = await register(req.body);
         saveToken(req, res, user);
         res.redirect('/');

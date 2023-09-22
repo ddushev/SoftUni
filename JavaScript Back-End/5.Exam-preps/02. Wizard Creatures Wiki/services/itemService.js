@@ -17,7 +17,7 @@ async function getFilteredData(name, itemOptions) {
 }
 
 async function getDataById(id) {
-    return Item.findById(id).lean();
+    return Item.findById(id).populate('creatorId').populate('userCollection').lean();
 }
 
 async function createData(itemData, creatorId) {

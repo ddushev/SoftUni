@@ -14,12 +14,7 @@ async function login(password, email) {
     if (!validPassword) {
         throw new Error('Email or password don\'t match');
     }
-
-    return {
-        _id: user._id,
-        user: user.username,
-        email: user.email
-    };
+    return user;
 }
 
 async function register(userData) {
@@ -31,10 +26,7 @@ async function register(userData) {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
     userData.hashedPassword = hashedPassword;
     const user = await User.create(userData);
-    return {
-        _id: user._id,
-        email: user.email
-    };
+    return user.toObject();
 }
 
 module.exports = {

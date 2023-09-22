@@ -24,9 +24,14 @@ catalogController.get('/:id/details', async (req, res) => {
     try {
         const item = await getDataById(req.params.id);
         if (req.user) {
-            item.isOwner = req.user._id == item.creatorId;
-            item.bought = item.userCollection.some(id => id == req.user._id);
+            item.isOwner = req.user._id == item.creatorId._id;
+            item.isInteracted = item.userCollection.some(user => user._id == req.user._id);
         }
+        
+        if(item.userCollection) {
+            item.interactedUsers = item.userCollection.map(user => user.email).join(', ');
+        }
+        
         res.render('details', {
             title: `Details`,
             item
