@@ -37,7 +37,9 @@ catalogController.get('/:id/details', async (req, res) => {
             item
         });
     } catch (error) {
-        res.render('404');
+        res.render('404', {
+            title: 'No such item found!'
+        });
     }
 
 });

@@ -16,6 +16,15 @@ async function getFilteredData(name, itemOptions) {
     return filteredData;
 }
 
+async function getPersonalData(userId) {
+    let personalData = await Item.find({}).populate('creatorId').populate('userCollection').lean();
+    if(userId) {
+        personalData = personalData.filter(item => item.creatorId._id == userId);
+    }
+
+    return personalData;
+}
+
 async function getDataById(id) {
     return Item.findById(id).populate('creatorId').populate('userCollection').lean();
 }
@@ -46,6 +55,7 @@ async function deleteData(itemId) {
 module.exports = {
     getData,
     getFilteredData,
+    getPersonalData,
     getDataById,
     createData,
     editData,

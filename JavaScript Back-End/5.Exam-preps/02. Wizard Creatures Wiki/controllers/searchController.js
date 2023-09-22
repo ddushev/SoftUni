@@ -38,8 +38,6 @@ searchController.get('/query', async (req, res) => {
 
 // searchController.post('/', async (req, res) => {
 //     try {
-//         console.log('POST');
-//         console.log(req.query);
 //         const {search, itemOptions} = req.query;
 //         const items = await getFilteredData(search || '', itemOptions || '');
 //         res.render('search', {
