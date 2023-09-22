@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
-async function login(username, password, email) {
+async function login(password, email) {
 
     const user = await User.findOne({ email }).lean();
 
