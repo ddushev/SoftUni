@@ -22,18 +22,17 @@ async function login(username, password, email) {
     };
 }
 
-async function register(username, password, email) {
-
-    const alreadyRegistered = await User.findOne({ username }).lean();
+async function register(userData) {
+    
+    const alreadyRegistered = await User.findOne({ email: userData.email }).lean();
     if (alreadyRegistered) {
-        throw new Error('The username is already taken!')
+        throw new Error('The email is already taken!')
     }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ username, hashedPassword, email });
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+    userData.hashedPassword = hashedPassword;
+    const user = await User.create(userData);
     return {
         _id: user._id,
-        user: user.username,
         email: user.email
     };
 }
