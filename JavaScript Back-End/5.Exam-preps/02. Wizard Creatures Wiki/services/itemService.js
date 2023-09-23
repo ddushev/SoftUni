@@ -31,7 +31,7 @@ async function getDataById(id) {
 
 async function createData(itemData, creatorId) {
     const item = {
-        // price: itemData.price,
+        // price: Number(itemData.price),
         // itemOptions: itemData.itemOptions,
         species: itemData.species,
         skinColor: itemData.skinColor,
