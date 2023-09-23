@@ -17,12 +17,7 @@ async function getFilteredData(name, itemOptions) {
 }
 
 async function getPersonalData(userId) {
-    let personalData = await Item.find({}).populate('creatorId').populate('userCollection').lean();
-    if(userId) {
-        personalData = personalData.filter(item => item.creatorId._id == userId);
-    }
-
-    return personalData;
+    return Item.find({creatorId: userId}).populate('creatorId').populate('userCollection').lean();
 }
 
 async function getDataById(id) {
