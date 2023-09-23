@@ -6,7 +6,7 @@ async function getData() {
 
 async function getFilteredData(name, itemOptions) {
     let filteredData = await Item.find({}).lean();
-    if(name) {
+    if (name) {
         filteredData = filteredData.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
     }
     if (itemOptions) {
@@ -17,7 +17,7 @@ async function getFilteredData(name, itemOptions) {
 }
 
 async function getPersonalData(userId) {
-    return Item.find({creatorId: userId}).populate('creatorId').populate('userCollection').lean();
+    return Item.find({ creatorId: userId }).populate('creatorId').populate('userCollection').lean();
 }
 
 async function getDataById(id) {
