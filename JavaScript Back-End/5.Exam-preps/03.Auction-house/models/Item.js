@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//TODO: Change itemSchema based on task requirements
 const itemSchema = new mongoose.Schema({
     // species: { type: String, required: true, minLength: 3 },
     // skinColor: { type: String, required: true, minLength: 3 },

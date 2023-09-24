@@ -23,7 +23,7 @@ async function getPersonalData(userId) {
 async function getDataById(id) {
     return Item.findById(id).populate('creatorId').populate('userCollection').lean();
 }
-
+//TODO: Change fields based on itemSchema
 async function createData(itemData, creatorId) {
     const item = {
         // species: itemData.species,

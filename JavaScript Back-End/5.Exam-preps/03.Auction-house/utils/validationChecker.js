@@ -1,6 +1,7 @@
 function validationChecker (req) {
     const errors = [];
 
+    //TODO: Change validation checks for the edit and create functionality
     if (Number(req.body.price) < 0) {
         errors.push('Price should be positive number!');
     }
