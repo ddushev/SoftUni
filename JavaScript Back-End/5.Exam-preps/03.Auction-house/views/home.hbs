@@ -1,21 +1,30 @@
-<section id="home">
-    <div class="home-container">
+<section id="catalog-section">
 
-        <div class="short-info">
-            <h1>START YOUR ADVENTURE TODAY!</h1>
-            <h2>Everything you need to know about Harry Potter and the magical world.</h2>
+    <h1 class="item">Home</h1>
+
+    <div class="item">
+
+        <div class="layout left med">
+            <div class="col">
+                <img src="/static/assets/splash.jpg" class="img-med">
+            </div>
+
+            <div class="content pad-med">
+                <p>Welcome to the online Auction House.</p>
+                <p>Buy and sell items in categories Real Estate, Vehicles, Furniture, Electronics and
+                    Others. Browse available items and place your bid. Create a new listing and collect the
+                    highest offer.
+                </p>
+
+                <div class="align-center">
+                    <a class="action" href="/catalog">Browse Listings</a>
+                    {{#if hasUser}}
+                    <a class="action" href="/item/create">Publish Auction</a>
+                    {{/if}}
+                </div>
+            </div>
         </div>
 
-    </div>
-</section>
-
-<section id="home-page">
-
-    <div class="offers">
-        <div class="col container"><img src="/static/img/Niffler.webp" alt="Niffler"></div>
-        <div class="col container"><img src="/static/img/Demiguise.webp" alt="Demiguise"></div>
-        <div class="col container"><img src="/static/img/Hippogriff.jpg" alt="Hippogriff"></div>
-        <div class="col container"><img src="/static/img/Basilisk.jpg" alt="Basilisk"></div>
     </div>
 
 </section>

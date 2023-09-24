@@ -3,53 +3,70 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/site.css">
     <title>{{title}}</title>
-
-    <!-- Do not forget to change the path to the css file -->
-    <link href="/static/css/style.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-    <div id="box">
 
-        <!-- In case of error, you should display div with class "error-container" -->
-        <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
-        {{#if error}}
-        <div class="error-container">
-            {{#each error}}
-            <p>{{this}}</p>
-            {{/each}}
-        </div>
-        {{/if}}
+    <div id="page-content">
 
-        <nav>
-            <!-- Do not forget to change the path to the image -->
-            <img src="/static/img/logo.png" alt="logo">
+        <header>
+            <a href="/" class="title-logo">
+                <img src="/static/assets/logo.png">
+                <span>Auction House</span>
+            </a>
+            <nav class="main-nav nav-mid">
+                <ul>
+                    <li>
+                        <a href="/catalog">Browse</a>
+                    </li>
+                    {{#if hasUser}}
+                    <!-- User actions -->
+                    <li class="user">
+                        <a href="/item/create">Publish</a>
+                    </li>
 
-            <ul class="menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/catalog">All Posts</a></li>
-                {{#if hasUser}}
-                <li><a href="/item/create">Create Post</a></li>
-                <li><a href="/my-catalog">Profile</a></li>
-                <li><a href="/logout">Logout</a></li>
-                {{else}}
-                <li><a href="/auth/login">Login</a></li>
-                <li><a href="/auth/register">Register</a></li>
-                {{/if}}
-            </ul>
+                    <!-- Bonus action -->
+                    
+                    <li class="user">
+                        <a href="#">Closed Auctions</a>
+                    </li>
+                    
 
-        </nav>
+                    <li class="user">
+                        <a href="/logout">Logout</a>
+                    </li>
+                    <!-- Guest actions -->
+                    {{else}}
+                    <li class="guest">
+                        <a href="/auth/login">Register</a>
+                    </li>
+                    <li class="guest">
+                        <a href="/auth/register">Login</a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </nav>
+        </header>
 
         <main>
+
+            <!-- In case of error, display the following div-->
+            {{#if error}}
+            <div class="error-box">
+                {{#each error}}
+                    <p>{{this}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+
             {{{body}}}
 
         </main>
 
-
-        <footer>
-            © JS Back-End Exam 2023
-        </footer>
+        <footer>SoftUni &copy; 2023</footer>
     </div>
 
 </body>

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //TODO: Add DB name
-const DB_NAME = 'wizzardCreatures';
+const DB_NAME = 'actionHouse';
 
 module.exports = async (app) => {
     try {
