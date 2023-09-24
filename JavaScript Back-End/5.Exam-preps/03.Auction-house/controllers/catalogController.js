@@ -1,11 +1,11 @@
-const { getData, getDataById } = require('../services/itemService');
+const { getNotDeletedData, getDataById } = require('../services/itemService');
 const errorParser = require('../utils/errorParser');
 
 const catalogController = require('express').Router();
 //Render catalog
 catalogController.get('/', async (req, res) => {
     try {
-        const items = await getData();
+        const items = await getNotDeletedData();
         res.render('catalog', {
             title: 'Item Catalog',
             items

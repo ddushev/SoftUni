@@ -4,6 +4,10 @@ async function getData() {
     return Item.find({}).lean();
 }
 
+async function getNotDeletedData() {
+    return Item.find({deleted: false}).lean();
+}
+
 async function getFilteredData(name, itemOptions) {
     let filteredData = await Item.find({}).lean();
     if (name) {
@@ -18,6 +22,10 @@ async function getFilteredData(name, itemOptions) {
 
 async function getPersonalData(userId) {
     return Item.find({ creatorId: userId }).populate('creatorId').populate('userCollection').lean();
+}
+
+async function getPersonalDataIfUserCollection(userId) {
+    return Item.find({ creatorId: userId, deleted: true }).populate('creatorId').populate('userCollection').lean();
 }
 
 async function getDataById(id) {
@@ -49,8 +57,10 @@ async function deleteData(itemId) {
 
 module.exports = {
     getData,
+    getNotDeletedData,
     getFilteredData,
     getPersonalData,
+    getPersonalDataIfUserCollection,
     getDataById,
     createData,
     editData,

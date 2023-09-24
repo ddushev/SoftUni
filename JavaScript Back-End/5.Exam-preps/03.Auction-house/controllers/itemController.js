@@ -118,5 +118,31 @@ itemController.post('/:id/interact', async (req, res) => {
         });
     }
 });
+//Remove from catalog
+itemController.get('/:id/remove', async (req, res) => {
+    try {
+        const item = await getDataById(req.params.id);
+        if (item.deleted) {
+            throw new Error('You already done that!');
+        }
+
+        if (item.creatorId._id != req.user._id) {
+            throw new Error('You must be creator to do that!');
+        }
+
+        if (item.userCollection.length < 1) {
+            throw new Error('There must be someone who interacted with that item before you can do that!');
+        }
+
+        item.deleted = true;
+        await editData(item, req.params.id);
+        res.redirect('/my-catalog');
+    } catch (error) {
+        res.render('404', {
+            title: 'Unable remove that item',
+            error: errorParser(error)
+        });
+    }
+});
 
 module.exports = itemController;

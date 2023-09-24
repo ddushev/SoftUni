@@ -34,7 +34,7 @@
 
                         <!-- # Bonus: If there is a bidder -->
 
-                        <a class="action pad-med cta" href="#">Close Auction</a>
+                        <a class="action pad-med cta" href="/item/{{item._id}}/remove">Close Auction</a>
                         {{else}}
 
 
@@ -74,6 +74,7 @@
                     <div>
                         Current price: $<strong>{{item.price}}</strong>
                     </div>
+                    {{#if hasUser}}
                     {{#unless item.isInteracted}}
                     <!-- If current user can place a bid -->
                     <form class="vertical" method="POST" action="/item/{{item._id}}/interact">
@@ -86,6 +87,7 @@
                         You are currently the <strong>highest bidder</strong> for this auction
                     </div>
                     {{/unless}}
+                    {{/if}}
                 </div>
 
             </div>
