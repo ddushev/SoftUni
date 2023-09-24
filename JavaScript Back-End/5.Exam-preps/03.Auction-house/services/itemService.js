@@ -48,7 +48,7 @@ async function createData(itemData, creatorId) {
 }
 
 async function editData(itemData, itemId) {
-    return Item.findByIdAndUpdate(itemId, itemData);
+    return Item.findByIdAndUpdate(itemId, itemData, {runValidators: true});
 }
 
 async function deleteData(itemId) {

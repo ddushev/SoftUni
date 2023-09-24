@@ -9,7 +9,7 @@ const itemSchema = new mongoose.Schema({
     itemOptions: { type: String, required: true, enum: ['estate', 'vehicles', 'furniture', 'electronics', 'other'] },
     name: { type: String, required: true, minLength: 2 },
     imageUrl: { type: String, required: true, match: /^(https?:\/\/)/ },
-    description: { type: String, required: true, minLength: 10, maxLength: 500 },
+    description: { type: String, required: true, minLength: 5, maxLength: 500 },
     userCollection: { type: [mongoose.Types.ObjectId], default: [], ref: 'User' },
     creatorId: { type: mongoose.Types.ObjectId, ref: 'User' },
     deleted: {type: Boolean, default: false}
