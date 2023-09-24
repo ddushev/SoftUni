@@ -54,6 +54,10 @@ authController.post('/register', async (req, res) => {
             errors.push('Email should be atleast 10 characters long!');
         }
 
+        if (!/^[a-zA-Z]+@[a-zA-Z]+\.[a-zA-Z]+$/.test(req.body.email)) {
+            errors.push('Email format is incorrect!');
+        }
+
         if (req.body.password.length < 4) {
             errors.push('Password should be atleast 4 characters long!');
         }
