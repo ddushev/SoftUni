@@ -26,11 +26,11 @@ async function getDataById(id) {
 
 async function createData(itemData, creatorId) {
     const item = {
-        // price: Number(itemData.price),
-        // itemOptions: itemData.itemOptions,
-        species: itemData.species,
-        skinColor: itemData.skinColor,
-        eyeColor: itemData.eyeColor,
+        // species: itemData.species,
+        // skinColor: itemData.skinColor,
+        // eyeColor: itemData.eyeColor,
+        price: Number(itemData.price),
+        itemOptions: itemData.itemOptions,
         name: itemData.name,
         description: itemData.description,
         imageUrl: itemData.imageUrl,

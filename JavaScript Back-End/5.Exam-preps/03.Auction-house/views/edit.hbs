@@ -12,12 +12,12 @@
                     <input type="text" name="name" value="{{item.name}}"></label>
                 <label>
                     <span>Category</span>
-                    <select name="category">
-                        <option {{isSelected 'estate' item.category}} value="estate">Real Estate</option>
-                        <option {{isSelected 'vehicles' item.category}} value="vehicles">Vehicles</option>
-                        <option {{isSelected 'furniture' item.category}} value="furniture">Furniture</option>
-                        <option {{isSelected 'electronics' item.category}} value="electronics">Electronics</option>
-                        <option {{isSelected 'other' item.category}} value="other">Other</option>
+                    <select name="itemOptions">
+                        <option {{isSelected 'estate' item.itemOptions}} value="estate">Real Estate</option>
+                        <option {{isSelected 'vehicles' item.itemOptions}} value="vehicles">Vehicles</option>
+                        <option {{isSelected 'furniture' item.itemOptions}} value="furniture">Furniture</option>
+                        <option {{isSelected 'electronics' item.itemOptions}} value="electronics">Electronics</option>
+                        <option {{isSelected 'other' item.itemOptions}} value="other">Other</option>
                     </select>
                 </label>
                 <label>
