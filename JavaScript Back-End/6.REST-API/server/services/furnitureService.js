@@ -12,8 +12,18 @@ async function getFurnitureById(furnitureId) {
     return Furniture.findById(furnitureId);
 }
 
+async function updateFurniture(furnitureId, furniture) {
+    return Furniture.findByIdAndUpdate(furnitureId, furniture);
+}
+
+async function deleteFurniture(furnitureId) {
+    return Furniture.findByIdAndDelete(furnitureId);
+}
+
 module.exports = {
     createFurniture,
     getFurnitures,
-    getFurnitureById
+    getFurnitureById,
+    updateFurniture,
+    deleteFurniture
 }

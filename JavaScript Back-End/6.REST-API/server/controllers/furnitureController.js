@@ -1,4 +1,4 @@
-const { createFurniture, getFurnitures, getFurnitureById } = require('../services/furnitureService');
+const { createFurniture, getFurnitures, getFurnitureById, updateFurniture, deleteFurniture } = require('../services/furnitureService');
 const furnitureController = require('express').Router();
 
 furnitureController.get('/catalog', async (req, res) => {
@@ -27,6 +27,26 @@ furnitureController.get('/catalog/:id', async (req, res) => {
     } catch (error) {
         console.log(error.message);
     }
+
+});
+
+furnitureController.put('/catalog/:id', async (req, res) => {
+    try {
+        await updateFurniture(req.params.id, req.body);
+    } catch (error) {
+        console.log(error.message);
+    }
+    return res.json({ok: true});
+
+});
+
+furnitureController.delete('/catalog/:id', async (req, res) => {
+    try {
+        await deleteFurniture(req.params.id);
+    } catch (error) {
+        console.log(error.message);
+    }
+    return res.json({ok: true});
 
 });
 
