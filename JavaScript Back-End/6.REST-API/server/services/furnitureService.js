@@ -4,6 +4,10 @@ async function getFurnitures() {
     return Furniture.find();
 }
 
+async function getFurnituresByUser(_ownerId) {
+    return Furniture.find({_ownerId});
+}
+
 async function createFurniture(furniture, _ownerId) {
     return Furniture.create({...furniture, _ownerId});
 }
@@ -22,6 +26,7 @@ async function deleteFurniture(furnitureId) {
 
 module.exports = {
     createFurniture,
+    getFurnituresByUser,
     getFurnitures,
     getFurnitureById,
     updateFurniture,

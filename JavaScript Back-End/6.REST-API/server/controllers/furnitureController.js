@@ -1,9 +1,15 @@
-const { createFurniture, getFurnitures, getFurnitureById, updateFurniture, deleteFurniture } = require('../services/furnitureService');
+const { createFurniture, getFurnitures, getFurnitureById, updateFurniture, deleteFurniture, getFurnituresByUser } = require('../services/furnitureService');
 const furnitureController = require('express').Router();
 
 furnitureController.get('/catalog', async (req, res) => {
     try {
-        const furnitures = await getFurnitures();
+        let furnitures = [];
+        if (req.query.where) {
+            const userId = req.query.where.split("\"")[1];
+            furnitures = await getFurnituresByUser(userId);
+        }else {
+            furnitures = await getFurnitures();
+        }
         return res.json(furnitures);
     } catch (error) {
         console.log(error.message);
@@ -49,5 +55,7 @@ furnitureController.delete('/catalog/:id', async (req, res) => {
     return res.json({ok: true});
 
 });
+
+
 
 module.exports = furnitureController;
