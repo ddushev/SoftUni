@@ -1,5 +1,15 @@
-const { createFurniture } = require('../services/furnitureService');
+const { createFurniture, getFurnitures } = require('../services/furnitureService');
 const furnitureController = require('express').Router();
+
+furnitureController.get('/catalog', async (req, res) => {
+    try {
+        const furnitures = await getFurnitures();
+        return res.json(furnitures);
+    } catch (error) {
+        console.log(error.message);
+    }
+
+});
 
 furnitureController.post('/catalog', async (req, res) => {
     try {
@@ -8,6 +18,6 @@ furnitureController.post('/catalog', async (req, res) => {
         console.log(error.message);
     }
     return res.json({ok: true});
-})
+});
 
 module.exports = furnitureController;
