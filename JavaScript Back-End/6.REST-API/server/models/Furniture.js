@@ -7,7 +7,8 @@ const furnitureSchema = new mongoose.Schema({
     description: {type: String, required: true, minLength: 10},
     price: {type: Number, required: true, min: 1},
     img: {type: String, required: true},
-    material: {type: String}
+    material: {type: String},
+    _ownerId: {type: mongoose.Types.ObjectId, ref: 'User'}
 });
 
 const Furniture = mongoose.model('Furniture', furnitureSchema);

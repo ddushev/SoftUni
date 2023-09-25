@@ -5,9 +5,10 @@ module.exports = () => async (req, res, next) => {
     const token = req.headers['x-authorization'];
     if (token) {
         try {
-            jwt.verify(token, secret);
+            const decodedToken = jwt.verify(token, secret);
+            req.user = decodedToken;
         } catch (error) {
-            
+            return res.stauts(401).json({ok: false});
         }
     }
    next(); 
