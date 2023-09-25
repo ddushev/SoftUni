@@ -1,6 +1,22 @@
 const User = require("../models/User");
 const bcrypt = require('bcrypt');
 
+async function login(credentials) {
+    const user = await User.findOne({email: credentials.email}).lean();
+
+    if (!user) {
+        throw new Error('Email or password don\'t match!');
+    }
+    
+    const validPassword = await bcrypt.compare(credentials.password, user.hashedPassword);
+
+    if (!validPassword) {
+        throw new Error('Email or password don\'t match!');
+    }
+
+    return user;
+}
+
 async function register(credentials) {
     const isRegistered = await User.findOne({email: credentials.email}).lean();
 
@@ -17,5 +33,6 @@ async function register(credentials) {
 }
 
 module.exports = {
+    login,
     register
 }
