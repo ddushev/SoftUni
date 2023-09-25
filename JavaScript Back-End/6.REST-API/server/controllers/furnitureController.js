@@ -1,4 +1,4 @@
-const { createFurniture, getFurnitures } = require('../services/furnitureService');
+const { createFurniture, getFurnitures, getFurnitureById } = require('../services/furnitureService');
 const furnitureController = require('express').Router();
 
 furnitureController.get('/catalog', async (req, res) => {
@@ -18,6 +18,16 @@ furnitureController.post('/catalog', async (req, res) => {
         console.log(error.message);
     }
     return res.json({ok: true});
+});
+
+furnitureController.get('/catalog/:id', async (req, res) => {
+    try {
+        const furniture = await getFurnitureById(req.params.id);
+        return res.json(furniture);
+    } catch (error) {
+        console.log(error.message);
+    }
+
 });
 
 module.exports = furnitureController;
