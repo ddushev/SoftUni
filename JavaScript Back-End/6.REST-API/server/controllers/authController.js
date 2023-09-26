@@ -1,10 +1,11 @@
+const { isGuest, hasUser } = require('../middlewares/guards');
 const { login, register } = require('../services/authService');
 const jwt = require('jsonwebtoken');
 const secret = 'mysecret';
 
 const authController = require('express').Router();
 
-authController.post('/login', async (req, res) => {
+authController.post('/login', isGuest, async (req, res) => {
     try {
         const result = await login(req.body);
         result.accessToken = createToken(result);
@@ -14,7 +15,7 @@ authController.post('/login', async (req, res) => {
     }
 });
 
-authController.post('/register', async (req, res) => {
+authController.post('/register', isGuest, async (req, res) => {
     try {
         const result = (await register(req.body)).toJSON();
         result.accessToken = createToken(result);
