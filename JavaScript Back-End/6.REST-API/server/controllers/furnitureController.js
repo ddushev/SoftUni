@@ -1,3 +1,4 @@
+const { hasUser } = require('../middlewares/guards');
 const { createFurniture, getFurnitures, getFurnitureById, updateFurniture, deleteFurniture, getFurnituresByUser } = require('../services/furnitureService');
 const furnitureController = require('express').Router();
 
@@ -17,7 +18,7 @@ furnitureController.get('/catalog', async (req, res) => {
 
 });
 
-furnitureController.post('/catalog', async (req, res) => {
+furnitureController.post('/catalog', hasUser, async (req, res) => {
     try {
         const result = await createFurniture(req.body, req.user._id);
         res.status(201).json(result);
