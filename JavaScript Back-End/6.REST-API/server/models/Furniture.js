@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const furnitureSchema = new mongoose.Schema({
-    make: {type: String, required: true, minLength: 4},
-    model: {type: String, required: true, minLength: 4},
+    make: {type: String, required: true, minLength: [4, 'Make min length is 4 chars!']},
+    model: {type: String, required: true, minLength: [4, 'Model min length is 4 chars!']},
     year: {type: Number, required: true, min: 1950, max: 2050},
     description: {type: String, required: true, minLength: 10},
     price: {type: Number, required: true, min: 1},

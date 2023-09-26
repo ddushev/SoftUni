@@ -1,5 +1,6 @@
 const { hasUser } = require('../middlewares/guards');
 const { createFurniture, getFurnitures, getFurnitureById, updateFurniture, deleteFurniture, getFurnituresByUser } = require('../services/furnitureService');
+const errorMapper = require('../util/errorMapper');
 const furnitureController = require('express').Router();
 
 furnitureController.get('/catalog', async (req, res) => {
@@ -11,9 +12,10 @@ furnitureController.get('/catalog', async (req, res) => {
         }else {
             furnitures = await getFurnitures();
         }
-        res.json(furnitures);
+        res.json(furnitures).end();
     } catch (error) {
-        console.error(error.message);
+        const message = errorMapper(error);
+        res.status(400).json({message});
     }
 
 });
@@ -23,16 +25,18 @@ furnitureController.post('/catalog', hasUser, async (req, res) => {
         const result = await createFurniture(req.body, req.user._id);
         res.status(201).json(result);
     } catch (error) {
-        res.status(400).json({message: error.message});
+        const message = errorMapper(error);
+        res.status(400).json({message});
     }
 });
 
-furnitureController.get('/catalog/:id', async (req, res) => {
+furnitureController.get('/catalog/:id',     async (req, res) => {
     try {
         const furniture = await getFurnitureById(req.params.id);
-        return res.json(furniture);
+        return res.json(furniture).end();
     } catch (error) {
-        console.log(error.message);
+        const message = errorMapper(error);
+        res.status(400).json({message});
     }
 
 });
@@ -40,10 +44,11 @@ furnitureController.get('/catalog/:id', async (req, res) => {
 furnitureController.put('/catalog/:id', async (req, res) => {
     try {
         await updateFurniture(req.params.id, req.body);
+        return res.status(204).end();
     } catch (error) {
-        console.log(error.message);
+        const message = errorMapper(error);
+        res.status(400).json({message});
     }
-    return res.json({ok: true});
 
 });
 
@@ -53,7 +58,7 @@ furnitureController.delete('/catalog/:id', async (req, res) => {
     } catch (error) {
         console.log(error.message);
     }
-    return res.json({ok: true});
+    return res.status(204).end();
 
 });
 
