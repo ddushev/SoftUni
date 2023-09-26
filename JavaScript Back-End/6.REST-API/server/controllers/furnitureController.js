@@ -10,20 +10,20 @@ furnitureController.get('/catalog', async (req, res) => {
         }else {
             furnitures = await getFurnitures();
         }
-        return res.json(furnitures);
+        res.json(furnitures);
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
     }
 
 });
 
 furnitureController.post('/catalog', async (req, res) => {
     try {
-        await createFurniture(req.body, req.user._id);
+        const result = await createFurniture(req.body, req.user._id);
+        res.status(201).json(result);
     } catch (error) {
-        console.log(error.message);
+        res.status(400).json({message: error.message});
     }
-    return res.json({ok: true});
 });
 
 furnitureController.get('/catalog/:id', async (req, res) => {

@@ -61,7 +61,6 @@ export async function createPage(ctx) {
         data.year = Number(data.year);
         data.price = Number(data.price);
         await createRecord(data);
-
         ctx.page.redirect('/');
     }
 }

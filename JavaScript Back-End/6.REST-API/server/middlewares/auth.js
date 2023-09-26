@@ -8,8 +8,9 @@ module.exports = () => async (req, res, next) => {
             const decodedToken = jwt.verify(token, secret);
             req.user = decodedToken;
         } catch (error) {
-            return res.stauts(401).json({ok: false});
+            console.error(error);
+            return res.status(401).json({ message: 'Invalid access token. Please log in'});
         }
     }
-   next(); 
+    next();
 }
