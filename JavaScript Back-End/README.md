@@ -10,13 +10,12 @@ Some interesting workshops to practice the material from the course
 6. Validation and Error Handling
 
 # Technical stack
-1. HTML
-2. CSS
-3. JS
-4. Express
-5. Handlebars
-6. MongoDB
-7. Mongoose
+1. NodeJS
+2. Express
+3. Handlebars
+4. MongoDB
+5. Mongoose
+6. ...other libraries
 
 # To install locally
 1. Clone/download the GitHub repo
