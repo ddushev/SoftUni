@@ -13,8 +13,10 @@ async function login(credentials) {
     if (!validPassword) {
         throw new Error('Email or password don\'t match!');
     }
-
-    return user;
+    return {
+        _id: user._id,
+        email: user.email,
+    }
 }
 
 async function register(credentials) {
@@ -28,8 +30,12 @@ async function register(credentials) {
         email: credentials.email,
         hashedPassword
     }
-
-    return User.create(userCredentials);
+    
+    const user = await  User.create(userCredentials);
+    return {
+        _id: user._id,
+        email: user.email,
+    }
 }
 
 module.exports = {
