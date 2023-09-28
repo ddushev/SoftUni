@@ -10,7 +10,7 @@ import Tickets from "./components/Tickets";
 function App() {
   return (
     <div className="App">
-      <State start={5} init={5}>
+      <State start={0} init={10}>
       </State>
 
       {/* <Navigation />
