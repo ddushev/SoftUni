@@ -30,7 +30,7 @@ export default function Speakers() {
     return (
         <div className="row me-row content-ct speaker" id="speakers">
             <h2 className="row-title">Meet the Speakers</h2>
-            <Speaker {...speakers[0]} />
+            <Speaker name="Simon Collins" bio={speakers[0].bio} ></Speaker>
             <Speaker {...speakers[1]} />
             <Speaker {...speakers[2]} />
             <Speaker {...speakers[3]} />
