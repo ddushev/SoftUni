@@ -1,10 +1,10 @@
 import Movie from "./Movie";
 
-export default function MovieList({movies}) {
+export default function MovieList({movies, onMovieDelete}) {
     return (
         <ul>
                 {movies.map(movie => <li key={movie.id}>
-                    <Movie {...movie}></Movie>
+                    <Movie {...movie} onMovieDelete={onMovieDelete}></Movie>
                 </li> )}
         </ul>
     )

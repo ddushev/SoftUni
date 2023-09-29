@@ -1,4 +1,4 @@
-const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl }) => {
+const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl, onMovieDelete }) => {
     return (
         <article>
             <h3>{title} - {year} </h3>
@@ -9,6 +9,7 @@ const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl }) =
             <footer>
                 <p>Director: {}</p>
             </footer>
+            <button onClick={() => onMovieDelete(id)}>Delete</button>
         </article>
     )
 }
