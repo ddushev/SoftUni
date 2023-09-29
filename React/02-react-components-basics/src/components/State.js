@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Prop({start, init}) {
+export default function State({start, init}) {
     const css = {
         1: {background: "red"},
         2: {background: "green"},
