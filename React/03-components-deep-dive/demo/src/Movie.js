@@ -7,7 +7,7 @@ const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl }) =
                 <p>Plot: {plot}</p>
             </main>
             <footer>
-                <p>Director: {director}</p>
+                <p>Director: {}</p>
             </footer>
         </article>
     )
