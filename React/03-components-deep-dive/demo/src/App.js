@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
         <h1>Movie collection</h1>
-        <MovieList movies={movies}></MovieList>
+        <MovieList movies={movies.slice(0, 10)}></MovieList>
     </div>
   );
 }
