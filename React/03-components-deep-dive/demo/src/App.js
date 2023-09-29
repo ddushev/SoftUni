@@ -4,15 +4,24 @@ import { movies as movieData } from './movies';
 
 function App() {
 
-  const [movies, removeMovie] = useState(movieData);
+  const [movies, setMovies] = useState(movieData);
 
   function onMovieDelete(id) {
-    removeMovie(moviesState => moviesState.filter(movie => movie.id !== id));
+    setMovies(moviesState => moviesState.filter(movie => movie.id !== id));
   }
+
+  function onMovieSelect(id) {
+    setMovies(moviesState => moviesState.map(movie => ({ ...movie, selected: movie.id === id })));
+  }
+
   return (
     <div>
-        <h1>Movie collection</h1>
-        <MovieList movies={movies.slice(0, 10)} onMovieDelete={onMovieDelete} ></MovieList>
+      <h1>Movie collection</h1>
+      <MovieList
+        movies={movies.slice(0, 10)}
+        onMovieDelete={onMovieDelete}
+        onMovieSelect={onMovieSelect}
+      ></MovieList>
     </div>
   );
 }
