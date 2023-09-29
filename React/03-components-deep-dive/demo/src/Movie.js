@@ -3,14 +3,14 @@ import style from "./Movie.module.css"
 
 const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl, onMovieDelete, selected, onMovieSelect }) => {
     useEffect(() => {
-        console.log(`Movie ${title} mounted`);
+        // console.log(`Movie ${title} mounted`);
         return () => {
-            console.log(`Movie ${title} umnmounted`)
+            // console.log(`Movie ${title} umnmounted`);
         }
     }, [title]);
 
     useEffect(() => {
-        console.log(`Movie ${title} updated`);
+        // console.log(`Movie ${title} updated`);
     }, [title, selected]);
 
     return (
