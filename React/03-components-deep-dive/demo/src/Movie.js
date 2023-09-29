@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import style from "./Movie.module.css"
 
 const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl, onMovieDelete, selected, onMovieSelect }) => {
     useEffect(() => {
@@ -13,7 +14,7 @@ const Movie = ({ id, title, year, genres, director, actors, plot, posterUrl, onM
     }, [title, selected]);
 
     return (
-        <article>
+        <article className={style['article-container']}>
             <h3>{title} - {year} </h3>
             {selected && <h4>Selected</h4> }
             <main>
