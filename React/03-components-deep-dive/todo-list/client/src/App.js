@@ -13,6 +13,10 @@ function App() {
             .then(data => setTodos(Object.values(data)))
             .catch(err => console.log(err));
     }, []);
+
+    function changeStatus(id) {
+        setTodos(state => state.map(t => t._id == id ? {...t, isCompleted: !t.isCompleted} : t));
+    }
     return (
         <div>
             {/* <!--Navigation header --> */}
@@ -34,7 +38,7 @@ function App() {
                         {/* <Spinner /> */}
 
                         {/* <!-- Todo list table --> */}
-                        <Todos todos={todos} />
+                        <Todos todos={todos} changeStatus={changeStatus} />
 
                     </div>
                 </section>

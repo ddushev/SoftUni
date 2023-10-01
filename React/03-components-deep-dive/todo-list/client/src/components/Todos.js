@@ -1,7 +1,8 @@
 import Todo from "./Todo";
 
 const Todos = function ({
-    todos
+    todos,
+    changeStatus
 }) {
     return (
         <table className="table">
@@ -14,7 +15,7 @@ const Todos = function ({
             </thead>
             <tbody>
                 {/* <!-- Todo item --> */}
-                {todos.map(todo => <Todo key={todo._id} todo={todo} />)}
+                {todos.map(todo => <Todo key={todo._id} todo={todo} changeStatus={changeStatus} />)}
             </tbody>
         </table>
     );
