@@ -15,7 +15,7 @@ const Todos = function ({
             </thead>
             <tbody>
                 {/* <!-- Todo item --> */}
-                {todos.map(todo => <Todo key={todo._id} todo={todo} changeStatus={changeStatus} />)}
+                {todos.map(todo => <Todo key={`${todo.text}${todo._id}`} todo={todo} changeStatus={changeStatus} />)}
             </tbody>
         </table>
     );
