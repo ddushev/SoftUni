@@ -1,42 +1,51 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
 import Spinner from './components/Spinner';
 import Todos from './components/Todos';
 
 function App() {
-  return (
-    <div>
-      {/* <!--Navigation header --> */}
-      <Header />
+    const [todos, setTodos] = useState([]);
 
-      {/* <!--Main content-- > */}
-      <main className="main">
+    useEffect(() => {
+        fetch('http://localhost:3030/jsonstore/todos')
+            .then(resp => resp.json())
+            .then(data => setTodos(Object.values(data)))
+            .catch(err => console.log(err));
+    }, []);
+    return (
+        <div>
+            {/* <!--Navigation header --> */}
+            <Header />
 
-        {/* <!-- Section container --> */}
-        <section className="todo-list-container">
-          <h1>Todo List</h1>
+            {/* <!--Main content-- > */}
+            <main className="main">
 
-          <div className="add-btn-container">
-            <button className="btn">+ Add new Todo</button>
-          </div>
+                {/* <!-- Section container --> */}
+                <section className="todo-list-container">
+                    <h1>Todo List</h1>
 
-          <div className="table-wrapper">
-          {/* <!-- Loading spinner - show the load spinner when fetching the data from the server--> */ }
-          {/* <Spinner /> */}
+                    <div className="add-btn-container">
+                        <button className="btn">+ Add new Todo</button>
+                    </div>
 
-            {/* <!-- Todo list table --> */}
-            <Todos />
+                    <div className="table-wrapper">
+                        {/* <!-- Loading spinner - show the load spinner when fetching the data from the server--> */}
+                        {/* <Spinner /> */}
 
-          </div>
-        </section>
-      </main>
+                        {/* <!-- Todo list table --> */}
+                        <Todos todos={todos} />
 
-      {/* <!--Footer --> */}
-      <footer className="footer">
-        <p>Copyright © designed by Mihail Valkov</p>
-      </footer>
-    </div>
-  );
+                    </div>
+                </section>
+            </main>
+
+            {/* <!--Footer --> */}
+            <footer className="footer">
+                <p>Copyright © designed by Mihail Valkov</p>
+            </footer>
+        </div>
+    );
 }
 
 export default App;
