@@ -10,7 +10,7 @@ export default function UserDetails({
     createdAt,
     updatedAt,
     address,
-    closePopup
+    closePopup,
 }) {
     return (
         <div className="overlay">

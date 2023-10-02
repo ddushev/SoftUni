@@ -2,19 +2,20 @@ import User from "./User";
 
 export default function UserList({
     users,
-    onInfo
+    onInfo,
+    onDeleteClick
 }) {
     return (
         <div className="table-wrapper">
             {/* <!-- Overlap components  --> */}
 
             {/* <div className="loading-shade"> */}
-                {/* <!-- Loading spinner  --> */}
-                {/* <div className="spinner"></div> */}
+            {/* <!-- Loading spinner  --> */}
+            {/* <div className="spinner"></div> */}
 
-                {/* <!-- No users added yet  --> */}
+            {/* <!-- No users added yet  --> */}
 
-                {/* <div className="table-overlap">
+            {/* <div className="table-overlap">
                 <svg
                     aria-hidden="true"
                     focusable="false"
@@ -33,9 +34,9 @@ export default function UserList({
                 <h2>There is no users yet.</h2>
             </div> */}
 
-                {/* <!-- No content overlap component  --> */}
+            {/* <!-- No content overlap component  --> */}
 
-                {/* <div className="table-overlap">
+            {/* <div className="table-overlap">
                 <svg
                     aria-hidden="true"
                     focusable="false"
@@ -54,9 +55,9 @@ export default function UserList({
                 <h2>Sorry, we couldn't find what you're looking for.</h2>
             </div> */}
 
-                {/* <!-- On error overlap component  --> */}
+            {/* <!-- On error overlap component  --> */}
 
-                {/* <div className="table-overlap">
+            {/* <div className="table-overlap">
                 <svg
                     aria-hidden="true"
                     focusable="false"
@@ -133,7 +134,10 @@ export default function UserList({
                 </thead>
                 <tbody>
                     {/* <!-- Table row component --> */}
-                    {users.map(u => <User key={u._id} {...u} onInfo={onInfo} />)}
+                    {users.map(u => <User key={u._id}
+                        {...u}
+                        onInfo={onInfo}
+                        onDeleteClick={onDeleteClick} />)}
                 </tbody>
             </table>
         </div>
