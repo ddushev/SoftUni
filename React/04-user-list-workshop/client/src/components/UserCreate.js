@@ -1,5 +1,6 @@
 const CreateUser = function ({
-    closePopup
+    closePopup,
+    onCreateSubmit
 }) {
     return (
         <div className="overlay">
@@ -17,7 +18,7 @@ const CreateUser = function ({
                             </svg>
                         </button>
                     </header>
-                    <form>
+                    <form onSubmit={onCreateSubmit}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>

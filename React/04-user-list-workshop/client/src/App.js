@@ -2,7 +2,7 @@ import './App.css';
 import Search from './components/Search';
 import UserList from './components/UserList';
 import { useEffect, useState } from 'react';
-import { getUser, getUsers } from './services/userService';
+import { createUser, getUser, getUsers } from './services/userService';
 import UserDetails from './components/UserDetails';
 import UserCreate from './components/UserCreate';
 
@@ -28,8 +28,17 @@ function App() {
     }
 
 
-    function onCreate() {
+    function onCreateClick() {
         setShowCreate(true);
+    }
+
+    async function onCreateSubmit(event) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget)
+        const data = Object.fromEntries(formData);
+        const createdUser = await createUser(data);
+        setUsers(state => [...state, createdUser.user]);
+        closePopup();
     }
 
     return (
@@ -53,7 +62,7 @@ function App() {
                     <UserList users={users} onInfo={onInfo}></UserList>
                     
                     {/* <!-- New user button  --> */}
-                    <button className="btn-add btn" onClick={onCreate}>Add new user</button>
+                    <button className="btn-add btn" onClick={onCreateClick}>Add new user</button>
 
                     {/* <!-- Pagination component  --> */}
                     <div className="pagination position">
@@ -112,7 +121,7 @@ function App() {
 
 
                 {/* <!-- Create/Edit Form component  --> */}
-                {isShowCreate && <UserCreate closePopup={closePopup}/> }
+                {isShowCreate && <UserCreate closePopup={closePopup}  onCreateSubmit={onCreateSubmit}/> }
 
 
                 {/* <!-- Delete user component  --> */}
