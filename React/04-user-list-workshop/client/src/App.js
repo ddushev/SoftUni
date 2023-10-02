@@ -1,8 +1,18 @@
 import './App.css';
 import Search from './components/Search';
 import UserList from './components/UserList';
+import { useEffect, useState } from 'react';
+import { getUsers } from './services/userService';
 
 function App() {
+    let [users, setUsers] = useState([]);
+    useEffect(() => {
+        getUsers()
+            .then(result => setUsers(result.users))
+            .catch(err => console.log(err));
+    }, []);
+
+
     return (
         <>
             {/* <!-- Header component --> */}
@@ -91,8 +101,8 @@ function App() {
                                 <h2>Failed to fetch</h2>
                             </div> */}
                         </div>
-                        
-                        <UserList></UserList>
+
+                        <UserList users={users}></UserList>
                     </div>
 
                     {/* <!-- New user button  --> */}

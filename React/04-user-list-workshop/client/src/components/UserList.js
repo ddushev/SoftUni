@@ -1,6 +1,8 @@
 import User from "./User";
 
-export default function UserList() {
+export default function UserList({
+    users
+}) {
     return (
         <table className="table">
             <thead>
@@ -59,7 +61,7 @@ export default function UserList() {
             </thead>
             <tbody>
                 {/* <!-- Table row component --> */}
-                <User></User>  
+                {users.map(u => <User key={u._id} {...u}/>)}
             </tbody>
         </table>
     );
