@@ -2,7 +2,7 @@ import './App.css';
 import Search from './components/Search';
 import UserList from './components/UserList';
 import { useEffect, useState } from 'react';
-import { createUser, getUser, getUsers } from './services/userService';
+import { createUser, getUser, getUsers, deleteUser } from './services/userService';
 import UserDetails from './components/UserDetails';
 import UserCreate from './components/UserCreate';
 import UserDelete from './components/UserDelete';
@@ -10,6 +10,7 @@ import UserDelete from './components/UserDelete';
 function App() {
     const [users, setUsers] = useState([]);
     const [user, setUser] = useState(null);
+    const [userId, setUserId] = useState(null);
     const [isShowCreate, setShowCreate] = useState(false);
     const [isShowDelete, setShowDelete] = useState(false);
     useEffect(() => {
@@ -27,6 +28,7 @@ function App() {
     function closePopup() {
         setUser(null);
         setShowCreate(false);
+        setShowDelete(false);
     }
 
 
@@ -43,8 +45,15 @@ function App() {
         closePopup();
     }
 
-    function onDeleteClick() {
+    function onDeleteClick(id) {
         setShowDelete(true);
+        setUserId(id);
+    }
+
+    async function onDeleteSubmit() {
+        await deleteUser(userId);
+        setUsers(state => state.filter(u => u._id !== userId));
+        closePopup();
     }
 
     return (
@@ -140,7 +149,7 @@ function App() {
 
 
                 {/* <!-- Delete user component  --> */}
-                {isShowDelete && <UserDelete />}
+                {isShowDelete && <UserDelete closePopup={closePopup} onDeleteSubmit={onDeleteSubmit}/>}
 
             </main>
             {/* <!-- Footer component  --> */}
