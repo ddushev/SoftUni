@@ -3,48 +3,59 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/site.css">
     <title>{{title}}</title>
+
+    <!-- Do not forget to change the path to the css file -->
+    <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body>
 
-    <div id="page-content">
+    <div class="box">
 
-        <header>
-            <a href="/" class="title-logo">
-                <img src="/static/assets/logo.png">
-                <span>Auction House</span>
-            </a>
-            <nav class="main-nav nav-mid">
-                <ul>
-                    <li>
-                        <a href="/catalog">Browse</a>
+
+        <!-- In case of error, display the following div-->
+        {{#if error}}
+        <div class="error-box">
+            {{#each error}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+
+        <header class="header">
+            <article class="header-logo">
+                <!-- Do not forget to change the path to the image -->
+                <img src="./static/img/logo.png">
+            </article>
+            <nav class="header-nav">
+                <ul class="header-nav-list">
+
+                    <li class="header-nav-list-item active">
+                        <a href="/" class="header-nav-list-item-link active">Home Page</a>
                     </li>
+
+                    <li class="header-nav-list-item">
+                        <a href="/catalog" class="header-nav-list-item-link">All ads</a>
+                    </li>
+                    <!-- Logged users -->
                     {{#if hasUser}}
-                    <!-- User actions -->
-                    <li class="user">
-                        <a href="/item/create">Publish</a>
+                    <li class="header-nav-list-item">
+                        <a href="/item/create" class="header-nav-list-item-link">Create Ad</a>
                     </li>
-
-                    <!-- Bonus action -->
-                    
-                    <li class="user">
-                        <a href="/my-catalog">Closed Auctions</a>
+                    <li class="header-nav-list-item">
+                        <a href="/search" class="header-nav-list-item-link">Search</a>
                     </li>
-                    
-
-                    <li class="user">
-                        <a href="/logout">Logout</a>
+                    <li class="header-nav-list-item">
+                        <a href="/logout" class="header-nav-list-item-link">Logout</a>
                     </li>
-                    <!-- Guest actions -->
                     {{else}}
-                    <li class="guest">
-                        <a href="/auth/register">Register</a>
+                    <!-- Guest users -->
+                    <li class="header-nav-list-item">
+                        <a href="/auth/register" class="header-nav-list-item-link">Register</a>
                     </li>
-                    <li class="guest">
-                        <a href="/auth/login">Login</a>
+                    <li class="header-nav-list-item">
+                        <a href="/auth/login" class="header-nav-list-item-link">Login</a>
                     </li>
                     {{/if}}
                 </ul>
@@ -52,21 +63,12 @@
         </header>
 
         <main>
-
-            <!-- In case of error, display the following div-->
-            {{#if error}}
-            <div class="error-box">
-                {{#each error}}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-            {{/if}}
-
             {{{body}}}
-
         </main>
 
-        <footer>SoftUni &copy; 2023</footer>
+        <footer>
+            <p>©Js Back-End Final Exam 2022</p>
+        </footer>
     </div>
 
 </body>
