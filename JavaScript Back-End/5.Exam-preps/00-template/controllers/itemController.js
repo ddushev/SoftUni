@@ -93,6 +93,7 @@ itemController.get('/:id/delete', async (req, res) => {
 // });
 
 //Interact functionality
+//TODO: Change to POST or GET as needed
 itemController.post('/:id/interact', async (req, res) => {
 
     try {
@@ -104,8 +105,8 @@ itemController.post('/:id/interact', async (req, res) => {
         if (item.userCollection.some(user => user._id == req.user._id)) {
             throw new Error('You already interacted with that item!');
         }
-
-        //TODO: Change based on task
+        
+        //TODO: Change error validators based on task
         if (item.price >= req.body.price) {
             throw new Error('Your bid is lower than the current price or bid!');
         }
