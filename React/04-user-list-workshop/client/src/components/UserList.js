@@ -2,7 +2,7 @@ import User from "./User";
 
 export default function UserList({
     users,
-    onInfo,
+    onInfoClick,
     onDeleteClick,
     onEditClick
 }) {
@@ -137,7 +137,7 @@ export default function UserList({
                     {/* <!-- Table row component --> */}
                     {users.map(u => <User key={u._id}
                         {...u}
-                        onInfo={onInfo}
+                        onInfoClick={onInfoClick}
                         onDeleteClick={onDeleteClick}
                         onEditClick={onEditClick} />)}
                 </tbody>

@@ -21,7 +21,7 @@ function App() {
             .catch(err => console.log(err));
     }, []);
 
-    function onInfo(id) {
+    function onInfoClick(id) {
         getUser(id)
             .then(result => setUser(result.user))
             .catch(err => console.error(err));
@@ -60,8 +60,10 @@ function App() {
     }
 
     function onEditClick(id) {
+        getUser(id)
+            .then(result => setUser(result.user))
+            .catch(err => console.error(err));
         setShowEdit(true);
-        setUserId(id);
     }
 
     return (
@@ -83,7 +85,7 @@ function App() {
 
                     {/* <!-- Table component --> */}
                     <UserList users={users}
-                        onInfo={onInfo}
+                        onInfoClick={onInfoClick}
                         onDeleteClick={onDeleteClick}
                         onEditClick={onEditClick}>
                     </UserList>
@@ -155,7 +157,10 @@ function App() {
                     closePopup={closePopup}
                     onCreateSubmit={onCreateSubmit}
                 />}
-                {isShowEdit && <UserEdit closePopup={closePopup}/>}
+                {isShowEdit && user && <UserEdit 
+                    {...user}
+                    closePopup={closePopup} 
+                />}
 
 
                 {/* <!-- Delete user component  --> */}
