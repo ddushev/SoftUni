@@ -7,6 +7,7 @@ const EditUser = function ({
     phoneNumber,
     address,   
     closePopup,
+    onEditSubmit
 }) {
     return (
         <div className="overlay">
@@ -24,7 +25,7 @@ const EditUser = function ({
                             </svg>
                         </button>
                     </header>
-                    <form>
+                    <form onSubmit={(event) => onEditSubmit(event , _id)}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>

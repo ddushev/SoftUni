@@ -2,7 +2,7 @@ import './App.css';
 import Search from './components/Search';
 import UserList from './components/UserList';
 import { useEffect, useState } from 'react';
-import { createUser, getUser, getUsers, deleteUser } from './services/userService';
+import { createUser, getUser, getUsers, deleteUser, updateUser } from './services/userService';
 import UserDetails from './components/UserDetails';
 import UserCreate from './components/UserCreate';
 import UserDelete from './components/UserDelete';
@@ -64,6 +64,16 @@ function App() {
             .then(result => setUser(result.user))
             .catch(err => console.error(err));
         setShowEdit(true);
+    }
+
+    async function onEditSubmit(event, id) {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const data = Object.fromEntries(formData);
+        const result = await updateUser(id, data);
+        const user = result.user;
+        setUsers(state => state.map(u => u._id !== user._id ? u : user))
+        closePopup();
     }
 
     return (
@@ -159,7 +169,8 @@ function App() {
                 />}
                 {isShowEdit && user && <UserEdit 
                     {...user}
-                    closePopup={closePopup} 
+                    closePopup={closePopup}
+                    onEditSubmit={onEditSubmit} 
                 />}
 
 

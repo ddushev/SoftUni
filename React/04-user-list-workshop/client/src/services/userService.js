@@ -29,6 +29,25 @@ export async function createUser(data) {
     return resp.json();
 }
 
+export async function updateUser(id, data) {
+    const { country, city, street, streetNumber, ...userData} = data;
+    userData.address = {
+        country,
+        city,
+        street,
+        streetNumber
+    }
+    const resp = await fetch(`${baseUrl}/${id}`, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+    })
+
+    return resp.json();
+}
+
 export async function deleteUser(id) {
     const resp = await fetch(`${baseUrl}/${id}`, {
         method: "DELETE"
