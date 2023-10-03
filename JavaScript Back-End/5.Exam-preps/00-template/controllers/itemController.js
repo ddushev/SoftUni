@@ -1,4 +1,5 @@
 const { createData, getDataById, editData, deleteData } = require('../services/itemService');
+const { updateUser } = require('../services/userService');
 const errorParser = require('../utils/errorParser');
 const validationChecker = require('../utils/validationChecker');
 
@@ -15,7 +16,9 @@ itemController.get('/create', (req, res) => {
 itemController.post('/create', async (req, res) => {
     try {
         validationChecker(req);
-        await createData(req.body, req.user._id);
+        const data = await createData(req.body, req.user._id);
+        //TODO: If user has itemCollections array
+        // await updateUser(data._id, req.user._id);
         res.redirect('/catalog');
     } catch (error) {
         res.render('create', {
@@ -91,7 +94,7 @@ itemController.get('/:id/delete', async (req, res) => {
 
 //Interact functionality
 itemController.post('/:id/interact', async (req, res) => {
-    
+
     try {
         const item = await getDataById(req.params.id);
         if (item.creatorId._id == req.user._id) {
@@ -103,7 +106,7 @@ itemController.post('/:id/interact', async (req, res) => {
         }
 
         //TODO: Change based on task
-        if(item.price >= req.body.price) {
+        if (item.price >= req.body.price) {
             throw new Error('Your bid is lower than the current price or bid!');
         }
         item.price = req.body.price;
