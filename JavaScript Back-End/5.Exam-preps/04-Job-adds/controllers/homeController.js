@@ -1,8 +1,12 @@
+const { getData } = require('../services/itemService');
+
 const homeController = require('express').Router();
 
-homeController.get('/', (req, res) => {
+homeController.get('/', async (req, res) => {
+    const items = (await getData()).slice(0,3);
     res.render('home', {
-        title: 'Homepage'
+        title: 'Homepage',
+        items
     });
 });
 
