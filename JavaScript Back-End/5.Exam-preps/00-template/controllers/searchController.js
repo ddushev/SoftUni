@@ -20,6 +20,7 @@ searchController.get('/', async (req, res) => {
 
 searchController.get('/query', async (req, res) => {
     try {
+        //TODO: Change parameters if
         const {name, itemOptions} = req.query;
         const items = await getFilteredData(name || '', itemOptions || '');
         res.render('search', {

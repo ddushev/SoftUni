@@ -20,13 +20,13 @@ searchController.get('/', async (req, res) => {
 
 searchController.get('/query', async (req, res) => {
     try {
-        const {name, itemOptions} = req.query;
-        const items = await getFilteredData(name || '', itemOptions || '');
+        //TODO: Change parameters if
+        const {email} = req.query;
+        const items = await getFilteredData(email || '');
         res.render('search', {
             title: 'Search page',
             items,
-            name,
-            itemOptions
+            email
         });
     } catch (error) {
         res.render('catalog', {

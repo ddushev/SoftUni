@@ -8,13 +8,10 @@ async function getNotDeletedData() {
     return Item.find({deleted: false}).lean();
 }
 
-async function getFilteredData(name, itemOptions) {
-    let filteredData = await Item.find({}).lean();
-    if (name) {
-        filteredData = filteredData.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
-    }
-    if (itemOptions) {
-        filteredData = filteredData.filter(item => item.itemOptions == itemOptions);
+async function getFilteredData(email, itemOptions) {
+    let filteredData = await Item.find({}).populate('creatorId').lean();
+    if (email) {
+        filteredData = filteredData.filter(item => item.creatorId.email.toLowerCase() == email.toLowerCase());
     }
 
     return filteredData;
