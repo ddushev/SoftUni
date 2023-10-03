@@ -3,7 +3,8 @@ import User from "./User";
 export default function UserList({
     users,
     onInfo,
-    onDeleteClick
+    onDeleteClick,
+    onEditClick
 }) {
     return (
         <div className="table-wrapper">
@@ -137,7 +138,8 @@ export default function UserList({
                     {users.map(u => <User key={u._id}
                         {...u}
                         onInfo={onInfo}
-                        onDeleteClick={onDeleteClick} />)}
+                        onDeleteClick={onDeleteClick}
+                        onEditClick={onEditClick} />)}
                 </tbody>
             </table>
         </div>

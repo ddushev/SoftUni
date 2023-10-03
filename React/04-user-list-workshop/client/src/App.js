@@ -6,6 +6,7 @@ import { createUser, getUser, getUsers, deleteUser } from './services/userServic
 import UserDetails from './components/UserDetails';
 import UserCreate from './components/UserCreate';
 import UserDelete from './components/UserDelete';
+import UserEdit from './components/UserEdit';
 
 function App() {
     const [users, setUsers] = useState([]);
@@ -13,6 +14,7 @@ function App() {
     const [userId, setUserId] = useState(null);
     const [isShowCreate, setShowCreate] = useState(false);
     const [isShowDelete, setShowDelete] = useState(false);
+    const [isShowEdit, setShowEdit] = useState(false);
     useEffect(() => {
         getUsers()
             .then(result => setUsers(result.users))
@@ -29,6 +31,7 @@ function App() {
         setUser(null);
         setShowCreate(false);
         setShowDelete(false);
+        setShowEdit(false);
     }
 
 
@@ -56,6 +59,11 @@ function App() {
         closePopup();
     }
 
+    function onEditClick(id) {
+        setShowEdit(true);
+        setUserId(id);
+    }
+
     return (
         <>
             {/* <!-- Header component --> */}
@@ -76,7 +84,8 @@ function App() {
                     {/* <!-- Table component --> */}
                     <UserList users={users}
                         onInfo={onInfo}
-                        onDeleteClick={onDeleteClick}>
+                        onDeleteClick={onDeleteClick}
+                        onEditClick={onEditClick}>
                     </UserList>
 
                     {/* <!-- New user button  --> */}
@@ -146,6 +155,7 @@ function App() {
                     closePopup={closePopup}
                     onCreateSubmit={onCreateSubmit}
                 />}
+                {isShowEdit && <UserEdit closePopup={closePopup}/>}
 
 
                 {/* <!-- Delete user component  --> */}
