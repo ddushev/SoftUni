@@ -34,14 +34,13 @@ async function getDataById(id) {
 //TODO: Change fields based on itemSchema
 async function createData(itemData, creatorId) {
     const item = {
-        // species: itemData.species,
-        // skinColor: itemData.skinColor,
-        // eyeColor: itemData.eyeColor,
-        price: Number(itemData.price),
-        itemOptions: itemData.itemOptions,
+        // price: Number(itemData.price),
+        // imageUrl: itemData.imageUrl,
         name: itemData.name,
+        location: itemData.location,
+        companyName: itemData.companyName,
         description: itemData.description,
-        imageUrl: itemData.imageUrl,
+        itemOptions: itemData.itemOptions,
         creatorId
     }
     return Item.create(item);

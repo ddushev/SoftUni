@@ -1,4 +1,5 @@
 const { createData, getDataById, editData, deleteData } = require('../services/itemService');
+const { updateUser } = require('../services/userService');
 const errorParser = require('../utils/errorParser');
 const validationChecker = require('../utils/validationChecker');
 
@@ -15,7 +16,9 @@ itemController.get('/create', (req, res) => {
 itemController.post('/create', async (req, res) => {
     try {
         validationChecker(req);
-        await createData(req.body, req.user._id);
+        const data = await createData(req.body, req.user._id);
+        //TODO: If user has itemCollections array
+        await updateUser(data._id, req.user._id);
         res.redirect('/catalog');
     } catch (error) {
         res.render('create', {

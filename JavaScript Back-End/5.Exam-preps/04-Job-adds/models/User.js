@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     // lastName: { type: String, required: true },
     description: {type: String, required: true},
     email: { type: String, required: true},
-    hashedPassword: { type: String, required: true }
+    hashedPassword: { type: String, required: true },
+    itemCollection: {type: [mongoose.Types.ObjectId], default: [], ref:'Item'}
 });
 
 userSchema.index({email: 1}, {
