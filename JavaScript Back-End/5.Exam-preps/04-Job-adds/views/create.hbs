@@ -1,46 +1,31 @@
-<section id="create-section" class="">
+<section id="create-page">
 
-    <h1 class="item">New Auction</h1>
+    <article class="create-page-container">
+        <form action="#" method="" class="create-page-form">
+            <h2>Create an ad</h2>
 
-    <div class="item padded align-center">
+            <label for="headline">Headline:</label>
+            <input type="text" id="headline" placeholder="Front-End Developer with React" name="" value="">
 
-        <form class="layout left large" method="POST">
+            <label for="location">Location:</label>
+            <input type="text" id="location" placeholder="Ruse, Bulgaria" name="" value="">
 
-            <div class="col aligned">
-                <label>
-                    <span>Title</span>
-                    <input type="text" name="name"></label>
-                <label>
-                    <span>Category</span>
-                    <select name="itemOptions">
-                        <option value="estate">Real Estate</option>
-                        <option value="vehicles">Vehicles</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="other">Other</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Image URL</span>
-                    <input type="text" name="imageUrl"></label>
-                <label>
-                    <span>Starting price</span>
-                    <input type="number" name="price"></label>
-            </div>
+            <label for="company-name">Company name:</label>
+            <input type="text" id="company-name" placeholder="Digital Solutions" name="" value="">
 
-            <div class="content pad-med align-center vertical">
-                <label>
-                    <span>Description</span>
-                    <textarea name="description"></textarea>
-                </label>
+            <label for="company-description">Company description:</label>
+            <input type="text" id="company-description" placeholder="We are developing a web application" name=""
+                value="">
 
-                <div class="align-center">
-                    <input class="action" type="submit" value="Publish Item">
-                </div>
-            </div>
-
+            <article class="create-page-button">
+                <button class="btn-create">Create</button>
+            </article>
         </form>
 
-    </div>
+        <article class="create-page-image">
+            <!-- Do not forget to change the path to the image -->
+            <img src="./static/img/job.png" alt="image">
+        </article>
+    </article>
 
 </section>

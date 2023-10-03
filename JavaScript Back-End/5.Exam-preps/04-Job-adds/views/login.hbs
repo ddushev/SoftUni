@@ -1,26 +1,30 @@
-<section id="login-section" class="narrow">
+<section id="login-page">
 
-    <h1 class="item">Login</h1>
+    <article class="login-page-container">
 
-    <div class="item padded align-center">
+        <form method="POST" class="login-page-form">
+            <h2>Login</h2>
+            <p>Welcome, see the new ads!</p>
 
-        <form class="aligned" method="POST">
+            <label for="email">Email:</label>
+            <input type="text" id="email" placeholder="petar@abv.bg" name="email">
 
-            <label>
-                <span>Email</span>
-                <input type="text" name="email">
-            </label>
-            <label>
-                <span>Password</span>
-                <input type="password" name="password">
-            </label>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="******" name="password">
 
-            <div class="align-center">
-                <input class="action" type="submit" value="Sign In">
-            </div>
+            <article class="login-page-button">
+                <button class="btn-login">Login</button>
+            </article>
 
+            <article class="no-account">
+                <p>Don't have an account? <a href="/auth/register">Sign up</a></p>
+            </article>
         </form>
 
-    </div>
+        <article class="login-page-image">
+            <!-- Do not forget to change the path to the image -->
+            <img src="../static/img/job.png" alt="job-image">
+        </article>
+    </article>
 
 </section>
