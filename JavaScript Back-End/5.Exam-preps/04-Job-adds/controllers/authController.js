@@ -42,12 +42,16 @@ authController.post('/register', async (req, res) => {
         //     errors.push('Username should be atleast 5 characters long!');
         // }
 
-        if (req.body.firstName.length < 3) {
-            errors.push('Firstname should be atleast 3 characters long!');
-        }
+        // if (req.body.firstName.length < 3) {
+        //     errors.push('Firstname should be atleast 3 characters long!');
+        // }
 
-        if (req.body.lastName.length < 3) {
-            errors.push('Lastname should be atleast 3 characters long!');
+        // if (req.body.lastName.length < 3) {
+        //     errors.push('Lastname should be atleast 3 characters long!');
+        // }
+
+        if (req.body.description.length < 3) {
+            errors.push('Description should be atleast 3 characters long!');
         }
 
         if (req.body.email.length < 10) {
@@ -83,7 +87,7 @@ authController.post('/register', async (req, res) => {
 });
 
 function saveToken(req, res, data) {
-    const token = jwt.sign(data, secret, {expiresIn: '4h'});
+    const token = jwt.sign(data, secret, { expiresIn: '4h' });
     res.cookie('jwt', token);
 }
 
