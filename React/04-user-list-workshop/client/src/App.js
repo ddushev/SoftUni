@@ -26,6 +26,7 @@ function App() {
         street: '',
         streetNumber: '',
     });
+    const [formErrors, setFormErrors] = useState({});
     useEffect(() => {
         getUsers()
             .then(result => setUsers(result.users))
@@ -51,8 +52,18 @@ function App() {
     }
 
     async function onCreateSubmit(event) {
+        event.preventDefault();
+        let errors = {};
+        if (formValues.firstName.length < 3) {
+            errors.firstName = 'First name should be at least 3 characters long!';
+        }
+        if (formValues.lastName.length < 3) {
+            errors.lastName = 'Last name should be at least 3 characters long!';
+        }
+
+        setFormErrors(errors);
+
         try {
-            event.preventDefault();
             const createdUser = await createUser(formValues);
             setUsers(state => [...state, createdUser.user]);
             setformValues({
@@ -73,7 +84,19 @@ function App() {
     }
 
     function onFormChange(event) {
-        setformValues(state => ({...state, [event.target.name]: event.target.value}));
+        setformValues(state => ({ ...state, [event.target.name]: event.target.value }));
+    }
+
+    function onFormBlur(event) {
+        // let errors = {};
+        // if (formValues.firstName.length < 3) {
+        //     errors.firstName = 'First name should be at least 3 characters long!';
+        // }
+        // if (formValues.lastName.length < 3) {
+        //     errors.lastName = 'Last name should be at least 3 characters long!';
+        // }
+
+        // setFormErrors(errors);
     }
 
     function onDeleteClick(id) {
@@ -196,16 +219,18 @@ function App() {
                     onCreateSubmit={onCreateSubmit}
                     onFormChange={onFormChange}
                     formValues={formValues}
+                    onFormBlur={onFormBlur}
+                    formErrors={formErrors}
                 />}
-                {isShowEdit && user && <UserEdit 
+                {isShowEdit && user && <UserEdit
                     {...user}
                     closePopup={closePopup}
-                    onEditSubmit={onEditSubmit} 
+                    onEditSubmit={onEditSubmit}
                 />}
 
 
                 {/* <!-- Delete user component  --> */}
-                {isShowDelete && <UserDelete closePopup={closePopup} onDeleteSubmit={onDeleteSubmit}/>}
+                {isShowDelete && <UserDelete closePopup={closePopup} onDeleteSubmit={onDeleteSubmit} />}
 
             </main>
             {/* <!-- Footer component  --> */}
