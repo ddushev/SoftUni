@@ -58,7 +58,11 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-envelope"></i></span>
                                     <input id="email" name="email" type="text" onChange={onFormChange} value={formValues.email} />
                                 </div>
-                                <p className="form-error">Email is not valid!</p>
+                                {formErrors.email ?
+                                    <p className="form-error">
+                                       {formErrors.email}
+                                    </p> : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone number</label>
@@ -66,7 +70,11 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-phone"></i></span>
                                     <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} value={formValues.phoneNumber} />
                                 </div>
-                                <p className="form-error">Phone number is not valid!</p>
+                                {formErrors.phoneNumber ?
+                                    <p className="form-error">
+                                       {formErrors.phoneNumber}
+                                    </p> : null
+                                }
                             </div>
                         </div>
 
@@ -76,7 +84,11 @@ const CreateUser = function ({
                                 <span><i className="fa-solid fa-image"></i></span>
                                 <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} value={formValues.imageUrl} />
                             </div>
-                            <p className="form-error">ImageUrl is not valid!</p>
+                            {formErrors.imageUrl ?
+                                    <p className="form-error">
+                                       {formErrors.imageUrl}
+                                    </p> : null
+                                }
                         </div>
 
                         <div className="form-row">
@@ -86,9 +98,11 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-map"></i></span>
                                     <input id="country" name="country" type="text" onChange={onFormChange} value={formValues.country} />
                                 </div>
-                                <p className="form-error">
-                                    Country should be at least 2 characters long!
-                                </p>
+                                {formErrors.country ?
+                                    <p className="form-error">
+                                       {formErrors.country}
+                                    </p> : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
@@ -96,9 +110,11 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-city"></i></span>
                                     <input id="city" name="city" type="text" onChange={onFormChange} value={formValues.city} />
                                 </div>
-                                <p className="form-error">
-                                    City should be at least 3 characters long!
-                                </p>
+                                {formErrors.city ?
+                                    <p className="form-error">
+                                       {formErrors.city}
+                                    </p> : null
+                                }
                             </div>
                         </div>
 
@@ -109,9 +125,12 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-map"></i></span>
                                     <input id="street" name="street" type="text" onChange={onFormChange} value={formValues.street} />
                                 </div>
-                                <p className="form-error">
-                                    Street should be at least 3 characters long!
-                                </p>
+                                {formErrors.street ?
+                                    <p className="form-error">
+                                       {formErrors.street}
+                                    </p> : null
+                                }
+
                             </div>
                             <div className="form-group">
                                 <label htmlFor="streetNumber">Street number</label>
@@ -119,9 +138,11 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
                                     <input id="streetNumber" name="streetNumber" type="text" onChange={onFormChange} value={formValues.streetNumber} />
                                 </div>
-                                <p className="form-error">
-                                    Street number should be a positive number!
-                                </p>
+                                {formErrors.streetNumber ?
+                                    <p className="form-error">
+                                       {formErrors.streetNumber}
+                                    </p> : null
+                                }
                             </div>
                         </div>
                         <div id="form-actions">

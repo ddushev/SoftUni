@@ -7,6 +7,7 @@ import UserDetails from './components/UserDetails';
 import UserCreate from './components/UserCreate';
 import UserDelete from './components/UserDelete';
 import UserEdit from './components/UserEdit';
+import errorParser from './utils/errorParser';
 
 function App() {
     const [users, setUsers] = useState([]);
@@ -44,6 +45,18 @@ function App() {
         setShowCreate(false);
         setShowDelete(false);
         setShowEdit(false);
+        setformValues({
+            firstName: '',
+            lastName: '',
+            email: '',
+            imageUrl: '',
+            phoneNumber: '',
+            country: '',
+            city: '',
+            street: '',
+            streetNumber: '',
+        });
+        setFormErrors({});
     }
 
 
@@ -53,15 +66,7 @@ function App() {
 
     async function onCreateSubmit(event) {
         event.preventDefault();
-        let errors = {};
-        if (formValues.firstName.length < 3) {
-            errors.firstName = 'First name should be at least 3 characters long!';
-        }
-        if (formValues.lastName.length < 3) {
-            errors.lastName = 'Last name should be at least 3 characters long!';
-        }
-
-        setFormErrors(errors);
+        setFormErrors(errorParser(formValues));
 
         try {
             const createdUser = await createUser(formValues);
@@ -69,21 +74,11 @@ function App() {
                 throw new Error('Invalid request');
             }
             setUsers(state => [...state, createdUser.user]);
-            setformValues({
-                firstName: '',
-                lastName: '',
-                email: '',
-                imageUrl: '',
-                phoneNumber: '',
-                country: '',
-                city: '',
-                street: '',
-                streetNumber: '',
-            });
             closePopup();
         } catch (error) {
             console.error(error.message);
         }
+
     }
 
     function onFormChange(event) {
