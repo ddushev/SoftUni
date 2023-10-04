@@ -15,6 +15,9 @@ function App() {
     const [isShowCreate, setShowCreate] = useState(false);
     const [isShowDelete, setShowDelete] = useState(false);
     const [isShowEdit, setShowEdit] = useState(false);
+    const [formValues, setformValues] = useState({
+        firstName: '',
+    });
     useEffect(() => {
         getUsers()
             .then(result => setUsers(result.users))
@@ -46,6 +49,12 @@ function App() {
         const createdUser = await createUser(data);
         setUsers(state => [...state, createdUser.user]);
         closePopup();
+    }
+
+    function onFormChange(event) {
+        console.log('here')
+        setformValues(state => ({...state, [event.target.name]: event.target.value}));
+        console.log()
     }
 
     function onDeleteClick(id) {
@@ -166,6 +175,8 @@ function App() {
                 {isShowCreate && <UserCreate
                     closePopup={closePopup}
                     onCreateSubmit={onCreateSubmit}
+                    onFormChange={onFormChange}
+                    formValues={formValues}
                 />}
                 {isShowEdit && user && <UserEdit 
                     {...user}

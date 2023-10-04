@@ -1,6 +1,8 @@
 const CreateUser = function ({
     closePopup,
-    onCreateSubmit
+    onCreateSubmit,
+    onFormChange,
+    formValues
 }) {
     return (
         <div className="overlay">
@@ -24,7 +26,7 @@ const CreateUser = function ({
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" />
+                                    <input id="firstName" name="firstName" type="text" onChange={onFormChange} value={formValues.username}/>
                                 </div>
                                 <p className="form-error">
                                     First name should be at least 3 characters long!
