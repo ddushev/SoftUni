@@ -17,6 +17,14 @@ function App() {
     const [isShowEdit, setShowEdit] = useState(false);
     const [formValues, setformValues] = useState({
         firstName: '',
+        lastName: '',
+        email: '',
+        imageUrl: '',
+        phoneNumber: '',
+        country: '',
+        city: '',
+        street: '',
+        streetNumber: '',
     });
     useEffect(() => {
         getUsers()
@@ -52,9 +60,7 @@ function App() {
     }
 
     function onFormChange(event) {
-        console.log('here')
         setformValues(state => ({...state, [event.target.name]: event.target.value}));
-        console.log()
     }
 
     function onDeleteClick(id) {
