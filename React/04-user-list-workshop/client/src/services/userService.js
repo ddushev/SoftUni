@@ -11,7 +11,7 @@ export async function getUser(id) {
 }
 
 export async function createUser(data) {
-    const { country, city, street, streetNumber, ...userData} = data;
+    const { country, city, street, streetNumber, ...userData } = data;
     userData.address = {
         country,
         city,
@@ -25,12 +25,13 @@ export async function createUser(data) {
         },
         body: JSON.stringify(userData)
     })
-
+    
     return resp.json();
+
 }
 
 export async function updateUser(id, data) {
-    const { country, city, street, streetNumber, ...userData} = data;
+    const { country, city, street, streetNumber, ...userData } = data;
     userData.address = {
         country,
         city,

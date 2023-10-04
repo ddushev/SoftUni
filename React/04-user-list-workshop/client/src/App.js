@@ -65,6 +65,9 @@ function App() {
 
         try {
             const createdUser = await createUser(formValues);
+            if(!createdUser.user.firstName) {
+                throw new Error('Invalid request');
+            }
             setUsers(state => [...state, createdUser.user]);
             setformValues({
                 firstName: '',
