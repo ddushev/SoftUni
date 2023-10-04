@@ -51,12 +51,25 @@ function App() {
     }
 
     async function onCreateSubmit(event) {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget)
-        const data = Object.fromEntries(formData);
-        const createdUser = await createUser(data);
-        setUsers(state => [...state, createdUser.user]);
-        closePopup();
+        try {
+            event.preventDefault();
+            const createdUser = await createUser(formValues);
+            setUsers(state => [...state, createdUser.user]);
+            setformValues({
+                firstName: '',
+                lastName: '',
+                email: '',
+                imageUrl: '',
+                phoneNumber: '',
+                country: '',
+                city: '',
+                street: '',
+                streetNumber: '',
+            });
+            closePopup();
+        } catch (error) {
+            console.error(error.message);
+        }
     }
 
     function onFormChange(event) {
