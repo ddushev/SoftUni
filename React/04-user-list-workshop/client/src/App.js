@@ -135,6 +135,35 @@ function App() {
         closePopup();
     }
 
+    async function onEditSubmit(event, id) {
+        event.preventDefault();
+        setFormFields({
+            firstName: true,
+            lastName: true,
+            email: true,
+            imageUrl: true,
+            phoneNumber: true,
+            country: true,
+            city: true,
+            street: true,
+            streetNumber: true,
+        })
+        setFormErrors(errorParser(formValues));
+
+        try {
+            const createdUser = await updateUser(id, formValues);
+            if(!createdUser.user.firstName) {
+                throw new Error('Invalid request');
+            }
+            const user = createdUser.user;
+            setUsers(state => state.map(u => u._id !== user._id ? u : user))
+            closePopup();
+        } catch (error) {
+            console.error(error.message);
+        }
+
+    }
+
     function onEditClick(id) {
         getUser(id)
             .then(result => {
@@ -150,15 +179,7 @@ function App() {
         setShowEdit(true);
     }
 
-    async function onEditSubmit(event, id) {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
-        const data = Object.fromEntries(formData);
-        const result = await updateUser(id, data);
-        const user = result.user;
-        setUsers(state => state.map(u => u._id !== user._id ? u : user))
-        closePopup();
-    }
+
 
     return (
         <>

@@ -31,7 +31,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input id="firstName" name="firstName" type="text" onChange={onFormChange} value={formValues.firstName} onBlur={onFormBlur} />
                                 </div>
-                                {formFields.firstName ?
+                                {(formFields.firstName && formErrors.firstName) ?
                                     <p className="form-error">
                                        {formErrors.firstName}
                                     </p> : null
@@ -44,7 +44,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input id="lastName" name="lastName" type="text" onChange={onFormChange} value={formValues.lastName} onBlur={onFormBlur} />
                                 </div>
-                                {formFields.lastName ?
+                                {(formFields.lastName && formErrors.lastName) ?
                                     <p className="form-error">
                                        {formErrors.lastName}
                                     </p> : null
@@ -59,7 +59,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-envelope"></i></span>
                                     <input id="email" name="email" type="text" onChange={onFormChange} value={formValues.email} onBlur={onFormBlur}/>
                                 </div>
-                                {formFields.email ?
+                                {(formFields.email && formErrors.email) ?
                                     <p className="form-error">
                                        {formErrors.email}
                                     </p> : null
@@ -71,7 +71,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-phone"></i></span>
                                     <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} value={formValues.phoneNumber} onBlur={onFormBlur}/>
                                 </div>
-                                {formFields.phoneNumber ?
+                                {(formFields.phoneNumber && formErrors.phoneNumber) ?
                                     <p className="form-error">
                                        {formErrors.phoneNumber}
                                     </p> : null
@@ -85,7 +85,7 @@ const CreateUser = function ({
                                 <span><i className="fa-solid fa-image"></i></span>
                                 <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} value={formValues.imageUrl} onBlur={onFormBlur}/>
                             </div>
-                            {formFields.imageUrl ?
+                            {(formFields.imageUrl && formErrors.imageUrl) ?
                                     <p className="form-error">
                                        {formErrors.imageUrl}
                                     </p> : null
@@ -99,7 +99,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-map"></i></span>
                                     <input id="country" name="country" type="text" onChange={onFormChange} value={formValues.country} onBlur={onFormBlur}/>
                                 </div>
-                                {formFields.country ?
+                                {(formFields.country && formErrors.country) ?
                                     <p className="form-error">
                                        {formErrors.country}
                                     </p> : null
@@ -111,7 +111,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-city"></i></span>
                                     <input id="city" name="city" type="text" onChange={onFormChange} value={formValues.city} onBlur={onFormBlur}/>
                                 </div>
-                                {formFields.city ?
+                                {(formFields.city && formErrors.city) ?
                                     <p className="form-error">
                                        {formErrors.city}
                                     </p> : null
@@ -126,7 +126,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-map"></i></span>
                                     <input id="street" name="street" type="text" onChange={onFormChange} value={formValues.street} onBlur={onFormBlur}/>
                                 </div>
-                                {formFields.street ?
+                                {(formFields.street && formErrors.street) ?
                                     <p className="form-error">
                                        {formErrors.street}
                                     </p> : null
@@ -139,7 +139,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
                                     <input id="streetNumber" name="streetNumber" type="text" onChange={onFormChange} value={formValues.streetNumber} onBlur={onFormBlur}/>
                                 </div>
-                                {formFields.streetNumber ?
+                                {(formFields.streetNumber && formErrors.streetNumber) ?
                                     <p className="form-error">
                                        {formErrors.streetNumber}
                                     </p> : null

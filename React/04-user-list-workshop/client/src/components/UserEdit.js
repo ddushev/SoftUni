@@ -1,11 +1,5 @@
 const EditUser = function ({
     _id,
-    firstName,
-    lastName,
-    email,
-    imageUrl,
-    phoneNumber,
-    address,   
     closePopup,
     onEditSubmit,
     onFormChange,
@@ -30,27 +24,31 @@ const EditUser = function ({
                             </svg>
                         </button>
                     </header>
-                    <form onSubmit={(event) => onEditSubmit(event , _id)}>
+                    <form onSubmit={(event) => onEditSubmit(event, _id)}>
                         <div className="form-row">
                             <div className="form-group">
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.firstName}/>
+                                    <input id="firstName" name="firstName" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.firstName} />
                                 </div>
-                                <p className="form-error">
-                                    First name should be at least 3 characters long!
-                                </p>
+                                {(formFields.firstName && formErrors.firstName) ?
+                                    <p className="form-error">
+                                        {formErrors.firstName}
+                                    </p> : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.lastName}/>
+                                    <input id="lastName" name="lastName" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.lastName} />
                                 </div>
-                                <p className="form-error">
-                                    Last name should be at least 3 characters long!
-                                </p>
+                                {(formFields.lastName && formErrors.lastName) ?
+                                    <p className="form-error">
+                                        {formErrors.lastName}
+                                    </p> : null
+                                }
                             </div>
                         </div>
 
@@ -59,17 +57,25 @@ const EditUser = function ({
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" value={email}/>
+                                    <input id="email" name="email" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.email} />
                                 </div>
-                                <p className="form-error">Email is not valid!</p>
+                                {(formFields.email && formErrors.email) ?
+                                    <p className="form-error">
+                                        {formErrors.email}
+                                    </p> : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.phoneNumber}/>
+                                    <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.phoneNumber} />
                                 </div>
-                                <p className="form-error">Phone number is not valid!</p>
+                                {(formFields.phoneNumber && formErrors.phoneNumber) ?
+                                    <p className="form-error">
+                                        {formErrors.phoneNumber}
+                                    </p> : null
+                                }
                             </div>
                         </div>
 
@@ -77,9 +83,13 @@ const EditUser = function ({
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.imageUrl}/>
+                                <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.imageUrl} />
                             </div>
-                            <p className="form-error">ImageUrl is not valid!</p>
+                            {(formFields.imageUrl && formErrors.imageUrl) ?
+                                <p className="form-error">
+                                    {formErrors.imageUrl}
+                                </p> : null
+                            }
                         </div>
 
                         <div className="form-row">
@@ -87,21 +97,25 @@ const EditUser = function ({
                                 <label htmlFor="country">Country </label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.country}/>
+                                    <input id="country" name="country" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.country} />
                                 </div>
-                                <p className="form-error">
-                                    Country should be at least 2 characters long!
-                                </p>
+                                {(formFields.country && formErrors.country) ?
+                                    <p className="form-error">
+                                        {formErrors.country}
+                                    </p> : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.city}/>
+                                    <input id="city" name="city" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.city} />
                                 </div>
-                                <p className="form-error">
-                                    City should be at least 3 characters long!
-                                </p>
+                                {(formFields.city && formErrors.city) ?
+                                    <p className="form-error">
+                                        {formErrors.city}
+                                    </p> : null
+                                }
                             </div>
                         </div>
 
@@ -110,26 +124,30 @@ const EditUser = function ({
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.street}/>
+                                    <input id="street" name="street" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.street} />
                                 </div>
-                                <p className="form-error">
-                                    Street should be at least 3 characters long!
-                                </p>
+                                {(formFields.street && formErrors.street) ?
+                                    <p className="form-error">
+                                        {formErrors.street}
+                                    </p> : null
+                                }
                             </div>
                             <div className="form-group">
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" onChange={onFormChange} onBlur={onFormBlur} type="text" value={formValues.streetNumber}/>
+                                    <input id="streetNumber" name="streetNumber" onChange={onFormChange} onBlur={onFormBlur} type="text" value={formValues.streetNumber} />
                                 </div>
-                                <p className="form-error">
-                                    Street number should be a positive number!
-                                </p>
+                                {(formFields.streetNumber && formErrors.streetNumber) ?
+                                    <p className="form-error">
+                                        {formErrors.streetNumber}
+                                    </p> : null
+                                }
                             </div>
                         </div>
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit">Save</button>
-                            <button id="action-cancel" className="btn" type="button" onChange={onFormChange} onBlur={onFormBlur} onClick={closePopup}>
+                            <button id="action-cancel" className="btn" type="button" onClick={closePopup}>
                                 Cancel
                             </button>
                         </div>
