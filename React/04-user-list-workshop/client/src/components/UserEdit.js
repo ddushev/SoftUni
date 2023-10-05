@@ -7,7 +7,12 @@ const EditUser = function ({
     phoneNumber,
     address,   
     closePopup,
-    onEditSubmit
+    onEditSubmit,
+    onFormChange,
+    formValues,
+    formFields,
+    onFormBlur,
+    formErrors
 }) {
     return (
         <div className="overlay">
@@ -31,7 +36,7 @@ const EditUser = function ({
                                 <label htmlFor="firstName">First name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="firstName" name="firstName" type="text" defaultValue={firstName}/>
+                                    <input id="firstName" name="firstName" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.firstName}/>
                                 </div>
                                 <p className="form-error">
                                     First name should be at least 3 characters long!
@@ -41,7 +46,7 @@ const EditUser = function ({
                                 <label htmlFor="lastName">Last name</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-user"></i></span>
-                                    <input id="lastName" name="lastName" type="text" defaultValue={lastName}/>
+                                    <input id="lastName" name="lastName" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.lastName}/>
                                 </div>
                                 <p className="form-error">
                                     Last name should be at least 3 characters long!
@@ -54,7 +59,7 @@ const EditUser = function ({
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" defaultValue={email}/>
+                                    <input id="email" name="email" type="text" value={email}/>
                                 </div>
                                 <p className="form-error">Email is not valid!</p>
                             </div>
@@ -62,7 +67,7 @@ const EditUser = function ({
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" defaultValue={phoneNumber}/>
+                                    <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.phoneNumber}/>
                                 </div>
                                 <p className="form-error">Phone number is not valid!</p>
                             </div>
@@ -72,7 +77,7 @@ const EditUser = function ({
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" defaultValue={imageUrl}/>
+                                <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.imageUrl}/>
                             </div>
                             <p className="form-error">ImageUrl is not valid!</p>
                         </div>
@@ -82,7 +87,7 @@ const EditUser = function ({
                                 <label htmlFor="country">Country </label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" defaultValue={address?.country}/>
+                                    <input id="country" name="country" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.country}/>
                                 </div>
                                 <p className="form-error">
                                     Country should be at least 2 characters long!
@@ -92,7 +97,7 @@ const EditUser = function ({
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" defaultValue={address?.city}/>
+                                    <input id="city" name="city" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.city}/>
                                 </div>
                                 <p className="form-error">
                                     City should be at least 3 characters long!
@@ -105,7 +110,7 @@ const EditUser = function ({
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" defaultValue={address?.street}/>
+                                    <input id="street" name="street" type="text" onChange={onFormChange} onBlur={onFormBlur} value={formValues.street}/>
                                 </div>
                                 <p className="form-error">
                                     Street should be at least 3 characters long!
@@ -115,7 +120,7 @@ const EditUser = function ({
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" defaultValue={address?.streetNumber}/>
+                                    <input id="streetNumber" name="streetNumber" onChange={onFormChange} onBlur={onFormBlur} type="text" value={formValues.streetNumber}/>
                                 </div>
                                 <p className="form-error">
                                     Street number should be a positive number!
@@ -124,7 +129,7 @@ const EditUser = function ({
                         </div>
                         <div id="form-actions">
                             <button id="action-save" className="btn" type="submit">Save</button>
-                            <button id="action-cancel" className="btn" type="button" onClick={closePopup}>
+                            <button id="action-cancel" className="btn" type="button" onChange={onFormChange} onBlur={onFormBlur} onClick={closePopup}>
                                 Cancel
                             </button>
                         </div>

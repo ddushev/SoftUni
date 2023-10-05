@@ -137,7 +137,15 @@ function App() {
 
     function onEditClick(id) {
         getUser(id)
-            .then(result => setUser(result.user))
+            .then(result => {
+                setUser(result.user)
+                setFormValues({...result.user,
+                    country: result.user.address.country,
+                    city: result.user.address.city,
+                    street: result.user.address.street,
+                    streetNumber: result.user.address.streetNumber,
+                })
+            })
             .catch(err => console.error(err));
         setShowEdit(true);
     }
@@ -252,6 +260,11 @@ function App() {
                     {...user}
                     closePopup={closePopup}
                     onEditSubmit={onEditSubmit}
+                    onFormChange={onFormChange}
+                    formValues={formValues}
+                    formFields={formFields}
+                    onFormBlur={onFormBlur}
+                    formErrors={formErrors}
                 />}
 
 
