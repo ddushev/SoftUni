@@ -1,9 +1,9 @@
 export default function errorParser(formValues) {
     let errors = {};
-    if (formValues.firstName.length < 3) {
+    if (formValues.firstName.length < 3 ) {
         errors.firstName = 'First name should be at least 3 characters long!';
     }
-    if (formValues.lastName.length < 3) {
+    if (formValues.lastName.length < 3 ) {
         errors.lastName = 'Last name should be at least 3 characters long!';
     }
 
@@ -31,7 +31,7 @@ export default function errorParser(formValues) {
         errors.street = 'Street should be at least 3 characters long!';
     }
 
-    if (!Number(formValues.streetNumber) > 0) {
+    if (!Number(formValues.streetNumber) >  0) {
         errors.streetNumber = 'Street number should be a positive number!!';
     }
 

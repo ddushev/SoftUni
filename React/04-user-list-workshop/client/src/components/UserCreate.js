@@ -3,6 +3,7 @@ const CreateUser = function ({
     onCreateSubmit,
     onFormChange,
     formValues,
+    formFields,
     onFormBlur,
     formErrors
 }) {
@@ -30,7 +31,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input id="firstName" name="firstName" type="text" onChange={onFormChange} value={formValues.firstName} onBlur={onFormBlur} />
                                 </div>
-                                {formErrors.firstName ?
+                                {formFields.firstName ?
                                     <p className="form-error">
                                        {formErrors.firstName}
                                     </p> : null
@@ -43,7 +44,7 @@ const CreateUser = function ({
                                     <span><i className="fa-solid fa-user"></i></span>
                                     <input id="lastName" name="lastName" type="text" onChange={onFormChange} value={formValues.lastName} onBlur={onFormBlur} />
                                 </div>
-                                {formErrors.lastName ?
+                                {formFields.lastName ?
                                     <p className="form-error">
                                        {formErrors.lastName}
                                     </p> : null
@@ -56,9 +57,9 @@ const CreateUser = function ({
                                 <label htmlFor="email">Email</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-envelope"></i></span>
-                                    <input id="email" name="email" type="text" onChange={onFormChange} value={formValues.email} />
+                                    <input id="email" name="email" type="text" onChange={onFormChange} value={formValues.email} onBlur={onFormBlur}/>
                                 </div>
-                                {formErrors.email ?
+                                {formFields.email ?
                                     <p className="form-error">
                                        {formErrors.email}
                                     </p> : null
@@ -68,9 +69,9 @@ const CreateUser = function ({
                                 <label htmlFor="phoneNumber">Phone number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-phone"></i></span>
-                                    <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} value={formValues.phoneNumber} />
+                                    <input id="phoneNumber" name="phoneNumber" type="text" onChange={onFormChange} value={formValues.phoneNumber} onBlur={onFormBlur}/>
                                 </div>
-                                {formErrors.phoneNumber ?
+                                {formFields.phoneNumber ?
                                     <p className="form-error">
                                        {formErrors.phoneNumber}
                                     </p> : null
@@ -82,9 +83,9 @@ const CreateUser = function ({
                             <label htmlFor="imageUrl">Image Url</label>
                             <div className="input-wrapper">
                                 <span><i className="fa-solid fa-image"></i></span>
-                                <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} value={formValues.imageUrl} />
+                                <input id="imageUrl" name="imageUrl" type="text" onChange={onFormChange} value={formValues.imageUrl} onBlur={onFormBlur}/>
                             </div>
-                            {formErrors.imageUrl ?
+                            {formFields.imageUrl ?
                                     <p className="form-error">
                                        {formErrors.imageUrl}
                                     </p> : null
@@ -96,9 +97,9 @@ const CreateUser = function ({
                                 <label htmlFor="country">Country</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="country" name="country" type="text" onChange={onFormChange} value={formValues.country} />
+                                    <input id="country" name="country" type="text" onChange={onFormChange} value={formValues.country} onBlur={onFormBlur}/>
                                 </div>
-                                {formErrors.country ?
+                                {formFields.country ?
                                     <p className="form-error">
                                        {formErrors.country}
                                     </p> : null
@@ -108,9 +109,9 @@ const CreateUser = function ({
                                 <label htmlFor="city">City</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-city"></i></span>
-                                    <input id="city" name="city" type="text" onChange={onFormChange} value={formValues.city} />
+                                    <input id="city" name="city" type="text" onChange={onFormChange} value={formValues.city} onBlur={onFormBlur}/>
                                 </div>
-                                {formErrors.city ?
+                                {formFields.city ?
                                     <p className="form-error">
                                        {formErrors.city}
                                     </p> : null
@@ -123,9 +124,9 @@ const CreateUser = function ({
                                 <label htmlFor="street">Street</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-map"></i></span>
-                                    <input id="street" name="street" type="text" onChange={onFormChange} value={formValues.street} />
+                                    <input id="street" name="street" type="text" onChange={onFormChange} value={formValues.street} onBlur={onFormBlur}/>
                                 </div>
-                                {formErrors.street ?
+                                {formFields.street ?
                                     <p className="form-error">
                                        {formErrors.street}
                                     </p> : null
@@ -136,9 +137,9 @@ const CreateUser = function ({
                                 <label htmlFor="streetNumber">Street number</label>
                                 <div className="input-wrapper">
                                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                                    <input id="streetNumber" name="streetNumber" type="text" onChange={onFormChange} value={formValues.streetNumber} />
+                                    <input id="streetNumber" name="streetNumber" type="text" onChange={onFormChange} value={formValues.streetNumber} onBlur={onFormBlur}/>
                                 </div>
-                                {formErrors.streetNumber ?
+                                {formFields.streetNumber ?
                                     <p className="form-error">
                                        {formErrors.streetNumber}
                                     </p> : null

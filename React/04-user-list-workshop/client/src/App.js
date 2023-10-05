@@ -16,7 +16,7 @@ function App() {
     const [isShowCreate, setShowCreate] = useState(false);
     const [isShowDelete, setShowDelete] = useState(false);
     const [isShowEdit, setShowEdit] = useState(false);
-    const [formValues, setformValues] = useState({
+    const [formValues, setFormValues] = useState({
         firstName: '',
         lastName: '',
         email: '',
@@ -26,6 +26,17 @@ function App() {
         city: '',
         street: '',
         streetNumber: '',
+    });
+    const [formFields, setFormFields] = useState({
+        firstName: false,
+        lastName: false,
+        email: false,
+        imageUrl: false,
+        phoneNumber: false,
+        country: false,
+        city: false,
+        street: false,
+        streetNumber: false,
     });
     const [formErrors, setFormErrors] = useState({});
     useEffect(() => {
@@ -45,7 +56,7 @@ function App() {
         setShowCreate(false);
         setShowDelete(false);
         setShowEdit(false);
-        setformValues({
+        setFormValues({
             firstName: '',
             lastName: '',
             email: '',
@@ -56,7 +67,19 @@ function App() {
             street: '',
             streetNumber: '',
         });
+        setFormFields({
+            firstName: false,
+            lastName: false,
+            email: false,
+            imageUrl: false,
+            phoneNumber: false,
+            country: false,
+            city: false,
+            street: false,
+            streetNumber: false,
+        });
         setFormErrors({});
+
     }
 
 
@@ -66,6 +89,17 @@ function App() {
 
     async function onCreateSubmit(event) {
         event.preventDefault();
+        setFormFields({
+            firstName: true,
+            lastName: true,
+            email: true,
+            imageUrl: true,
+            phoneNumber: true,
+            country: true,
+            city: true,
+            street: true,
+            streetNumber: true,
+        })
         setFormErrors(errorParser(formValues));
 
         try {
@@ -82,19 +116,12 @@ function App() {
     }
 
     function onFormChange(event) {
-        setformValues(state => ({ ...state, [event.target.name]: event.target.value }));
+        setFormValues(state => ({ ...state, [event.target.name]: event.target.value }));
     }
-
+    
     function onFormBlur(event) {
-        // let errors = {};
-        // if (formValues.firstName.length < 3) {
-        //     errors.firstName = 'First name should be at least 3 characters long!';
-        // }
-        // if (formValues.lastName.length < 3) {
-        //     errors.lastName = 'Last name should be at least 3 characters long!';
-        // }
-
-        // setFormErrors(errors);
+        setFormFields(state => ({ ...state, [event.target.name]: true }));
+        setFormErrors(errorParser(formValues));
     }
 
     function onDeleteClick(id) {
@@ -217,6 +244,7 @@ function App() {
                     onCreateSubmit={onCreateSubmit}
                     onFormChange={onFormChange}
                     formValues={formValues}
+                    formFields={formFields}
                     onFormBlur={onFormBlur}
                     formErrors={formErrors}
                 />}
