@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
+import baseUrl from "../constants/url";
+import Film from "./Film";
+
 const FilmsList = function () {
+    const [movies, setMovies] = useState([]);
+    useEffect(() => {
+        fetch(`${baseUrl}/films/`)
+            .then(resp => resp.json())
+            .then(data => setMovies(data.results));
+    }, [])
     return (
-        <h5>Film name</h5>
+        <ul>
+            {movies.map(movie => <Film key={movie.url} movie={movie}/>)}
+        </ul>
+        
     )
 }
 

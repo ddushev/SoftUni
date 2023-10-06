@@ -6,17 +6,15 @@ import "../PersonDetails.css";
 const PersonDetails = function () {
     const { personId } = useParams();
     const [person, setPerson] = useState({});
-    const [movies, setMovies] = useState([]);
+    
     useEffect(() => {
         async function fetchData() {
-            const [person, films] = await Promise.all([fetch(`${baseUrl}/people/${personId}`), fetch(`${baseUrl}/films/`)]);
-            setPerson(await person.json());
-            setMovies((await films.json()).results);
+            const resp = await fetch(`${baseUrl}/people/${personId}`);
+            setPerson(await resp.json());
         }
         fetchData();
     }, [personId])
     console.log(person);
-    console.log(movies);
     return (
         <>
             <h4>Name: {person.name}</h4>
