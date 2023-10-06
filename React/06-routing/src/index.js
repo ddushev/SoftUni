@@ -9,6 +9,7 @@ import Home from './components/Home';
 import About from './components/About';
 import PeopleList from './components/PeopleList';
 import PersonDetails from './components/PersonDetails';
+import FilmsList from './components/FilmsList';
 
 
 const router = createBrowserRouter([
@@ -31,7 +32,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/people/:personId",
-        element: <PersonDetails />
+        element: <PersonDetails />,
+        children: [
+          {
+            path: "films",
+            element: <FilmsList />
+          }
+        ]
       }
     ]
   },

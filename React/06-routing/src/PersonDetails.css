@@ -1,0 +1,6 @@
+.PersonDetails-navlist {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px
+}
