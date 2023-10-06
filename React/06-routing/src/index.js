@@ -10,6 +10,8 @@ import About from './components/About';
 import PeopleList from './components/PeopleList';
 import PersonDetails from './components/PersonDetails';
 import FilmsList from './components/FilmsList';
+import StarshipsList from './components/StarshipsList';
+import VehiclesList from './components/VehiclesList';
 
 
 const router = createBrowserRouter([
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
           {
             path: "films",
             element: <FilmsList />
+          },
+          {
+            path: "starships",
+            element: <StarshipsList />
+          },
+          {
+            path: "vehicles",
+            element: <VehiclesList />
           }
         ]
       }
