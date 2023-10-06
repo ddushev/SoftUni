@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NotFound from './components/NotFound';
 import Home from './components/Home';
 import About from './components/About';
-import People from './components/People';
+import PeopleList from './components/PeopleList';
 
 
 const router = createBrowserRouter([
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/people",
-        element: <People />
+        element: <PeopleList />
       }
     ]
   },
