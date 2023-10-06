@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 
 const People = ({
-    name,
-    url
+    person
 }) => {
-    const id = url.split('/')[5];
+    const id = person.url.split('/')[5];
     return (
-        <li> <Link to={id}>{name}</Link> </li>
+        <li> <Link to={id}>{person.name}</Link> </li>
     );
 }
 

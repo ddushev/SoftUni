@@ -15,7 +15,7 @@ export default function PeopleList() {
         <>
             <h2>People list</h2>
             <ul>
-                {people.map(person => <Person key={person.url} {...person}/> )}
+                {people.map(person => <Person key={person.url} person={person}/> )}
             </ul>
         </>
     )

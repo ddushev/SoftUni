@@ -8,6 +8,7 @@ import NotFound from './components/NotFound';
 import Home from './components/Home';
 import About from './components/About';
 import PeopleList from './components/PeopleList';
+import PersonDetails from './components/PersonDetails';
 
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/people",
         element: <PeopleList />
+      },
+      {
+        path: "/people/:personId",
+        element: <PersonDetails />
       }
     ]
   },
