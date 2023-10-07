@@ -17,6 +17,10 @@ function App() {
             .then(data => setGames(Object.values(data)));
     }, [])
 
+    function onCreateSubmit (e, values) {
+        e.preventDefault();
+        console.log(values);
+    }
 
     return (
         <>
@@ -27,7 +31,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
-                        <Route path='/create' element={<Create />} />
+                        <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
                         <Route path='/edit' element={<Edit />} />
                         <Route path='/details' element={<Details />} />
                         <Route path='/catalog' element={<Catalog games={games}/>} />
