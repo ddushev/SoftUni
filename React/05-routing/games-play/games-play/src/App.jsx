@@ -9,10 +9,15 @@ import Register from "./components/Register/Register"
 import { Routes, Route } from "react-router-dom"
 import { getData } from "./services/requester"
 import { baseUrl } from "./utils/constants"
+import { useEffect, useState } from "react"
 
 function App() {
-    getData(baseUrl)
-        .then(data => console.log(Object.values(data)));
+    const [games, setGames] = useState([]);
+    useEffect(() => {
+        getData(baseUrl)
+            .then(data => setGames(Object.values(data)));
+    }, [])
+
 
     return (
         <>
