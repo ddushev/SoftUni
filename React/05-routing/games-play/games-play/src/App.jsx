@@ -1,3 +1,5 @@
+import Create from "./components/Create/Create"
+import Edit from "./components/Edit/Edit"
 import Header from "./components/Header/Header"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
@@ -12,6 +14,8 @@ function App() {
         {/* <Home /> */}
         {/* <Login /> */}
         {/* <Register /> */}
+        {/* <Create /> */}
+        <Edit />
       </div>
 
     </>
