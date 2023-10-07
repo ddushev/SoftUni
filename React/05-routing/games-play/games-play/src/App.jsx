@@ -6,20 +6,23 @@ import Header from "./components/Header/Header"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import * as data from "./services/data"
 import { useEffect, useState } from "react"
 
 function App() {
     const [games, setGames] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
         data.getData()
             .then(data => setGames(Object.values(data)));
     }, [])
 
-    function onCreateSubmit (e, gameInfo) {
+    async function onCreateSubmit (e, gameInfo) {
         e.preventDefault();
-        data.createData(gameInfo)
+        const newGame = await data.createData(gameInfo)
+        setGames(state => [...state, newGame]);
+        navigate('/catalog');
     }
 
     return (
