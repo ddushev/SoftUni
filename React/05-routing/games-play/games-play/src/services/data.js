@@ -6,6 +6,11 @@ async function getData() {
     return api.get(baseUrl);
 }
 
+async function createData(gameInfo) {
+    return api.post(baseUrl, gameInfo);
+}
+
 export {
-    getData
+    getData,
+    createData
 }

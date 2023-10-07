@@ -56,7 +56,7 @@ export default function Create({
                         placeholder="Upload a photo..."
                     />
                     <label htmlFor="summary">Summary:</label>
-                    <textarea onChange={onChangeHandler} value={values.summary} name="summary" id="summary" defaultValue={""} />
+                    <textarea onChange={onChangeHandler} value={values.summary} name="summary" id="summary" />
                     <input
                         className="btn submit"
                         type="submit"

@@ -17,9 +17,9 @@ function App() {
             .then(data => setGames(Object.values(data)));
     }, [])
 
-    function onCreateSubmit (e, values) {
+    function onCreateSubmit (e, gameInfo) {
         e.preventDefault();
-        console.log(values);
+        data.createData(gameInfo)
     }
 
     return (
