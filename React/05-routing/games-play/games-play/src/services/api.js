@@ -1,4 +1,4 @@
-async function request(method, url) {
+async function request(method, url, data) {
     try {
         const response = await fetch(url, {
             method
@@ -14,9 +14,14 @@ async function request(method, url) {
     }
 }
 
-const getData = request.bind(null, 'GET');
-const createData = request.bind(null, 'POST');
-const updateData = request.bind(null, 'PUT');
-const deleteData = request.bind(null, 'DELETE');
+const get = request.bind(null, 'GET');
+const post = request.bind(null, 'POST');
+const update = request.bind(null, 'PUT');
+const del = request.bind(null, 'DELETE');
 
-export { getData };
+export {
+    get,
+    post,
+    update,
+    del
+}

@@ -7,14 +7,13 @@ import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
 import { Routes, Route } from "react-router-dom"
-import { getData } from "./services/requester"
-import { baseUrl } from "./utils/constants"
+import * as data from "./services/data"
 import { useEffect, useState } from "react"
 
 function App() {
     const [games, setGames] = useState([]);
     useEffect(() => {
-        getData(baseUrl)
+        data.getData()
             .then(data => setGames(Object.values(data)));
     }, [])
 
