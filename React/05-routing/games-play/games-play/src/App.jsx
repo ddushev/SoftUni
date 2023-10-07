@@ -1,4 +1,6 @@
+import Catalog from "./components/Catalog/Catalog"
 import Create from "./components/Create/Create"
+import Details from "./components/Details/Details"
 import Edit from "./components/Edit/Edit"
 import Header from "./components/Header/Header"
 import Home from "./components/Home/Home"
@@ -11,11 +13,15 @@ function App() {
     <>
       <div id="box">
         <Header />
-        {/* <Home /> */}
-        {/* <Login /> */}
-        {/* <Register /> */}
-        {/* <Create /> */}
-        <Edit />
+        <main id="main-content">
+          <Home />
+          {/* <Login /> */}
+          {/* <Register /> */}
+          {/* <Create /> */}
+          {/* <Edit /> */}
+          {/* <Details /> */}
+          {/* <Catalog /> */}
+        </main>
       </div>
 
     </>
