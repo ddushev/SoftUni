@@ -8,16 +8,26 @@ export default function Details() {
     const [comment, setComment] = useState('');
     useEffect(() => {
         data.getGame(gameId)
-            .then(data => setGameData(data));
+            .then(data => {
+                setGameData(data);
+            });
     }, [gameId])
 
     function onChange(e) {
         setComment(e.target.value);
     }
 
-    async function onCommentSubmit (e) {
+    async function onCommentSubmit(e) {
         e.preventDefault()
-        await data.createComment(gameId, {text: comment})
+        const newComment = await data.createComment(gameId, { text: comment });
+        setGameData(state => {
+            if (state.comments) {
+                return { ...state, comments: { ...state.comments, [newComment._id]: newComment } };
+            } else {
+                return { ...state, comments: { [newComment._id]: newComment } };
+            }
+        });
+        setComment('');
     }
     return (
         <section id="game-details">
@@ -37,15 +47,15 @@ export default function Details() {
                     <h2>Comments:</h2>
                     <ul>
                         {/* list all comments for current game (If any) */}
-                        <li className="comment">
-                            <p>Content: I rate this one quite highly.</p>
-                        </li>
-                        <li className="comment">
-                            <p>Content: The best game.</p>
-                        </li>
+                        {gameData?.comments && Object.values(gameData.comments).map(comment => (
+                            <li key={comment._id} className="comment">
+                                <p>{comment.text}</p>
+                            </li>
+                        ))}
+
                     </ul>
-                    {/* Display paragraph: If there are no games in the database */}
-                    <p className="no-comment">No comments.</p>
+                    {/* Display paragraph: If there are no comments in the database */}
+                    {!gameData?.comments && <p className="no-comment">No comments.</p>}
                 </div>
                 {/* Edit/Delete buttons ( Only for creator of this game )  */}
                 <div className="buttons">
