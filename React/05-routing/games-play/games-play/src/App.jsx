@@ -36,7 +36,7 @@ function App() {
                         <Route path='/register' element={<Register />} />
                         <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
                         <Route path='/edit' element={<Edit />} />
-                        <Route path='/details' element={<Details />} />
+                        <Route path='/details/:gameId' element={<Details />} />
                         <Route path='/catalog' element={<Catalog games={games}/>} />
                     </Routes>
                 </main>
