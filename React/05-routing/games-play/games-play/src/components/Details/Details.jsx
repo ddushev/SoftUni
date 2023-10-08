@@ -5,10 +5,20 @@ import * as data from '../../services/data';
 export default function Details() {
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
+    const [comment, setComment] = useState('');
     useEffect(() => {
         data.getGame(gameId)
             .then(data => setGameData(data));
     }, [gameId])
+
+    function onChange(e) {
+        setComment(e.target.value);
+    }
+
+    async function onCommentSubmit (e) {
+        e.preventDefault()
+        await data.createComment(gameId, {text: comment})
+    }
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -51,11 +61,12 @@ export default function Details() {
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}
             <article className="create-comment">
                 <label>Add new comment:</label>
-                <form className="form">
+                <form onSubmit={onCommentSubmit} className="form">
                     <textarea
+                        onChange={onChange}
                         name="comment"
                         placeholder="Comment......"
-                        defaultValue={""}
+                        value={comment}
                     />
                     <input
                         className="btn submit"
