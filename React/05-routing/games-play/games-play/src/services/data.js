@@ -14,6 +14,10 @@ async function createData(gameInfo) {
     return api.post(baseUrl, gameInfo);
 }
 
+async function createData(gameId, commentInfo) {
+    return api.post(`${baseUrl}/${gameId}/comments`, commentInfo);
+}
+
 export {
     getData,
     getGame,
