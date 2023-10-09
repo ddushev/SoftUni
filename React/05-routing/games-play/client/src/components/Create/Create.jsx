@@ -3,7 +3,13 @@ import useForm from "../../hooks/useForm";
 export default function Create({
     onCreateSubmit,
 }) {
-    const { values, onChangeHandler } = useForm();
+    const { values, onChangeHandler } = useForm({
+        title: '',
+        category: '',
+        maxLevel: '',
+        imageUrl: '',
+        summary: ''
+    });
     return (
         <section id="create-page" className="auth">
             <form onSubmit={(e) => onCreateSubmit(e, values)} id="create">
