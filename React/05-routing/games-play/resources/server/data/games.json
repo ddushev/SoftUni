@@ -3,8 +3,8 @@
         "title": "Counter-Strike 2",
         "category": "FPS",
         "maxLevel": "30",
-        "imageUrl": "n/a",
-        "summary": "CS2",
+        "imageUrl": "https://cdn.akamai.steamstatic.com/apps/csgo/images/csgo_react/social/cs2.jpg  ",
+        "summary": "Counter-Strike 2 is a free upgrade to CS:GO. So build your loadout, hone your skills, and prepare yourself for what's next! Read on to learn more about some of ...",
         "_id": "b20c7abb-dd14-42e2-9db3-4660b28e8980",
         "comments": {
             "a0d72cd9-7cec-4075-a36b-aa2c3d60cafa": {
@@ -29,8 +29,8 @@
         "title": "League of Legends",
         "category": "MOBA",
         "maxLevel": "18",
-        "imageUrl": "n/a",
-        "summary": "LOL Summary",
+        "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6CA49ZMpDU3f-wjJlCFaAttKbRye-hMQZ6Gc5QSu6AJIJPggZz6r8S6NOAiZvjKs5sa8&usqp=CAU",
+        "summary": "League of Legends is a multiplayer online battle arena (MOBA) game in which the player controls a character  with a set of unique abilities from an isometric perspective. As of 2023, there are over 160 champions available to play.",
         "_id": "b738931e-6d3d-448b-b270-961cf47a4018",
         "comments": {
             "5314889d-f6b4-49a3-ac60-ec3bafd96f68": {
@@ -40,30 +40,16 @@
         }
     },
     "57f0cb00-ef47-414f-a733-41f56aae4ba0": {
-        "title": "World of warcraft",
+        "title": "World of Warcraft",
         "category": "MMORPG",
         "maxLevel": "60",
-        "imageUrl": "n/a",
-        "summary": "WOW Summary",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/65/World_of_Warcraft.png",
+        "summary": "World of Warcraft (WoW) is a massively multiplayer online role-playing game (MMORPG) released in 2004 by Blizzard Entertainment.",
         "_id": "57f0cb00-ef47-414f-a733-41f56aae4ba0",
         "comments": {
             "2588c318-d426-43cb-b942-020a8b608b7a": {
                 "text": "First comment",
                 "_id": "2588c318-d426-43cb-b942-020a8b608b7a"
-            }
-        }
-    },
-    "dc5200c4-3c7a-4c20-810c-56d15026caca": {
-        "title": "Test",
-        "category": "Test",
-        "maxLevel": "123",
-        "imageUrl": "Test",
-        "summary": "Test",
-        "_id": "dc5200c4-3c7a-4c20-810c-56d15026caca",
-        "comments": {
-            "8ad7cbbf-124d-444f-8ec6-03f09d71567d": {
-                "text": "Comment 1",
-                "_id": "8ad7cbbf-124d-444f-8ec6-03f09d71567d"
             }
         }
     }

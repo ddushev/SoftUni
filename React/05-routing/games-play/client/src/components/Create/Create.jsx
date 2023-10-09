@@ -3,16 +3,16 @@ import useForm from "../../hooks/useForm";
 export default function Create({
     onCreateSubmit,
 }) {
-    const { values, onChangeHandler } = useForm({
+    const { values, onChangeHandler, onSubmit } = useForm({
         title: '',
         category: '',
         maxLevel: '',
         imageUrl: '',
         summary: ''
-    });
+    }, onCreateSubmit);
     return (
         <section id="create-page" className="auth">
-            <form onSubmit={(e) => onCreateSubmit(e, values)} id="create">
+            <form onSubmit={onSubmit} id="create">
                 <div className="container">
                     <h1>Create Game</h1>
                     <label htmlFor="leg-title">Legendary title:</label>

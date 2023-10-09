@@ -19,8 +19,7 @@ function App() {
             .then(data => setGames(Object.values(data)));
     }, [])
 
-    async function onCreateSubmit(e, gameInfo) {
-        e.preventDefault();
+    async function onCreateSubmit(gameInfo) {
         const newGame = await data.createData(gameInfo)
         setGames(state => [...state, newGame]);
         navigate('/catalog');
