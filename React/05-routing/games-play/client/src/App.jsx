@@ -10,9 +10,12 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import * as data from "./services/data"
 import { useEffect, useState } from "react"
 import { CatalogContext } from "./contexts/CatalogContext"
+import { AuthContext } from "./contexts/AuthContext"
+
 
 function App() {
     const [games, setGames] = useState([]);
+    const [auth, setAuth] = useState({});
     const navigate = useNavigate();
     useEffect(() => {
         data.getData()
@@ -25,28 +28,33 @@ function App() {
         navigate('/catalog');
     }
 
+    async function onLoginSubmit(loginInfo) {
+        console.log(loginInfo)
+    }
+
 
     return (
         <>
-            <div id="box">
-                <Header />
-                <main id="main-content">
-                    <Routes>
-                        <Route path='/' element={<Home />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
-                        <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
-                        <Route path='/edit' element={<Edit />} />
-                        <Route path='/details/:gameId' element={<Details />} />
-                        <Route path='/catalog' element={
-                            <CatalogContext.Provider value={games}>
-                                <Catalog />
-                            </CatalogContext.Provider>
-                        } />
-                    </Routes>
-                </main>
-            </div>
-
+            <AuthContext.Provider value={{ onLoginSubmit }}>
+                <div id="box">
+                    <Header />
+                    <main id="main-content">
+                        <Routes>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Register />} />
+                            <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
+                            <Route path='/edit' element={<Edit />} />
+                            <Route path='/details/:gameId' element={<Details />} />
+                            <Route path='/catalog' element={
+                                <CatalogContext.Provider value={games}>
+                                    <Catalog />
+                                </CatalogContext.Provider>
+                            } />
+                        </Routes>
+                    </main>
+                </div>
+            </AuthContext.Provider>
         </>
     )
 }
