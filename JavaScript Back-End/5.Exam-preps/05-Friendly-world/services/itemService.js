@@ -35,10 +35,12 @@ async function getDataById(id) {
 async function createData(itemData, creatorId) {
     const item = {
         name: itemData.name,
-        price: Number(itemData.price),
+        kind: itemData.kind,
+        need: itemData.need,
+        location: itemData.location,
+        years: Number(itemData.years),
         description: itemData.description,
         imageUrl: itemData.imageUrl,
-        itemOptions: itemData.itemOptions,
         creatorId
     }
     return Item.create(item);
