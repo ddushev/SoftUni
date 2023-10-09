@@ -3,72 +3,58 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/site.css">
+    <link rel="stylesheet" href="./static/styles/styles.css" />
     <title>{{title}}</title>
 </head>
 
 <body>
 
-    <div id="page-content">
+    <div>
+        <!-- In case of error, display the following div-->
+        {{#if error}}
+        <div class="errorContainer">
+            {{#each error}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div>
 
+    <div id="wrapper">
         <header>
-            <a href="/" class="title-logo">
-                <img src="/static/assets/logo.png">
-                <span>Auction House</span>
-            </a>
-            <nav class="main-nav nav-mid">
-                <ul>
-                    <li>
-                        <a href="/catalog">Browse</a>
-                    </li>
-                    {{#if hasUser}}
-                    <!-- User actions -->
-                    <li class="user">
-                        <a href="/item/create">Publish</a>
-                    </li>
-
-                    <!-- Bonus action -->
-                    
-                    <li class="user">
-                        <a href="/my-catalog">Closed Auctions</a>
-                    </li>
-                    
-
-                    <li class="user">
-                        <a href="/logout">Logout</a>
-                    </li>
-                    <!-- Guest actions -->
-                    {{else}}
-                    <li class="guest">
-                        <a href="/auth/register">Register</a>
-                    </li>
-                    <li class="guest">
-                        <a href="/auth/login">Login</a>
-                    </li>
-                    {{/if}}
-                </ul>
+            <!-- Navigation -->
+            <nav>
+                <div>
+                    <a href="/">Home</a>
+                    <a href="/catalog">Dashboard</a>
+                    <a href="/search">Search</a>
+                </div>
+                {{#if hasUser}}
+                <!-- Logged-in users -->
+                <div class="user">
+                    <a href="item/create">Add Animal</a>
+                    <a href="/logout">Logout</a>
+                </div>
+                {{else}}
+                <!-- Guest users -->
+                <div class="guest">
+                    <a href="/auth/login">Login</a>
+                    <a href="/auth/register">Register</a>
+                </div>
+                {{/if}}
             </nav>
         </header>
 
-        <main>
-
-            <!-- In case of error, display the following div-->
-            {{#if error}}
-            <div class="error-box">
-                {{#each error}}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-            {{/if}}
-
+        <main class="home">
             {{{body}}}
-
         </main>
 
-        <footer>SoftUni &copy; 2023</footer>
+        <footer>
+            <p>@Friendly World</p>
+        </footer>
     </div>
-
 </body>
 
 </html>
