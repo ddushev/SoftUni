@@ -9,6 +9,7 @@ import Register from "./components/Register/Register"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import * as data from "./services/data"
 import { useEffect, useState } from "react"
+import { CatalogContext } from "./contexts/CatalogContext"
 
 function App() {
     const [games, setGames] = useState([]);
@@ -18,12 +19,13 @@ function App() {
             .then(data => setGames(Object.values(data)));
     }, [])
 
-    async function onCreateSubmit (e, gameInfo) {
+    async function onCreateSubmit(e, gameInfo) {
         e.preventDefault();
         const newGame = await data.createData(gameInfo)
         setGames(state => [...state, newGame]);
         navigate('/catalog');
     }
+
 
     return (
         <>
@@ -37,7 +39,11 @@ function App() {
                         <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
                         <Route path='/edit' element={<Edit />} />
                         <Route path='/details/:gameId' element={<Details />} />
-                        <Route path='/catalog' element={<Catalog games={games}/>} />
+                        <Route path='/catalog' element={
+                            <CatalogContext.Provider value={games}>
+                                <Catalog />
+                            </CatalogContext.Provider>
+                        } />
                     </Routes>
                 </main>
             </div>
