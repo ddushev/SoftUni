@@ -1,51 +1,20 @@
-<section id="create-section">
+<main class="edit">
+    <!-- Edit Page (Only for logged-in users) -->
+    <section id="create">
+        <div class="form">
+            <h2>Edit item</h2>
+            <form class="create-form" method="POST">
+                <input type="text" name="name" id="name" placeholder="Name" value="{{item.name}}" />
+                <input type="text" name="years" id="years" placeholder="Years" value="{{item.years}}" />
+                <input type="text" name="kind" id="kind" placeholder="Kind" value="{{item.kind}}" />
+                <input type="text" name="imageUrl" id="animal-img" placeholder="Image url" value="{{item.imageUrl}}" />
+                <input type="text" name="need" id="needs-of" placeholder="Needs of" value="{{item.need}}" />
+                <input type="text" name="location" id="location" placeholder="Location" value="{{item.location}}" />
+                <textarea id="description" placeholder="Description..."
+                    name="description">{{item.description}}</textarea>
 
-    <h1 class="item">Edit Auction</h1>
-
-    <div class="item padded align-center">
-
-        <form class="layout left large" method="POST" >
-
-            <div class="col aligned">
-                <label>
-                    <span>Title</span>
-                    <input type="text" name="name" value="{{item.name}}"></label>
-                <label>
-                    <span>Category</span>
-                    <select name="itemOptions">
-                        <option {{isSelected 'estate' item.itemOptions}} value="estate">Real Estate</option>
-                        <option {{isSelected 'vehicles' item.itemOptions}} value="vehicles">Vehicles</option>
-                        <option {{isSelected 'furniture' item.itemOptions}} value="furniture">Furniture</option>
-                        <option {{isSelected 'electronics' item.itemOptions}} value="electronics">Electronics</option>
-                        <option {{isSelected 'other' item.itemOptions}} value="other">Other</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Image URL</span>
-                    <input type="text" name="imageUrl" value="{{item.imageUrl}}">
-                </label>
-                <label>
-                    <span>Starting price</span>
-
-                    <!-- If the current auction has a bidder, this input field should be disabled -->
-                    <input type="number" name="price" value="{{item.price}}">
-                </label>
-            </div>
-
-            <div class="content pad-med align-center vertical">
-                <label>
-                    <span>Description</span>
-                    <textarea name="description">{{item.description}}
-                                </textarea>
-                </label>
-
-                <div class="align-center">
-                    <input class="action" type="submit" value="Update Listing">
-                </div>
-            </div>
-
-        </form>
-
-    </div>
-
-</section>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </section>
+</main>
