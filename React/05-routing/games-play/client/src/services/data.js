@@ -3,24 +3,30 @@ import { baseUrl } from "../utils/constants"
 
 
 async function getData() {
-    return api.get(baseUrl);
+    return api.get(`${baseUrl}/jsonstore/games`);
 }
 
 async function getGame(gameId) {
-    return api.get(`${baseUrl}/${gameId}`);
+    return api.get(`${baseUrl}/jsonstore/games/${gameId}`);
 }
 
 async function createData(gameInfo) {
-    return api.post(baseUrl, gameInfo);
+    return api.post(`${baseUrl}/jsonstore/games`, gameInfo);
 }
 
 async function createComment(gameId, commentInfo) {
-    return api.post(`${baseUrl}/${gameId}/comments`, commentInfo);
+    return api.post(`${baseUrl}/jsonstore/games/${gameId}/comments`, commentInfo);
 }
+
+async function login(loginData) {
+    return api.post(`${baseUrl}/users/login`, loginData);
+}
+
 
 export {
     getData,
     getGame,
     createData,
-    createComment
+    createComment,
+    login
 }
