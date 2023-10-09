@@ -15,7 +15,7 @@ export default function Login() {
     }, onLoginSubmit)
     return (
         <section id="login-page" className="auth">
-            <form id="login" onSubmit={onSubmit}>
+            <form id="login"  onSubmit={onSubmit}>
                 <div className="container">
                     <div className="brand-logo" />
                     <h1>Login</h1>

@@ -29,7 +29,8 @@ function App() {
     }
 
     async function onLoginSubmit(loginInfo) {
-        console.log(loginInfo)
+        const loginToken = await data.login(loginInfo);
+        setAuth(loginToken);
     }
 
 
