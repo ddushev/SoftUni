@@ -2,7 +2,7 @@
     <h1>Search</h1>
 
     <form class="search-form" action="/search/query" method="GET">
-        <input type="text" class="search-coin" name="name" value="{{name}}" placeholder="Search here...">
+        <input type="text" class="search-coin" name="search" value="{{name}}" placeholder="Search here...">
         <select id="payment" name="itemOptions">
             <option {{isSelected 'crypto-wallet' itemOptions }} value="crypto-wallet">Crypto Wallet</option>
             <option {{isSelected 'credit-card' itemOptions }} value="credit-card">Credit Card</option>

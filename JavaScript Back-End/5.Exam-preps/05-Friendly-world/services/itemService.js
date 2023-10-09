@@ -8,13 +8,10 @@ async function getNotDeletedData() {
     return Item.find({deleted: false}).lean();
 }
 
-async function getFilteredData(name, itemOptions) {
+async function getFilteredData(location, itemOptions) {
     let filteredData = await Item.find({}).lean();
-    if (name) {
-        filteredData = filteredData.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
-    }
-    if (itemOptions) {
-        filteredData = filteredData.filter(item => item.itemOptions == itemOptions);
+    if (location) {
+        filteredData = filteredData.filter(item => item.location.toLowerCase().includes(location.toLowerCase()))
     }
 
     return filteredData;
