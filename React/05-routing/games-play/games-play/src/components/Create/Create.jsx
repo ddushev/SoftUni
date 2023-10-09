@@ -1,18 +1,9 @@
-import { useState } from "react";
+import useForm from "../../hooks/useForm";
 
 export default function Create({
     onCreateSubmit,
 }) {
-    const [values, setValues] = useState({
-        title: '',
-        category: '',
-        maxLevel: '',
-        imageUrl: '',
-        summary: ''
-    });
-    function onChangeHandler(e) {
-        setValues(state => ({ ...state, [e.target.name]: e.target.value }));
-    }
+    const { values, onChangeHandler } = useForm();
     return (
         <section id="create-page" className="auth">
             <form onSubmit={(e) => onCreateSubmit(e, values)} id="create">
