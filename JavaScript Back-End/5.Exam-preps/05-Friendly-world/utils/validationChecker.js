@@ -2,7 +2,7 @@ function validationChecker (req) {
     const errors = [];
 
     //TODO: Change validation checks for the edit and create functionality
-    if (Number(req.body.price) < 0) {
+    if (Number(req.body.years) < 0) {
         errors.push('Price should be positive number!');
     }
 
@@ -14,7 +14,7 @@ function validationChecker (req) {
         errors.push('ImageUrl should start with http:// or https://!');
     }
 
-    if (req.body.description.length < 5 || req.body.description.length > 500) {
+    if (req.body.description.length < 5 || req.body.description.length > 50) {
         errors.push('Description should be atleast 5 and not more than 500 characters long!');
     }
 

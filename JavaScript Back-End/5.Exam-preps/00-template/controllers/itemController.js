@@ -107,10 +107,10 @@ itemController.post('/:id/interact', async (req, res) => {
         }
         
         //TODO: Change error validators based on task
-        if (item.price >= req.body.price) {
-            throw new Error('Your bid is lower than the current price or bid!');
-        }
-        item.price = req.body.price;
+        // if (item.price >= req.body.price) {
+        //     throw new Error('Your bid is lower than the current price or bid!');
+        // }
+        // item.price = req.body.price;
 
         item.userCollection.push(req.user._id);
         await editData(item, req.params.id);
@@ -122,6 +122,7 @@ itemController.post('/:id/interact', async (req, res) => {
         });
     }
 });
+//TODO Remove if not needed
 //Remove from catalog
 itemController.get('/:id/remove', async (req, res) => {
     try {
@@ -133,7 +134,7 @@ itemController.get('/:id/remove', async (req, res) => {
         if (item.creatorId._id != req.user._id) {
             throw new Error('You must be creator to do that!');
         }
-
+        //TODO Change if needed
         if (item.userCollection.length < 1) {
             throw new Error('There must be someone who interacted with that item before you can do that!');
         }

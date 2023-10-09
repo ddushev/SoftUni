@@ -38,18 +38,6 @@ authController.post('/register', async (req, res) => {
     try {
         const errors = [];
 
-        // if (req.body.username.length < 5) {
-        //     errors.push('Username should be atleast 5 characters long!');
-        // }
-
-        if (req.body.firstName.length < 3) {
-            errors.push('Firstname should be atleast 3 characters long!');
-        }
-
-        if (req.body.lastName.length < 3) {
-            errors.push('Lastname should be atleast 3 characters long!');
-        }
-
         if (req.body.email.length < 10) {
             errors.push('Email should be atleast 10 characters long!');
         }

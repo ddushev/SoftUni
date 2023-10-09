@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 //TODO: Add DB name
-const DB_NAME = 'actionHouse';
+const DB_NAME = 'friendly-world';
 
 module.exports = async (app) => {
     try {
