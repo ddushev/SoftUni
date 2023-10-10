@@ -6,6 +6,7 @@ import Header from "./components/Header/Header"
 import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
+import Logout from "./components/Logout/Logout"
 import * as data from "./services/data"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -38,6 +39,11 @@ function App() {
         }
     }
 
+    async function onLogout() {
+        //TODO Clear session from server
+        setAuth({});
+    }
+
     async function onRegisterSubmit(registerInfo) {
         try {
             const {repeatPassword, ...registerData} = registerInfo;
@@ -56,6 +62,7 @@ function App() {
     const context = {
         onLoginSubmit,
         onRegisterSubmit,
+        onLogout,
         token: auth.accessToken,
         userEmail: auth.email,
         id: auth._id,
@@ -73,6 +80,7 @@ function App() {
                             <Route path='/' element={<Home />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />
+                            <Route path='/logout' element={<Logout />} />
                             <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
                             <Route path='/edit' element={<Edit />} />
                             <Route path='/details/:gameId' element={<Details />} />
