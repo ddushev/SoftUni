@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { dataFactory } from "../../services/data"; 
+import { dataFactory } from "../../services/data";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Details() {
+    const { userId } = useContext(AuthContext);
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [comment, setComment] = useState('');
@@ -17,6 +19,8 @@ export default function Details() {
     function onChange(e) {
         setComment(e.target.value);
     }
+
+    const isOwner = gameData._ownerId == userId;
 
     async function onCommentSubmit(e) {
         e.preventDefault()
@@ -59,14 +63,17 @@ export default function Details() {
                     {!gameData?.comments && <p className="no-comment">No comments.</p>}
                 </div>
                 {/* Edit/Delete buttons ( Only for creator of this game )  */}
-                <div className="buttons">
-                    <a href="#" className="button">
-                        Edit
-                    </a>
-                    <a href="#" className="button">
-                        Delete
-                    </a>
-                </div>
+                {isOwner && (
+                    <div className="buttons">
+                        <a href="#" className="button">
+                            Edit
+                        </a>
+                        <a href="#" className="button">
+                            Delete
+                        </a>
+                    </div>
+                )}
+
             </div>
             {/* Bonus */}
             {/* Add Comment ( Only for logged-in users, which is not creators of the current game ) */}

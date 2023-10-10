@@ -26,7 +26,6 @@ function App() {
 
     async function onCreateSubmit(gameInfo) {
         const newGame = await data.createData(gameInfo)
-        console.log(newGame);
         setGames(state => [...state, newGame]);
         navigate('/catalog');
     }
@@ -67,7 +66,7 @@ function App() {
         onLogout,
         token: auth.accessToken,
         userEmail: auth.email,
-        id: auth._id,
+        userId: auth._id,
         isAuthenticated: !!auth.accessToken
     }
 
