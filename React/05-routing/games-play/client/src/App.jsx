@@ -32,15 +32,24 @@ function App() {
         try {
             const loginToken = await data.login(loginInfo);
             setAuth(loginToken);
+            navigate('/catalog');   
         } catch (error) {
             console.error(error.message)
         }
     }
 
+    const context = {
+        onLoginSubmit,
+        token: auth.accessToken,
+        userEmail: auth.email,
+        id: auth._id,
+        isAuthenticated: !!auth.accessToken
+    }
+
 
     return (
         <>
-            <AuthContext.Provider value={{ onLoginSubmit }}>
+            <AuthContext.Provider value={context}>
                 <div id="box">
                     <Header />
                     <main id="main-content">
