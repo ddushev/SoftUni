@@ -5,10 +5,14 @@ async function request(url, options) {
             return response;
         }
 
+        if (response.ok != true) {
+            throw await response.json();
+        }
+
         return response.json();
 
     } catch (error) {
-        console.error(error.message);
+        throw (error);
     }
 }
 

@@ -29,8 +29,12 @@ function App() {
     }
 
     async function onLoginSubmit(loginInfo) {
-        const loginToken = await data.login(loginInfo);
-        setAuth(loginToken);
+        try {
+            const loginToken = await data.login(loginInfo);
+            setAuth(loginToken);
+        } catch (error) {
+            console.error(error.message)
+        }
     }
 
 
