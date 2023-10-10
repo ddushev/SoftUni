@@ -17,6 +17,7 @@ export function dataFactory(token) {
     }
 
     async function createComment(gameId, commentInfo) {
+        //TODO Fix createComment request
         return api.post(`${baseUrl}/data/games/${gameId}/comments`, commentInfo);
     }
 

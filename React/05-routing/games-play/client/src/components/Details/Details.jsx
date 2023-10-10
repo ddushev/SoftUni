@@ -4,11 +4,11 @@ import { dataFactory } from "../../services/data";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Details() {
-    const { userId } = useContext(AuthContext);
+    const { userId, token } = useContext(AuthContext);
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [comment, setComment] = useState('');
-    const data = dataFactory();
+    const data = dataFactory(token);
     useEffect(() => {
         data.getGame(gameId)
             .then(data => {
@@ -21,7 +21,7 @@ export default function Details() {
     }
 
     const isOwner = gameData._ownerId == userId;
-
+    //TODO Fix onCommentSubmit functionality
     async function onCommentSubmit(e) {
         e.preventDefault()
         const newComment = await data.createComment(gameId, { text: comment });
