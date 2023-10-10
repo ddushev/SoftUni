@@ -28,13 +28,18 @@ export function dataFactory(token) {
         return api.post(`${baseUrl}/users/register`, registerData);
     }
 
+    async function logout() {
+        return api.get(`${baseUrl}/users/logout`);
+    }
+
     return {
         getData,
         getGame,
         createData,
         createComment,
         login,
-        register
+        register,
+        logout
     }
 }
 

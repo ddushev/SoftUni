@@ -34,25 +34,30 @@ function App() {
         try {
             const loginToken = await data.login(loginInfo);
             setAuth(loginToken);
-            navigate('/catalog');   
+            navigate('/catalog');
         } catch (error) {
             console.error(error.message)
         }
     }
 
     async function onLogout() {
-        //TODO Clear session from server
-        setAuth({});
+        try {
+            await data.logout();
+            setAuth({});
+            navigate('/');
+        } catch (error) {
+            console.error(error.message);
+        }
     }
 
     async function onRegisterSubmit(registerInfo) {
         try {
-            const {repeatPassword, ...registerData} = registerInfo;
+            const { repeatPassword, ...registerData } = registerInfo;
             if (repeatPassword != registerData.password) {
-                throw new Error('Passwords don\'t match!') ;
+                throw new Error('Passwords don\'t match!');
             }
             const registerdInfo = await data.register(registerData)
-            const {password, _createdOn, ...registeredData } = registerdInfo;
+            const { password, _createdOn, ...registeredData } = registerdInfo;
             setAuth(registeredData);
             navigate('/catalog')
         } catch (error) {
