@@ -16,15 +16,19 @@ async function request(url, options) {
     }
 }
 
-function createOptions(method, data) {
+function createOptions(method, data, token) {
     const options = {
         method,
         headers: {}
     }
 
-    if (data != undefined) {
+    if (data) {
         options.headers['Content-Type'] = 'application/json';
         options.body = JSON.stringify(data);
+    }
+
+    if (token) {
+        options.headers['X-Authorization'] = token;
     }
 
     return options;
@@ -35,25 +39,30 @@ function createOptions(method, data) {
 // const update = request.bind(null, 'PUT');
 // const del = request.bind(null, 'DELETE');
 
-function get(endpoint) {
-    return request(endpoint, createOptions('get'));
+
+
+export function requestFactory(token) {
+    function get(endpoint) {
+        return request(endpoint, createOptions('get', null, token));
+    }
+
+    function post(endpoint, data) {
+        return request(endpoint, createOptions('post', data, token));
+    }
+
+    function update(endpoint, data) {
+        return request(endpoint, createOptions('put', data, token));
+    }
+
+    function del(endpoint) {
+        return request(endpoint, createOptions('delete', null, token));
+    }
+    return {
+        get,
+        post,
+        update,
+        del
+    }
 }
 
-function post(endpoint, data) {
-    return request(endpoint, createOptions('post', data));
-}
 
-function update(endpoint, data) {
-    return request(endpoint, createOptions('put', data));
-}
-
-function del(endpoint) {
-    return request(endpoint, createOptions('delete'));
-}
-
-export {
-    get,
-    post,
-    update,
-    del
-}

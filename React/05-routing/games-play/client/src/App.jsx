@@ -7,7 +7,7 @@ import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
 import Logout from "./components/Logout/Logout"
-import * as data from "./services/data"
+import { dataFactory } from "./services/data"
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { CatalogContext } from "./contexts/CatalogContext"
@@ -17,6 +17,7 @@ import { AuthContext } from "./contexts/AuthContext"
 function App() {
     const [games, setGames] = useState([]);
     const [auth, setAuth] = useState({});
+    const data = dataFactory(auth.accessToken);
     const navigate = useNavigate();
     useEffect(() => {
         data.getData()
@@ -25,6 +26,7 @@ function App() {
 
     async function onCreateSubmit(gameInfo) {
         const newGame = await data.createData(gameInfo)
+        console.log(newGame);
         setGames(state => [...state, newGame]);
         navigate('/catalog');
     }

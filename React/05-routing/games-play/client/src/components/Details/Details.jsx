@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import * as data from '../../services/data';
+import { dataFactory } from "../../services/data"; 
 
 export default function Details() {
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [comment, setComment] = useState('');
+    const data = dataFactory();
     useEffect(() => {
         data.getGame(gameId)
             .then(data => {
