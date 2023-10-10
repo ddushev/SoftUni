@@ -22,11 +22,16 @@ async function login(loginData) {
     return api.post(`${baseUrl}/users/login`, loginData);
 }
 
+async function register(registerData) {
+    return api.post(`${baseUrl}/users/register`, registerData);
+}
+
 
 export {
     getData,
     getGame,
     createData,
     createComment,
-    login
+    login,
+    register
 }

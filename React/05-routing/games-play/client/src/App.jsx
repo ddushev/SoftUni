@@ -38,8 +38,24 @@ function App() {
         }
     }
 
+    async function onRegisterSubmit(registerInfo) {
+        try {
+            const {repeatPassword, ...registerData} = registerInfo;
+            if (repeatPassword != registerData.password) {
+                throw new Error('Passwords don\'t match!') ;
+            }
+            const registerdInfo = await data.register(registerData)
+            const {password, _createdOn, ...registeredData } = registerdInfo;
+            setAuth(registeredData);
+            navigate('/catalog')
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     const context = {
         onLoginSubmit,
+        onRegisterSubmit,
         token: auth.accessToken,
         userEmail: auth.email,
         id: auth._id,
