@@ -59,16 +59,24 @@ function App() {
             const registerdInfo = await data.register(registerData)
             const { password, _createdOn, ...registeredData } = registerdInfo;
             setAuth(registeredData);
-            navigate('/catalog')
+            navigate('/catalog');
         } catch (error) {
             console.error(error.message);
         }
+    }
+
+    async function onDeleteClick(e, gameId) {
+        e.preventDefault();
+        await data.deleteGame(gameId);
+        setGames(state => state.filter(game => game._id !== gameId));
+        navigate('/catalog');
     }
 
     const context = {
         onLoginSubmit,
         onRegisterSubmit,
         onLogout,
+        onDeleteClick,
         token: auth.accessToken,
         userEmail: auth.email,
         userId: auth._id,

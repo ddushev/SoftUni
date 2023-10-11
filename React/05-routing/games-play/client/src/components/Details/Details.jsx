@@ -4,7 +4,7 @@ import { dataFactory } from "../../services/data";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Details() {
-    const { userId, token } = useContext(AuthContext);
+    const { userId, token, onDeleteClick } = useContext(AuthContext);
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [comment, setComment] = useState('');
@@ -34,6 +34,7 @@ export default function Details() {
         });
         setComment('');
     }
+
     return (
         <section id="game-details">
             <h1>Game Details</h1>
@@ -68,7 +69,7 @@ export default function Details() {
                         <a href="#" className="button">
                             Edit
                         </a>
-                        <a href="#" className="button">
+                        <a onClick={(e) => onDeleteClick(e, gameId)} href="#" className="button">
                             Delete
                         </a>
                     </div>
