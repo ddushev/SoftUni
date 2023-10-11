@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { dataFactory } from "../../services/data";
 import { AuthContext } from "../../contexts/AuthContext";
 
@@ -66,9 +66,9 @@ export default function Details() {
                 {/* Edit/Delete buttons ( Only for creator of this game )  */}
                 {isOwner && (
                     <div className="buttons">
-                        <a href="#" className="button">
+                        <Link to={`/catalog/${gameId}/edit`} className="button">
                             Edit
-                        </a>
+                        </Link>
                         <a onClick={(e) => onDeleteClick(e, gameId)} href="#" className="button">
                             Delete
                         </a>

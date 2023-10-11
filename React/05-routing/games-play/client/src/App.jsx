@@ -7,11 +7,13 @@ import Home from "./components/Home/Home"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
 import Logout from "./components/Logout/Logout"
-import { dataFactory } from "./services/data"
+
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+
 import { CatalogContext } from "./contexts/CatalogContext"
 import { AuthContext } from "./contexts/AuthContext"
+import { dataFactory } from "./services/data"
 
 
 function App() {
@@ -96,13 +98,13 @@ function App() {
                             <Route path='/register' element={<Register />} />
                             <Route path='/logout' element={<Logout />} />
                             <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
-                            <Route path='/edit' element={<Edit />} />
                             <Route path='/details/:gameId' element={<Details />} />
                             <Route path='/catalog' element={
                                 <CatalogContext.Provider value={games}>
                                     <Catalog />
                                 </CatalogContext.Provider>
                             } />
+                            <Route path='/catalog/:gameId/edit' element={<Edit />}/>
                         </Routes>
                     </main>
                 </div>
