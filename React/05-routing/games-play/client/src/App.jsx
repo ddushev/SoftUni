@@ -67,6 +67,16 @@ function App() {
         }
     }
 
+    async function onEditSubmit(gameId, gameInfo) {
+        try {
+            const editedGame = await data.editGame(gameId, gameInfo);
+            setGames(state => state.map(game => game._id === gameId ? editedGame : game));
+            navigate(`/details/${gameId}`);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
     async function onDeleteClick(e, gameId) {
         e.preventDefault();
         await data.deleteGame(gameId);
@@ -78,6 +88,7 @@ function App() {
         onLoginSubmit,
         onRegisterSubmit,
         onLogout,
+        onEditSubmit,
         onDeleteClick,
         token: auth.accessToken,
         userEmail: auth.email,

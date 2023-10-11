@@ -16,6 +16,10 @@ export function dataFactory(token) {
         return api.post(`${baseUrl}/data/games`, gameInfo);
     }
 
+    async function editGame(gameId, gameInfo) {
+        return api.put(`${baseUrl}/data/games/${gameId}`, gameInfo);
+    }
+
     async function deleteGame(gameId) {
         return api.del(`${baseUrl}/data/games/${gameId}`);
     }
@@ -41,6 +45,7 @@ export function dataFactory(token) {
         getData,
         getGame,
         createData,
+        editGame,
         deleteGame,
         createComment,
         login,
