@@ -20,7 +20,7 @@ export default function Edit() {
         [formFields.maxLevel]: '',
         [formFields.imageUrl]: '',
         [formFields.summary]: '',
-    }, onEditSubmit);
+    }, onEditSubmit, gameId);
     return (
         <section id="edit-page" className="auth">
             <form id="edit" onSubmit={onSubmit}>

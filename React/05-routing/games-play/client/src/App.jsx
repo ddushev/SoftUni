@@ -67,9 +67,9 @@ function App() {
         }
     }
 
-    async function onEditSubmit(gameId, gameInfo) {
+    async function onEditSubmit(gameInfo, gameId) {
         try {
-            const editedGame = await data.editGame(gameId, gameInfo);
+            const editedGame = await data.editGame(gameInfo, gameId);
             setGames(state => state.map(game => game._id === gameId ? editedGame : game));
             navigate(`/details/${gameId}`);
         } catch (error) {
