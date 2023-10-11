@@ -11,9 +11,14 @@ export default function useForm(initialValues, onSubmitHandler, gameId) {
         onSubmitHandler(values, gameId);
     }
 
+    function changeValues(newValues) {
+        setValues(newValues);
+    }
+
     return {
         values,
         onChangeHandler,
-        onSubmit
+        onSubmit,
+        changeValues
     }
 }
