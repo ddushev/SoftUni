@@ -12,9 +12,11 @@ const formFields = {
     summary: 'summary'
 }
 
-export default function Edit() {
+export default function Edit({
+    onEditSubmit
+}) {
     const { gameId } = useParams();
-    const { token, onEditSubmit } = useContext(AuthContext);
+    const { token } = useContext(AuthContext);
     const data = dataFactory(token);
 
     const { values, onChangeHandler, onSubmit, changeValues } = useForm({

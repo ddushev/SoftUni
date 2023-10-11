@@ -12,14 +12,13 @@ import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 
 import { CatalogContext } from "./contexts/CatalogContext"
-import { AuthContext } from "./contexts/AuthContext"
+import { AuthProvider } from "./contexts/AuthContext"
 import { dataFactory } from "./services/data"
 
 
 function App() {
     const [games, setGames] = useState([]);
-    const [auth, setAuth] = useState({});
-    const data = dataFactory(auth.accessToken);
+    const data = dataFactory('authToken'); // add the auth token
     const navigate = useNavigate();
     useEffect(() => {
         data.getData()
@@ -30,41 +29,6 @@ function App() {
         const newGame = await data.createData(gameInfo)
         setGames(state => [...state, newGame]);
         navigate('/catalog');
-    }
-
-    async function onLoginSubmit(loginInfo) {
-        try {
-            const loginToken = await data.login(loginInfo);
-            setAuth(loginToken);
-            navigate('/catalog');
-        } catch (error) {
-            console.error(error.message)
-        }
-    }
-
-    async function onLogout() {
-        try {
-            await data.logout();
-            setAuth({});
-            navigate('/');
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
-
-    async function onRegisterSubmit(registerInfo) {
-        try {
-            const { repeatPassword, ...registerData } = registerInfo;
-            if (repeatPassword != registerData.password) {
-                throw new Error('Passwords don\'t match!');
-            }
-            const registerdInfo = await data.register(registerData)
-            const { password, _createdOn, ...registeredData } = registerdInfo;
-            setAuth(registeredData);
-            navigate('/catalog');
-        } catch (error) {
-            console.error(error.message);
-        }
     }
 
     async function onEditSubmit(gameInfo, gameId) {
@@ -84,22 +48,12 @@ function App() {
         navigate('/catalog');
     }
 
-    const context = {
-        onLoginSubmit,
-        onRegisterSubmit,
-        onLogout,
-        onEditSubmit,
-        onDeleteClick,
-        token: auth.accessToken,
-        userEmail: auth.email,
-        userId: auth._id,
-        isAuthenticated: !!auth.accessToken
-    }
+
 
 
     return (
         <>
-            <AuthContext.Provider value={context}>
+            <AuthProvider>
                 <div id="box">
                     <Header />
                     <main id="main-content">
@@ -109,17 +63,17 @@ function App() {
                             <Route path='/register' element={<Register />} />
                             <Route path='/logout' element={<Logout />} />
                             <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
-                            <Route path='/details/:gameId' element={<Details />} />
+                            <Route path='/details/:gameId' element={<Details onDeleteClick={onDeleteClick} />} />
                             <Route path='/catalog' element={
                                 <CatalogContext.Provider value={games}>
                                     <Catalog />
                                 </CatalogContext.Provider>
                             } />
-                            <Route path='/catalog/:gameId/edit' element={<Edit />}/>
+                            <Route path='/catalog/:gameId/edit' element={<Edit onEditSubmit={onEditSubmit}/>}/>
                         </Routes>
                     </main>
                 </div>
-            </AuthContext.Provider>
+            </AuthProvider>
         </>
     )
 }

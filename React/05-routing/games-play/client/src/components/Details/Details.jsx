@@ -3,8 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import { dataFactory } from "../../services/data";
 import { AuthContext } from "../../contexts/AuthContext";
 
-export default function Details() {
-    const { userId, token, onDeleteClick } = useContext(AuthContext);
+export default function Details({
+    onDeleteClick
+}) {
+    const { userId, token } = useContext(AuthContext);
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [comment, setComment] = useState('');
