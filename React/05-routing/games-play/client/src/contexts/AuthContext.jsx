@@ -27,6 +27,7 @@ export const AuthProvider = ({
     async function onLogout() {
         try {
             await data.logout();
+            localStorage.removeItem('key');
             setAuth({});
             navigate('/');
         } catch (error) {
