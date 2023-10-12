@@ -12,12 +12,12 @@ export default function Details({
     const [comment, setComment] = useState('');
     const data = dataFactory(token);
     useEffect(() => {
-        data.getGame(gameId)
-            .then(data => {
-                setGameData(data);
+        Promise.all([data.getGame(gameId), data.getComments(gameId)])
+            .then(([fetchedGameData, fetchedComments]) => {
+                setGameData({...fetchedGameData, comments: [...fetchedComments]});
             });
-    }, [gameId])
-
+        }, [gameId])
+        
     function onChange(e) {
         setComment(e.target.value);
     }
@@ -26,14 +26,14 @@ export default function Details({
     //TODO Fix onCommentSubmit functionality
     async function onCommentSubmit(e) {
         e.preventDefault()
-        const newComment = await data.createComment(gameId, { text: comment });
-        setGameData(state => {
-            if (state.comments) {
-                return { ...state, comments: { ...state.comments, [newComment._id]: newComment } };
-            } else {
-                return { ...state, comments: { [newComment._id]: newComment } };
-            }
-        });
+        const newComment = await data.createComment({ text: comment, gameId });
+        // setGameData(state => {
+        //     if (state.comments) {
+        //         return { ...state, comments: { ...state.comments, [newComment._id]: newComment } };
+        //     } else {
+        //         return { ...state, comments: { [newComment._id]: newComment } };
+        //     }
+        // });
         setComment('');
     }
 
