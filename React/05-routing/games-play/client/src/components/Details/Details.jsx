@@ -23,17 +23,16 @@ export default function Details({
     }
 
     const isOwner = gameData._ownerId == userId;
-    //TODO Fix onCommentSubmit functionality
     async function onCommentSubmit(e) {
         e.preventDefault()
         const newComment = await data.createComment({ text: comment, gameId });
-        // setGameData(state => {
-        //     if (state.comments) {
-        //         return { ...state, comments: { ...state.comments, [newComment._id]: newComment } };
-        //     } else {
-        //         return { ...state, comments: { [newComment._id]: newComment } };
-        //     }
-        // });
+        setGameData(state => {
+            if (state.comments) {
+                return { ...state, comments: [...state.comments, newComment ] };
+            } else {
+                return { ...state, comments: [newComment] };
+            }
+        });
         setComment('');
     }
 
