@@ -6,7 +6,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 export default function Details({
     onDeleteClick
 }) {
-    const { userId, token } = useContext(AuthContext);
+    const { userId, token, userEmail } = useContext(AuthContext);
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
     const [comment, setComment] = useState('');
@@ -25,7 +25,8 @@ export default function Details({
     const isOwner = gameData._ownerId == userId;
     async function onCommentSubmit(e) {
         e.preventDefault()
-        const newComment = await data.createComment({ text: comment, gameId });
+        const newComment = await data.createComment({ text: comment, gameId, author: {} });
+        newComment.author.email = userEmail;
         setGameData(state => {
             if (state.comments) {
                 return { ...state, comments: [...state.comments, newComment ] };
