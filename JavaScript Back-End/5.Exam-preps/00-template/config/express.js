@@ -21,6 +21,7 @@ module.exports = (app) => {
     //Middleware checking for verified user
     app.use(auth());
 
+    //TODO refactor Update with path.resolve(__dir) - create constant file
     //Setup the static files
     app.use('/static', express.static('static'));
 

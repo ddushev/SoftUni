@@ -83,6 +83,7 @@ authController.post('/register', async (req, res) => {
 });
 
 function saveToken(req, res, data) {
+    //TODO refactor with promisify jwt
     const token = jwt.sign(data, secret, {expiresIn: '4h'});
     res.cookie('jwt', token);
 }

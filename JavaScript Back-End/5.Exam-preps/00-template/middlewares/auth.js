@@ -5,6 +5,7 @@ module.exports = () => (req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {
         try {
+            //TODO refactor with promisify jwt
             const userVerified = jwt.verify(token, secret);
             req.user = userVerified;
             res.locals.hasUser = true;
