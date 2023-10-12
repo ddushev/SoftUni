@@ -30,7 +30,8 @@ export function dataFactory(token) {
 
     async function getComments(gameId) {
         const match = encodeURIComponent(`gameId="${gameId}"`);
-        return api.get(`${baseUrl}/data/comments?where=${match}`);
+        const relations = encodeURIComponent(`author=_ownerId:users`)
+        return api.get(`${baseUrl}/data/comments?where=${match}&load=${relations}`);
     }
 
     async function login(loginData) {

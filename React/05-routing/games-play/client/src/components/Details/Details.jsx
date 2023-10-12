@@ -56,7 +56,7 @@ export default function Details({
                         {/* list all comments for current game (If any) */}
                         {gameData?.comments && Object.values(gameData.comments).map(comment => (
                             <li key={comment._id} className="comment">
-                                <p>{comment.text}</p>
+                                <p>{comment.author.email} : {comment.text}</p>
                             </li>
                         ))}
 
