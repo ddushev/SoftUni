@@ -31,8 +31,8 @@ function createOptions(method, data, token) {
         options.headers['X-Authorization'] = token;
     }else {
         const persistedStateSerialized = localStorage.getItem('auth');
-        if (persistedStateSerialized) {
-            const auth = JSON.parse(persistedStateSerialized);
+        const auth = JSON.parse(persistedStateSerialized);
+        if (auth?.accessToken) {
             options.headers['X-Authorization'] = auth.accessToken;
         }
     }
