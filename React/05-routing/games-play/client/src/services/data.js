@@ -24,9 +24,13 @@ export function dataFactory(token) {
         return api.del(`${baseUrl}/data/games/${gameId}`);
     }
 
-    async function createComment(gameId, commentInfo) {
-        //TODO Fix createComment request
-        return api.post(`${baseUrl}/data/games/${gameId}/comments`, commentInfo);
+    async function createComment(commentInfo) {
+        return api.post(`${baseUrl}/data/comments/`, commentInfo);
+    }
+
+    async function getComments(gameId) {
+        const match = encodeURIComponent(`gameId="${gameId}"`);
+        return api.get(`${baseUrl}/data/comments?where=${match}`);
     }
 
     async function login(loginData) {
@@ -48,6 +52,7 @@ export function dataFactory(token) {
         editGame,
         deleteGame,
         createComment,
+        getComments,
         login,
         register,
         logout
