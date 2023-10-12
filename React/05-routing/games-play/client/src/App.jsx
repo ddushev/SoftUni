@@ -18,7 +18,7 @@ import { dataFactory } from "./services/data"
 
 function App() {
     const [games, setGames] = useState([]);
-    const data = dataFactory('authToken'); // add the auth token
+    const data = dataFactory(); // add the auth token
     const navigate = useNavigate();
     useEffect(() => {
         data.getData()
