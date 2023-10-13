@@ -9,6 +9,7 @@ const path = require('path');
 module.exports = (app) => {
     
     //Setup the view engine
+    app.set('views', path.resolve(__dirname, '../views'));
     app.engine('.hbs', hbs.engine({extname: '.hbs'}));
     app.set('view engine', '.hbs');
 

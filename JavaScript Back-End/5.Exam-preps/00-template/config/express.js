@@ -9,6 +9,7 @@ const Handlebars = require('handlebars');
 module.exports = (app) => {
     
     //Setup the view engine
+    app.set('views', path.resolve(__dirname, '../views'));
     app.engine('.hbs', hbs.engine({extname: '.hbs'}));
     app.set('view engine', '.hbs');
 
@@ -22,11 +23,11 @@ module.exports = (app) => {
     //Middleware checking for verified user
     app.use(auth());
 
-    //TODO refactor Update with path.resolve(__dir) - create constant file
+    //TODO create constant file
     //Setup the static files
     app.use('/static', express.static(path.join(__dirname, '../static')));
 
-    //Add Handlebars custom helper for selected options
+    //Handlebars custom helper for selected options
     Handlebars.registerHelper('isSelected', function(value, selectedValue) {
         return value == selectedValue ? 'selected' : '';
     })
