@@ -2,7 +2,7 @@ const authController = require('express').Router();
 const { register, login } = require('../services/authService');
 const jwt = require('jsonwebtoken');
 const errorParser = require('../utils/errorParser');
-const secret = 'mysecret';
+const { CONSTANTS } = require('.././config/constants');
 
 //Login endpoints
 
@@ -79,7 +79,7 @@ authController.post('/register', async (req, res) => {
 });
 
 function saveToken(req, res, data) {
-    const token = jwt.sign(data, secret, {expiresIn: '4h'});
+    const token = jwt.sign(data, CONSTANTS.JWT_SECRET, { expiresIn: '4h' });
     res.cookie('jwt', token);
 }
 

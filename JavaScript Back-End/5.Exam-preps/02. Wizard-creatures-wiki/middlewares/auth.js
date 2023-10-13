@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const secret = 'mysecret';
+const { CONSTANTS } = require('../config/constants');
 
 module.exports = () => (req, res, next) => {
     const token = req.cookies.jwt;
     if (token) {
         try {
-            const userVerified = jwt.verify(token, secret);
+            const userVerified = jwt.verify(token, CONSTANTS.JWT_SECRET);
             req.user = userVerified;
             res.locals.hasUser = true;
         } catch (error) {

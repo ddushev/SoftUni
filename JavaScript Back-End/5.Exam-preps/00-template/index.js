@@ -1,3 +1,4 @@
+const { CONSTANTS } = require('./config/constants');
 const databaseConfig =  require('./config/database');
 const expressConfig = require('./config/express');
 const routesConfig = require('./config/routes');
@@ -9,6 +10,6 @@ async function start() {
     await databaseConfig(app);
     expressConfig(app);
     routesConfig(app);
-    app.listen(3000, console.log('Listening on port 3000! Now its up to you...'));
+    app.listen(CONSTANTS.PORT, console.log(`Listening on port ${CONSTANTS.PORT}! Now its up to you...`));
 }
 
