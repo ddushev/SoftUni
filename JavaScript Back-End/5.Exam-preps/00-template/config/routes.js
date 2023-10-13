@@ -8,7 +8,6 @@ const myCatalogController = require("../controllers/myCatalgController");
 // const searchController = require("../controllers/searchController");
 const { hasUser, isGuest } = require("../middlewares/guards");
 
-// TODO: Require Controllers...
 
 module.exports = (app) => {
     app.use(homeController);

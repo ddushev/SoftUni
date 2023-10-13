@@ -3,71 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/site.css">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 
 <body>
+    <header class="header">
+        <nav>
+            <img src="/static/images/logo.jpg" class="logo">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/catalog">All Games Code</a></li>
+                <li><a href="/search">Search</a></li>
+                {{#if hasUser}}
+                <li><a href="/item/create">Create Game Offer</a></li>
+                <li><a href="/logout">Logout</a></li>
+                {{else}}
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+    </header>
 
-    <div id="page-content">
-
-        <header>
-            <a href="/" class="title-logo">
-                <img src="/static/assets/logo.png">
-                <span>Auction House</span>
-            </a>
-            <nav class="main-nav nav-mid">
-                <ul>
-                    <li>
-                        <a href="/catalog">Browse</a>
-                    </li>
-                    {{#if hasUser}}
-                    <!-- User actions -->
-                    <li class="user">
-                        <a href="/item/create">Publish</a>
-                    </li>
-
-                    <!-- Bonus action -->
-                    
-                    <li class="user">
-                        <a href="/my-catalog">Closed Auctions</a>
-                    </li>
-                    
-
-                    <li class="user">
-                        <a href="/logout">Logout</a>
-                    </li>
-                    <!-- Guest actions -->
-                    {{else}}
-                    <li class="guest">
-                        <a href="/auth/register">Register</a>
-                    </li>
-                    <li class="guest">
-                        <a href="/auth/login">Login</a>
-                    </li>
-                    {{/if}}
-                </ul>
-            </nav>
-        </header>
-
-        <main>
-
-            <!-- In case of error, display the following div-->
-            {{#if error}}
-            <div class="error-box">
-                {{#each error}}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-            {{/if}}
-
-            {{{body}}}
-
-        </main>
-
-        <footer>SoftUni &copy; 2023</footer>
+    {{#if error}}
+    <div class="errorContainer">
+        {{#each error}}
+        <p>{{this}}</p>
+        {{/each}}
     </div>
+    {{/if}}
+
+    {{{body}}}
+
+
+    <footer>
+        <p>Back-End 2023</p>
+    </footer>
 
 </body>
 
