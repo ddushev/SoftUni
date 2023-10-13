@@ -29,11 +29,14 @@
     </header>
 
     {{#if error}}
-    <div class="errorContainer">
-        {{#each error}}
-        <p>{{this}}</p>
-        {{/each}}
+    <div>
+        <div class="errorContainer">
+            {{#each error}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
     </div>
+
     {{/if}}
 
     {{{body}}}
