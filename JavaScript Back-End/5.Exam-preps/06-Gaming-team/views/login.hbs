@@ -1,26 +1,15 @@
-<section id="login-section" class="narrow">
+<main id="login">
+    {{> errors}}
 
-    <h1 class="item">Login</h1>
-
-    <div class="item padded align-center">
-
-        <form class="aligned" method="POST">
-
-            <label>
-                <span>Email</span>
-                <input type="text" name="email">
-            </label>
-            <label>
-                <span>Password</span>
-                <input type="password" name="password">
-            </label>
-
-            <div class="align-center">
-                <input class="action" type="submit" value="Sign In">
-            </div>
-
+    <div class="login-box">
+        <h1>Login</h1>
+        <form method="POST">
+            <label>Email</label>
+            <input type="text" name="email" placeholder="Email..">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Password..">
+            <input type="submit" value="Login">
         </form>
-
+        <p>Don't have an account? <a href="/auth/register">Register here</a></p>
     </div>
-
-</section>
+</main>
