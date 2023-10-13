@@ -1,51 +1,32 @@
-<section id="create-section">
-
-    <h1 class="item">Edit Auction</h1>
-
-    <div class="item padded align-center">
-
-        <form class="layout left large" method="POST" >
-
-            <div class="col aligned">
-                <label>
-                    <span>Title</span>
-                    <input type="text" name="name" value="{{item.name}}"></label>
-                <label>
-                    <span>Category</span>
-                    <select name="itemOptions">
-                        <option {{isSelected 'estate' item.itemOptions}} value="estate">Real Estate</option>
-                        <option {{isSelected 'vehicles' item.itemOptions}} value="vehicles">Vehicles</option>
-                        <option {{isSelected 'furniture' item.itemOptions}} value="furniture">Furniture</option>
-                        <option {{isSelected 'electronics' item.itemOptions}} value="electronics">Electronics</option>
-                        <option {{isSelected 'other' item.itemOptions}} value="other">Other</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Image URL</span>
-                    <input type="text" name="imageUrl" value="{{item.imageUrl}}">
-                </label>
-                <label>
-                    <span>Starting price</span>
-
-                    <!-- If the current auction has a bidder, this input field should be disabled -->
-                    <input type="number" name="price" value="{{item.price}}">
-                </label>
-            </div>
-
-            <div class="content pad-med align-center vertical">
-                <label>
-                    <span>Description</span>
-                    <textarea name="description">{{item.description}}
-                                </textarea>
-                </label>
-
-                <div class="align-center">
-                    <input class="action" type="submit" value="Update Listing">
-                </div>
-            </div>
-
-        </form>
-
-    </div>
-
-</section>
+<main id="edit">
+    {{> errors }}
+    <section id="edit-container">
+        <div class="edit-container-info">
+            <h1>Edit Game Code Offer</h1>
+            <form method="POST">
+                <label>Platform:</label>
+                <select id="platform" name="itemOptions" >
+                    <option value="">-------</option>
+                    <option {{isSelected 'PC' item.itemOptions}} value="PC">PC</option>
+                    <option {{isSelected 'Nintendo' item.itemOptions}} value="Nintendo">Nintendo</option>
+                    <option {{isSelected 'PS4' item.itemOptions}} value="PS4">PS4</option>
+                    <option {{isSelected 'PS5' item.itemOptions}} value="PS5">PS5</option>
+                    <option {{isSelected 'XBOX' item.itemOptions}} value="XBOX">XBOX</option>
+                </select>
+                <label>Name:</label>
+                <input type="text" id="name" name="name" value="{{item.name}}">
+                <label>Image:</label>
+                <input type="text" id="image" name="imageUrl" value="{{item.imageUrl}}"
+                    placeholder="https://image.api.playstation.com/vulcan/ap/rnd/202208/0921/dR9KJAKDW2izPbptHQbh3rnj.png">
+                <label>Price:</label>
+                <input type="number" id="price" name="price" value="{{item.price}}">
+                <label>Genre:</label>
+                <input type="text" id="genre" name="genre" value="{{item.genre}}">
+                <label>Description:</label>
+                <textarea id="description" name="description">{{item.description}}
+                    </textarea>
+                <input type="submit" id="btn" value="EDIT"></input>
+            </form>
+        </div>
+    </section>
+</main>
