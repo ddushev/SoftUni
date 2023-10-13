@@ -1,38 +1,43 @@
-<section class="crypto-search">
-    <h1>Search</h1>
+<main id="search">
+    <section class="game-search">
+        <h1>Search</h1>
 
-    <form class="search-form" action="/search/query" method="GET">
-        <input type="text" class="search-coin" name="search" value="{{name}}" placeholder="Search here...">
-        <select id="payment" name="itemOptions">
-            <option {{isSelected 'crypto-wallet' itemOptions }} value="crypto-wallet">Crypto Wallet</option>
-            <option {{isSelected 'credit-card' itemOptions }} value="credit-card">Credit Card</option>
-            <option {{isSelected 'debit-card' itemOptions }} value="debit-card">Debit Card</option>
-            <option {{isSelected 'paypal' itemOptions }} value="paypal">PayPal</option>
-        </select>
-        <button type="submit" class="btn-search">Search</button>
-    </form>
-    {{#if items}}
-    <div class="search-result">
-        <div class="search-list">
+        <form class="search-form" action="/search/query" method="GET">
+            <input type="text" class="search-game" name="search" value="{{search}}" placeholder="Search here...">
+            <select id="platform" name="itemOptions">
+                <option value="">-------</option>
+                <option {{isSelected 'PC' itemOptions}} value="PC">PC</option>
+                <option {{isSelected 'Nintendo' itemOptions}} value="Nintendo">Nintendo</option>
+                <option {{isSelected 'PS4' itemOptions}} value="PS4">PS4</option>
+                <option {{isSelected 'PS5' itemOptions}} value="PS5">PS5</option>
+                <option {{isSelected 'XBOX' itemOptions}} value="XBOX">XBOX</option>
+            </select>
+            <button type="submit" class="btn-search">Search</button>
+        </form>
+        {{#if items}}
+        <div class="search-result">
+            <div class="search-list">
             {{#each items}}
-            <div class="coin">
-                <div class="coin-img">
-                    <img src="{{imageUrl}}">
-                </div>
-                <div class="coin-info">
-                    <h1>{{name}}</h1>
-                    <p><span>Price: </span>${{price}}</p>
-                    <p><span>Payment: </span>{{itemOptions}}</p>
-                </div>
-                <a href="/catalog/{{_id}}/details" class="btn-details">Details</a>
-            </div>
-            {{/each}}
-        </div>
+                <div class="game">
+                    <div class="game-img">
+                        <img src="{{imageUrl}}">
+                    </div>
+                    <div class="game-info">
+                        <h1>{{name}}</h1>
+                        <p><span>Platform: </span>{{itemOptions}}</p>
+                        <p><span>Ganre: </span>{{genre}}</p>
+                        <p><span>Price: </span>${{price}}</p>
+                    </div>
 
-    </div>
-    {{else}}
-    <div class="no-match">
-        <p>No match was found!</p>
-    </div>
-    {{/if}}
-</section>
+                    <a href="/catalog/{{_id}}/details" class="btn-details">Details</a>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+        {{else}}
+        <div class="no-match">
+                <p>No match was found!</p>
+        </div>
+        {{/if}}
+    </section>
+</main>

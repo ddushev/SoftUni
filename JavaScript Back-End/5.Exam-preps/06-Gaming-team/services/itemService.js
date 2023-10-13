@@ -11,8 +11,9 @@ async function getNotDeletedData() {
 async function getFilteredData(search, itemOptions) {
     //TODO Change based on search params
     let filteredData = await Item.find({}).lean();
+    console.log(search, itemOptions);
     if (search) {
-        filteredData = filteredData.filter(item => item.search.toLowerCase().includes(search.toLowerCase()))
+        filteredData = filteredData.filter(item => item.name.toLowerCase() == search.toLowerCase());
     }
     if (itemOptions) {
         filteredData = filteredData.filter(item => item.itemOptions == itemOptions);
