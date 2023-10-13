@@ -1,8 +1,8 @@
 const authController = require('express').Router();
 const { register, login } = require('../services/authService');
-const jwt = require('jsonwebtoken');
+const jwt = require('../utils/jwt');
 const errorParser = require('../utils/errorParser');
-const { CONSTANTS } = require('.././config/constants');
+const { CONSTANTS } = require('../config/constants');
 
 //Login endpoints
 
@@ -15,7 +15,7 @@ authController.get('/login', (req, res) => {
 authController.post('/login', async (req, res) => {
     try {
         const user = await login(req.body.password, req.body.email);
-        saveToken(req, res, user);
+        await saveToken(req, res, user);
         res.redirect('/');
     } catch (error) {
         res.render('login', {
@@ -67,7 +67,7 @@ authController.post('/register', async (req, res) => {
         }
 
         const user = await register(req.body);
-        saveToken(req, res, user);
+        await saveToken(req, res, user);
         res.redirect('/');
     } catch (error) {
         res.render('register', {
@@ -78,9 +78,13 @@ authController.post('/register', async (req, res) => {
 
 });
 
-function saveToken(req, res, data) {
-    const token = jwt.sign(data, CONSTANTS.JWT_SECRET, { expiresIn: '4h' });
-    res.cookie('jwt', token);
+async function saveToken(req, res, data) {
+    try {
+        const token = await jwt.sign(data, CONSTANTS.JWT_SECRET, { expiresIn: '4h' });
+        res.cookie('jwt', token);
+    } catch (error) {
+        throw new Error(error);
+    }
 }
 
 module.exports = authController;

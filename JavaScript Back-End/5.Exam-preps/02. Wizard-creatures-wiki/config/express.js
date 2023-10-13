@@ -22,7 +22,6 @@ module.exports = (app) => {
 
     //Middleware checking for verified user
     app.use(auth());
-
     //Setup the static files
     app.use('/static', express.static(path.join(__dirname, '../static')));
 
