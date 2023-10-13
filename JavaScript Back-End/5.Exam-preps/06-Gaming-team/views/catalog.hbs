@@ -1,37 +1,28 @@
-<section id="catalog-section" class="spaced">
-
-    <h1 class="item">Auctions</h1>
-
-    <!-- List of available auctions -->
-    {{#if items}}
-    <ul class="catalog cards">
+<main id="catalog">
+    <section class="game-market">
+        <h1>Game Trade Code</h1>
+        {{#if items}}
+        <div class="offer-list">
         {{#each items}}
-        <li class="item">
-            <header class="pad-med">
-                <h2>{{name}}</h2>
-            </header>
+            <div class="game">
+                <div class="game-img">
+                    <img src="{{imageUrl}}">
+                </div>
+                <div class="game-info">
+                    <h1>{{name}}</h1>
+                    <p><span>Platform: </span>{{itemOptions}}</p>
+                    <p><span>Genre: </span>{{genre}}</p>
+                    <p><span>Price: </span>${{price}}</p>
+                </div>
 
-            <div class="align-center">
-                <img class="img-thumb" src="{{imageUrl}}">
+                <a href="/catalog/{{_id}}/details" class="btn-details">Details</a>
             </div>
-
-            <footer class="align-center pad-med">
-                <p>Current price: <strong>${{price}}</strong></p>
-                <a class="action" href="/catalog/{{_id}}/details">See details</a>
-            </footer>
-        </li>
         {{/each}}
-    </ul>
-    {{else}}
-    <!-- If there are no auctions to display -->
-    <div class="item pad-large align-center">
-        <p>Nothing has been listed yet. Be the first!</p>
-        {{#if hasUser}}
-        <div>
-            <a class="action" href="/item/create">Publish Auction</a>
+        </div>
+        {{else}}
+        <div class="no-offer">
+            <p>There are no game offers found!</p>
         </div>
         {{/if}}
-    </div>
-    {{/if}}
-
-</section>
+    </section>
+</main>
