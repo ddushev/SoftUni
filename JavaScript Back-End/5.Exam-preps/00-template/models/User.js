@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//TODO: Change userSchema based on task requirements
+//TODO Change userSchema based on task requirements
 const userSchema = new mongoose.Schema({
     // username: { type: String, required: true, minLength: 3 },
     firstName: { type: String, required: true },

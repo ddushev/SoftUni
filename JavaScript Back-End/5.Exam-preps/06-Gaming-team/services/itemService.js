@@ -32,13 +32,14 @@ async function getPersonalDataIfUserCollection(userId) {
 async function getDataById(id) {
     return Item.findById(id).populate('creatorId').populate('userCollection').lean();
 }
-//TODO: Change fields based on itemSchema
+//TODO Change fields based on itemSchema
 async function createData(itemData, creatorId) {
     const item = {
         name: itemData.name,
+        imageUrl: itemData.imageUrl,
         price: Number(itemData.price),
         description: itemData.description,
-        imageUrl: itemData.imageUrl,
+        genre: itemData.genre,
         itemOptions: itemData.itemOptions,
         creatorId
     }

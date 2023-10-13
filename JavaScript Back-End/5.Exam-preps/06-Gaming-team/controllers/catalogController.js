@@ -27,7 +27,7 @@ catalogController.get('/:id/details', async (req, res) => {
             item.isOwner = req.user._id == item.creatorId._id;
             item.isInteracted = item.userCollection.some(user => user._id == req.user._id);
         }
-        //TODO: Change based on requirements
+        //TODO Change based on requirements
         if(item.userCollection.length > 0) {
             item.interactedUsers = item.userCollection.map(user => `${user.firstName} ${user.lastName}`).join(', ');
         }

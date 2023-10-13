@@ -4,7 +4,7 @@ const myCatalogController = require('express').Router();
 
 myCatalogController.get('/', async (req, res) => {
     try {
-        //TODO: Change based on requirements
+        //TODO Change based on requirements
         const items = await getPersonalDataIfUserCollection(req.user._id);
 
         for (let item of items) {

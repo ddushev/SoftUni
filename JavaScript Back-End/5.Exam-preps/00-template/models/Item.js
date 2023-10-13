@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-//TODO: Change itemSchema based on task requirements
+//TODO Change itemSchema based on task requirements
 const itemSchema = new mongoose.Schema({
     price: { type: Number, required: true},
     itemOptions: { type: String, required: true, enum: ['estate', 'vehicles', 'furniture', 'electronics', 'other'] },

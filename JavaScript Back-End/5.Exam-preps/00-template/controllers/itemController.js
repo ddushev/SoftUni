@@ -17,7 +17,7 @@ itemController.post('/create', async (req, res) => {
     try {
         validationChecker(req);
         const data = await createData(req.body, req.user._id);
-        //TODO: If user has itemCollections array
+        //TODO If user has itemCollections array
         // await updateUser(data._id, req.user._id);
         res.redirect('/catalog');
     } catch (error) {
@@ -93,7 +93,7 @@ itemController.get('/:id/delete', async (req, res) => {
 // });
 
 //Interact functionality
-//TODO: Change to POST or GET as needed
+//TODO Change to POST or GET as needed
 itemController.post('/:id/interact', async (req, res) => {
 
     try {
@@ -106,7 +106,7 @@ itemController.post('/:id/interact', async (req, res) => {
             throw new Error('You already interacted with that item!');
         }
         
-        //TODO: Change error validators based on task
+        //TODO Change error validators based on task
         // if (item.price >= req.body.price) {
         //     throw new Error('Your bid is lower than the current price or bid!');
         // }
