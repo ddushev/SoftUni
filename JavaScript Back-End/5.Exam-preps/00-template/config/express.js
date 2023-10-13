@@ -3,6 +3,7 @@ const hbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const auth = require('../middlewares/auth');
+const path = require('path');
 const Handlebars = require('handlebars');
 
 module.exports = (app) => {
@@ -23,7 +24,7 @@ module.exports = (app) => {
 
     //TODO refactor Update with path.resolve(__dir) - create constant file
     //Setup the static files
-    app.use('/static', express.static('static'));
+    app.use('/static', express.static(path.join(__dirname, '../static')));
 
     //Add Handlebars custom helper for selected options
     Handlebars.registerHelper('isSelected', function(value, selectedValue) {

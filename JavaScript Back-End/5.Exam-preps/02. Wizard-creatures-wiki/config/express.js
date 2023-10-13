@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const auth = require('../middlewares/auth');
 const Handlebars = require('handlebars');
+const path = require('path');
 
 module.exports = (app) => {
     
@@ -22,7 +23,7 @@ module.exports = (app) => {
     app.use(auth());
 
     //Setup the static files
-    app.use('/static', express.static('static'));
+    app.use('/static', express.static(path.join(__dirname, '../static')));
 
     //Add Handlebars custom helper for selected options
     Handlebars.registerHelper('isSelected', function(value, selectedValue) {
