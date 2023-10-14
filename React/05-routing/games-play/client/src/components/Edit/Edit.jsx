@@ -3,6 +3,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import useForm from "../../hooks/useForm";
 import { useParams } from "react-router-dom";
 import { dataFactory } from "../../services/data"
+import { UseGameContext } from "../../contexts/GameContext";
 
 const formFields = {
     title: 'title',
@@ -12,9 +13,8 @@ const formFields = {
     summary: 'summary'
 }
 
-export default function Edit({
-    onEditSubmit
-}) {
+export default function Edit() {
+    const { onEditSubmit } = UseGameContext();
     const { gameId } = useParams();
     const { token } = useContext(AuthContext);
     const data = dataFactory(token);

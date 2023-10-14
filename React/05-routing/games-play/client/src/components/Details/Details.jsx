@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { dataFactory } from "../../services/data";
 import { AuthContext } from "../../contexts/AuthContext";
+import { UseGameContext } from "../../contexts/GameContext";
 
-export default function Details({
-    onDeleteClick
-}) {
+export default function Details() {
+    const { onDeleteClick } = UseGameContext();
     const { userId, token, userEmail } = useContext(AuthContext);
     const { gameId } = useParams();
     const [gameData, setGameData] = useState({});
@@ -14,10 +14,10 @@ export default function Details({
     useEffect(() => {
         Promise.all([data.getGame(gameId), data.getComments(gameId)])
             .then(([fetchedGameData, fetchedComments]) => {
-                setGameData({...fetchedGameData, comments: [...fetchedComments]});
+                setGameData({ ...fetchedGameData, comments: [...fetchedComments] });
             });
-        }, [gameId])
-        
+    }, [gameId])
+
     function onChange(e) {
         setComment(e.target.value);
     }
@@ -29,7 +29,7 @@ export default function Details({
         newComment.author.email = userEmail;
         setGameData(state => {
             if (state.comments) {
-                return { ...state, comments: [...state.comments, newComment ] };
+                return { ...state, comments: [...state.comments, newComment] };
             } else {
                 return { ...state, comments: [newComment] };
             }
