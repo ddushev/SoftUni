@@ -15,6 +15,7 @@ import { CatalogContext } from "./contexts/CatalogContext"
 import { AuthProvider } from "./contexts/AuthContext"
 import { dataFactory } from "./services/data"
 import { UserRouteGuard } from "./components/common/UserRouteGuard"
+import GuestRouteGuard from "./components/common/GuestRouteGuard"
 
 
 function App() {
@@ -60,8 +61,10 @@ function App() {
                     <main id="main-content">
                         <Routes>
                             <Route path='/' element={<Home />} />
-                            <Route path='/login' element={<Login />} />
-                            <Route path='/register' element={<Register />} />
+                            <Route element={<GuestRouteGuard />}>
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/register' element={<Register />} />
+                            </Route>
                             <Route element={<UserRouteGuard />}>
                                 <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
                                 <Route path='/catalog/:gameId/edit' element={<Edit onEditSubmit={onEditSubmit}/>}/>
