@@ -14,6 +14,7 @@ import { useEffect, useState } from "react"
 import { CatalogContext } from "./contexts/CatalogContext"
 import { AuthProvider } from "./contexts/AuthContext"
 import { dataFactory } from "./services/data"
+import { UserRouteGuard } from "./components/common/UserRouteGuard"
 
 
 function App() {
@@ -61,15 +62,17 @@ function App() {
                             <Route path='/' element={<Home />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/register' element={<Register />} />
-                            <Route path='/logout' element={<Logout />} />
-                            <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
+                            <Route element={<UserRouteGuard />}>
+                                <Route path='/create' element={<Create onCreateSubmit={onCreateSubmit} />} />
+                                <Route path='/catalog/:gameId/edit' element={<Edit onEditSubmit={onEditSubmit}/>}/>
+                                <Route path='/logout' element={<Logout />} />
+                            </Route>
                             <Route path='/details/:gameId' element={<Details onDeleteClick={onDeleteClick} />} />
                             <Route path='/catalog' element={
                                 <CatalogContext.Provider value={games}>
                                     <Catalog />
                                 </CatalogContext.Provider>
                             } />
-                            <Route path='/catalog/:gameId/edit' element={<Edit onEditSubmit={onEditSubmit}/>}/>
                         </Routes>
                     </main>
                 </div>
