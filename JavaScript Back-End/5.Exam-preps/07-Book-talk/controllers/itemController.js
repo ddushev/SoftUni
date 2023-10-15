@@ -1,5 +1,4 @@
 const { createData, getDataById, editData, deleteData } = require('../services/itemService');
-const { updateUser } = require('../services/userService');
 const errorParser = require('../utils/errorParser');
 const validationChecker = require('../utils/validationChecker');
 
@@ -16,9 +15,7 @@ itemController.get('/create', (req, res) => {
 itemController.post('/create', async (req, res) => {
     try {
         validationChecker(req);
-        const data = await createData(req.body, req.user._id);
-        //TODO If user has itemCollections array
-        // await updateUser(data._id, req.user._id);
+        await createData(req.body, req.user._id);
         res.redirect('/catalog');
     } catch (error) {
         res.render('create', {
@@ -82,16 +79,6 @@ itemController.get('/:id/delete', async (req, res) => {
 
 });
 
-// itemController.post('/:id/delete' , async (req, res) => {
-//     try {
-//         await deleteData(req.params.id);
-//         res.redirect('/');
-//     } catch (error) {
-//         console.log(error.message);
-//         res.render('404');
-//     }
-// });
-
 //Interact functionality
 //TODO Change to POST or GET as needed
 itemController.post('/:id/interact', async (req, res) => {
@@ -105,12 +92,7 @@ itemController.post('/:id/interact', async (req, res) => {
         if (item.userCollection.some(user => user._id == req.user._id)) {
             throw new Error('You already interacted with that item!');
         }
-        
-        //TODO Change error validators based on task
-        // if (item.price >= req.body.price) {
-        //     throw new Error('Your bid is lower than the current price or bid!');
-        // }
-        // item.price = req.body.price;
+
 
         item.userCollection.push(req.user._id);
         await editData(item, req.params.id);
@@ -122,32 +104,6 @@ itemController.post('/:id/interact', async (req, res) => {
         });
     }
 });
-//TODO Remove if not needed
-//Remove from catalog
-itemController.get('/:id/remove', async (req, res) => {
-    try {
-        const item = await getDataById(req.params.id);
-        if (item.deleted) {
-            throw new Error('You already done that!');
-        }
 
-        if (item.creatorId._id != req.user._id) {
-            throw new Error('You must be creator to do that!');
-        }
-        //TODO Change if needed
-        if (item.userCollection.length < 1) {
-            throw new Error('There must be someone who interacted with that item before you can do that!');
-        }
-
-        item.deleted = true;
-        await editData(item, req.params.id);
-        res.redirect('/my-catalog');
-    } catch (error) {
-        res.render('404', {
-            title: 'Unable remove that item',
-            error: errorParser(error)
-        });
-    }
-});
 
 module.exports = itemController;

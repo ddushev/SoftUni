@@ -1,46 +1,19 @@
-<section id="create-section" class="">
-    {{> errors }}
-    <h1 class="item">New Auction</h1>
+<section class="create-form-container">
 
-    <div class="item padded align-center">
-
-        <form class="layout left large" method="POST">
-
-            <div class="col aligned">
-                <label>
-                    <span>Title</span>
-                    <input type="text" name="name"></label>
-                <label>
-                    <span>Category</span>
-                    <select name="itemOptions">
-                        <option value="estate">Real Estate</option>
-                        <option value="vehicles">Vehicles</option>
-                        <option value="furniture">Furniture</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="other">Other</option>
-                    </select>
-                </label>
-                <label>
-                    <span>Image URL</span>
-                    <input type="text" name="imageUrl"></label>
-                <label>
-                    <span>Starting price</span>
-                    <input type="number" name="price"></label>
-            </div>
-
-            <div class="content pad-med align-center vertical">
-                <label>
-                    <span>Description</span>
-                    <textarea name="description"></textarea>
-                </label>
-
-                <div class="align-center">
-                    <input class="action" type="submit" value="Publish Item">
-                </div>
-            </div>
-
-        </form>
-
-    </div>
-
+    <form method="POST">
+        <h3>Create Book Review</h3>
+        <label>Title</label>
+        <input type="text" name="title" class="box" id="">
+        <label>Author</label>
+        <input type="text" name="author" class="box" id="">
+        <label>Genre</label>
+        <input type="text" name="genre" class="box" id="">
+        <label>Stars</label>
+        <input type="number" name="stars" class="box" id="">
+        <label>Image</label>
+        <input type="text" name="imageUrl" class="box" id="">
+        <label>Review</label>
+        <textarea class="box" name="bookReview"></textarea>
+        <input type="submit" value="Create" class="btn">
+    </form>
 </section>
