@@ -10,6 +10,7 @@ Some interesting workshops to practice the material from the course
 
 # Technical stack
 1. React
+2. React-router
 
 
 # To install locally
