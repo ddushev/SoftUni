@@ -1,37 +1,24 @@
-<section id="catalog-section" class="spaced">
-
-    <h1 class="item">Auctions</h1>
-
-    <!-- List of available auctions -->
-    {{#if items}}
-    <ul class="catalog cards">
+<section class="catalog" id="catalog">
+    <h2>Book Reviews</h2>
+    <div class="container">
+        {{#if items}}
+        <!--If there are book reviews-->
         {{#each items}}
-        <li class="item">
-            <header class="pad-med">
-                <h2>{{name}}</h2>
-            </header>
-
-            <div class="align-center">
-                <img class="img-thumb" src="{{imageUrl}}">
+        <div class="book">
+            <div class="info-container">
+                <img src="{{imageUrl}}">
+                <div class="info">
+                    <h2>{{title}}</h2>
+                </div>
             </div>
-
-            <footer class="align-center pad-med">
-                <p>Current price: <strong>${{price}}</strong></p>
-                <a class="action" href="/catalog/{{_id}}/details">See details</a>
-            </footer>
-        </li>
-        {{/each}}
-    </ul>
-    {{else}}
-    <!-- If there are no auctions to display -->
-    <div class="item pad-large align-center">
-        <p>Nothing has been listed yet. Be the first!</p>
-        {{#if hasUser}}
-        <div>
-            <a class="action" href="/item/create">Publish Auction</a>
+            <div class="details-btn">
+                <a href="/catalog/{{_id}}/details" class="details">Details</a>
+            </div>
         </div>
+        {{/each}}
+        {{else}}
+        <!--If there are no book reviews-->
+        <h2 class="no-record">There are no book reviews found yet...</h2>
         {{/if}}
     </div>
-    {{/if}}
-
 </section>

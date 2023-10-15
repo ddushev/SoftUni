@@ -2,7 +2,7 @@ function validationChecker (req) {
     const errors = [];
 
     //TODO Change validation checks for the edit and create functionality
-    if (!(Number(req.body.stars) > 1 && Number(req.body.stars) < 6)) {
+    if (!(Number(req.body.stars) > 0 && Number(req.body.stars) < 6)) {
         errors.push('Stars should be positive number!');
     }
 
