@@ -1,5 +1,5 @@
 .login-form-container {
-  background: url(./image/banner-bg.jpg) no-repeat;
+  background: url(/static/image/banner-bg.jpg) no-repeat;
   background-size: cover;
   background-position: center;
 }
