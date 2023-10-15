@@ -14,6 +14,7 @@ import { AuthProvider } from "./contexts/AuthContext"
 import { GameContextProvider } from "./contexts/GameContext"
 import { UserRouteGuard } from "./components/common/UserRouteGuard"
 import { GuestRouteGuard } from "./components/common/GuestRouteGuard"
+import GameOwnerGuard from "./components/common/GameOwnerGuard"
 
 
 function App() {
@@ -33,7 +34,9 @@ function App() {
                                 </Route>
                                 <Route element={<UserRouteGuard />}>
                                     <Route path='/create' element={<Create />} />
-                                    <Route path='/catalog/:gameId/edit' element={<Edit />} />
+                                    <Route element={<GameOwnerGuard /> }>
+                                        <Route path='/catalog/:gameId/edit' element={<Edit />} />
+                                    </Route>
                                     <Route path='/logout' element={<Logout />} />
                                 </Route>
                                 <Route path='/details/:gameId' element={<Details />} />

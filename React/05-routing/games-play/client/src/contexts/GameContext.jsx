@@ -39,11 +39,16 @@ export const GameContextProvider = ({ children }) => {
         navigate('/catalog');
     }
 
+    function getGameFromState(gameId) {
+        return games.find(game => game._id == gameId);
+    }
+
     const context = {
         games,
         onCreateSubmit,
         onEditSubmit,
-        onDeleteClick
+        onDeleteClick,
+        getGameFromState
     }
 
     return (

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import CatalogItem from "./CatalogItem/CatalogItem";
-import { CatalogContext } from "../../contexts/CatalogContext";
 import { UseGameContext } from "../../contexts/GameContext";
 
 export default function Catalog() {
