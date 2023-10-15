@@ -1,5 +1,5 @@
 html {
-  background: url(../image/banner-bg.jpg);
+  background: url(./image/banner-bg.jpg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

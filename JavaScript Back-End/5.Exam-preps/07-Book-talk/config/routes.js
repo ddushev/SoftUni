@@ -5,7 +5,6 @@ const logoutController = require("../controllers/logoutController");
 const itemController = require("../controllers/itemController");
 const catalogController = require("../controllers/catalogController");
 const myCatalogController = require("../controllers/myCatalgController");
-// const searchController = require("../controllers/searchController");
 const { hasUser, isGuest } = require("../middlewares/guards");
 
 
@@ -16,7 +15,6 @@ module.exports = (app) => {
     app.use('/item', hasUser, itemController);
     app.use('/catalog', catalogController);
     app.use('/my-catalog', hasUser, myCatalogController);
-    // app.use('/search', searchController);
 
     app.all('*', defaultController);
 };
