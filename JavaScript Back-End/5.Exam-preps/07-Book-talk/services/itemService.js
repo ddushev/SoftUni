@@ -26,7 +26,7 @@ async function getPersonalData(userId) {
 }
 
 async function getPersonalDataIfUserCollection(userId) {
-    return Item.find({ creatorId: userId, deleted: true }).populate('creatorId').populate('userCollection').lean();
+    return Item.find({ creatorId: userId }).populate('creatorId').populate('userCollection').lean();
 }
 
 async function getDataById(id) {

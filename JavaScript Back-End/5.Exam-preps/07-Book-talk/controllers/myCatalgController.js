@@ -12,7 +12,8 @@ myCatalogController.get('/', async (req, res) => {
         }
         res.render('my-catalog', {
             title: 'My Catalog',
-            items
+            items,
+            email: req.user.email
         });
     } catch (error) {
         res.render('my-catalog', {
