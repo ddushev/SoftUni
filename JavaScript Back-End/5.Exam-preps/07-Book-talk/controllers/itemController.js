@@ -81,7 +81,7 @@ itemController.get('/:id/delete', async (req, res) => {
 
 //Interact functionality
 //TODO Change to POST or GET as needed
-itemController.post('/:id/interact', async (req, res) => {
+itemController.get('/:id/interact', async (req, res) => {
 
     try {
         const item = await getDataById(req.params.id);
