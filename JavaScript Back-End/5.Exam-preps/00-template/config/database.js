@@ -7,6 +7,7 @@ module.exports = async (app) => {
         console.log('MongoDB connected with Mongoose!')
     } catch (error) {
         console.log(error.message);
+        process.exit(1);
     }
 
 }
