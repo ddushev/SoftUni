@@ -26,11 +26,11 @@ function validationChecker (req) {
         errors.push('Production should be positive between 1900 and 2023!');
     }
 
-    if (!Number(req.body.price) > 0) {
+    if (!(Number(req.body.price) > 0)) {
         errors.push('Price should be positive number!');
     }
 
-    if (!Number(req.body.exploitation) > 0) {
+    if (!(Number(req.body.exploitation) > 0)) {
         errors.push('Exploitation should be positive number!');
     }
 
