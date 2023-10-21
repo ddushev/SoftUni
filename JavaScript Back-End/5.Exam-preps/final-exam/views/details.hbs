@@ -1,100 +1,34 @@
-<!-- Details Page - Auction owner -->
-{{#if item.isOwner}}
-<section id="catalog-section">
+<section id="detailsPage">
+    <div id="detailsInfo">
+        <h1>{{item.name}}</h1>
+        <div class="info"><img src="{{item.imageUrl}}"></div>
 
-    <h1 class="item">
-        {{item.name}}
-        <div class="f-right">
-            <a class="action pad-small f-left" href="/item/{{item._id}}/edit">Edit</a>
-            <a class="action pad-small f-left" href="/item/{{item._id}}/delete">Delete</a>
-        </div>
-    </h1>
-    <div class="item padded">
-
-        <div class="layout right large">
-
-            <div class="col">
-                <img src="{{item.imageUrl}}" class="img-large">
-            </div>
-
-            <div class="content pad-med">
-
-                <p>In category: <strong>{{item.itemOptions}}</strong></p>
-                <p>{{item.description}}</p>
-
-                <div class="align-center">
-                    <div>
-                        Current price: $<strong>{{item.price}}</strong>
-                    </div>
-
-                    <div>
-                        {{#if item.userCollection.length}}
-                        <!-- If there is a bidder -->
-                        Bid by <strong> {{item.interactedUsers}}</strong>
-
-                        <!-- # Bonus: If there is a bidder -->
-
-                        <a class="action pad-med cta" href="/item/{{item._id}}/remove">Close Auction</a>
-                        {{else}}
-
-
-                        <!-- If there are no bids -->
-                        No bids
-                        {{/if}}
-                    </div>
-                </div>
-
-            </div>
+        <div class="info">
+            <h3>Type: {{item.type}}</h3>
+            <h3>Year of Production: {{item.production}}</h3>
+            <h3>Years of Exploitation: {{item.exploitation}}</h3>
+            <h3>Damages: {{item.damages}}</h3>
+            <h3>Description: {{item.description}}</h3>
+            <h2>Price: ${{item.price}}</h2>
         </div>
 
-        <footer>Listed by {{item.creatorId.firstName}} {{item.creatorId.lastName}}</footer>
+        <!--If there is user logged in-->
+        {{#if hasUser}}
+        <div class="buttons">
+            {{#unless item.isInteracted}}
+            {{#unless item.isOwner}}
+            <!--If user is not owner of the toy post-->
+            <a href="/item/{{item._id}}/interact" class="buy-btn">Buy</a>
+            {{else}}
+            <!--If user is owner-->
+            <a href="/item/{{item._id}}/edit" class="edit-btn">Edit</a>
+            <a href="/item/{{item._id}}/delete" class="delete-btn">Delete</a>
+            {{/unless}}
+            {{else}}
+            <!--If user is not the owner and is bought this toy-->
+            <p><span class="buy">Thank You For Your Purchase</span></p>
+            {{/unless}}
+        </div>
+        {{/if}}
     </div>
-    {{else}}
 </section>
-<!-- Details Page -->
-<section id="catalog-section">
-
-    <h1 class="item">
-        {{item.name}}
-    </h1>
-    <div class="item padded">
-
-        <div class="layout right large">
-
-            <div class="col">
-                <img src="{{item.imageUrl}}" class="img-large">
-            </div>
-
-            <div class="content pad-med">
-
-                <p>In category: <strong>{{item.itemOptions}}</strong></p>
-                <p>{{item.description}}</p>
-
-                <div class="align-center">
-                    <div>
-                        Current price: $<strong>{{item.price}}</strong>
-                    </div>
-                    {{#if hasUser}}
-                    {{#unless item.isInteracted}}
-                    <!-- If current user can place a bid -->
-                    <form class="vertical" method="POST" action="/item/{{item._id}}/interact">
-                        <label><span>Bid amount</span><input type="number" name="price"></label>
-                        <input class="action" type="submit" value="Place bid">
-                    </form>
-                    <!-- If current user is the bidder -->
-                    {{else}}
-                    <div>
-                        You are currently the <strong>highest bidder</strong> for this auction
-                    </div>
-                    {{/unless}}
-                    {{/if}}
-                </div>
-
-            </div>
-        </div>
-
-        <footer>Listed by {{item.creatorId.firstName}} {{item.creatorId.lastName}}</footer>
-    </div>
-
-</section>
-{{/if}}

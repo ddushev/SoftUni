@@ -8,14 +8,14 @@ async function getNotDeletedData() {
     return Item.find({deleted: false}).lean();
 }
 
-async function getFilteredData(search, itemOptions) {
+async function getFilteredData(name, type) {
     //TODO Change based on search params
     let filteredData = await Item.find({}).lean();
-    if (search) {
-        filteredData = filteredData.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+    if (name) {
+        filteredData = filteredData.filter(item => item.name.toLowerCase() == name.toLowerCase())
     }
-    if (itemOptions) {
-        filteredData = filteredData.filter(item => item.itemOptions == itemOptions);
+    if (type) {
+        filteredData = filteredData.filter(item => item.type.toLowerCase() == type.toLowerCase());
     }
 
     return filteredData;
@@ -36,10 +36,13 @@ async function getDataById(id) {
 async function createData(itemData, creatorId) {
     const item = {
         name: itemData.name,
-        price: Number(itemData.price),
-        description: itemData.description,
+        type: itemData.type,
+        damages: itemData.damages,
         imageUrl: itemData.imageUrl,
-        itemOptions: itemData.itemOptions,
+        description: itemData.description,
+        production: Number(itemData.production),
+        exploitation: Number(itemData.exploitation),
+        price: Number(itemData.price),
         creatorId
     }
     return Item.create(item);

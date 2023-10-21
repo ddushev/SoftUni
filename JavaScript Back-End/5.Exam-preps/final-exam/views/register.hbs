@@ -1,38 +1,17 @@
-            <section id="register-section" class="narrow">
-                {{> errors }}
-                <h1 class="item">Register</h1>
+<section id="registerPage">
+    <form id='registerForm' method="POST">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" placeholder="Email">
 
-                <div class="item padded align-center">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your Username">
 
-                    <form class="aligned" method="post" >
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password">
 
-                        <label>
-                            <span>Email</span>
-                            <input type="text" name="email">
-                        </label>
-                        <label>
-                            <span>First name</span>
-                            <input type="text" name="firstName">
-                        </label>
-                        <label>
-                            <span>Last name</span>
-                            <input type="text" name="lastName">
-                        </label>
-                        <label>
-                            <span>Password</span>
-                            <input type="password" name="password">
-                        </label>
-                        <label>
-                            <span>Repeat Password</span>
-                            <input type="password" name="repeatPassword">
-                        </label>
+        <label for="rePassword">Repeat Password:</label>
+        <input type="password" id="rePassword" name="repeatPassword" placeholder="Repeat Password">
 
-                        <div class="align-center">
-                            <input class="action" type="submit" value="Create Account">
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </section>
+        <input type="submit" class="register" value="Register">
+    </form>
+</section>

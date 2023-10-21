@@ -3,70 +3,47 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/site.css">
-    <title>{{title}}</title>
+    <title>Second Hand Electronics</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 
 <body>
+    <!-- In case of error, you should display div with class "errorContainer" -->
+    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
 
-    <div id="page-content">
+    {{#if error}}
+    <div>
+        <div class="errorContainer">
+            {{#each error}}
+            <p>{{this}}</p>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
 
-        <header>
-            <a href="/" class="title-logo">
-                <img src="/static/assets/logo.png">
-                <span>Auction House</span>
-            </a>
-            <nav class="main-nav nav-mid">
-                <ul>
-                    <li>
-                        <a href="/catalog">Browse</a>
-                    </li>
-                    {{#if hasUser}}
-                    <!-- User actions -->
-                    <li class="user">
-                        <a href="/item/create">Publish</a>
-                    </li>
+    <div id="container">
+        <nav>
+            <ul>
+                <!--For all users-->
+                <li><a href="/">Home</a></li>
+                <li><a href="/catalog">Catalog</a></li>
+                <!--For loggin users-->
+                {{#if hasUser}}
+                <li><a href="/item/create">Create Offer</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/logout">Logout</a></li>
+                <!--For guest user-->
+                {{else}}
+                <li><a href="/auth/login">Login</a></li>
+                <li><a href="/auth/register">Register</a></li>
+                {{/if}}
+            </ul>
 
-                    <!-- Bonus action -->
-                    
-                    <li class="user">
-                        <a href="/my-catalog">Closed Auctions</a>
-                    </li>
-                    
+        </nav>
 
-                    <li class="user">
-                        <a href="/logout">Logout</a>
-                    </li>
-                    <!-- Guest actions -->
-                    {{else}}
-                    <li class="guest">
-                        <a href="/auth/register">Register</a>
-                    </li>
-                    <li class="guest">
-                        <a href="/auth/login">Login</a>
-                    </li>
-                    {{/if}}
-                </ul>
-            </nav>
-        </header>
+        {{{body}}}
 
-        <main>
-
-            <!-- In case of error, display the following div-->
-            {{#if error}}
-            <div class="error-box">
-                {{#each error}}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-            {{/if}}
-
-            {{{body}}}
-
-        </main>
-
-        <footer>SoftUni &copy; 2023</footer>
+        <footer>@SoftUni - JS Back-End - Second Hand Electronics 2023</footer>
     </div>
 
 </body>

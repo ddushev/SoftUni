@@ -21,13 +21,13 @@ searchController.get('/', async (req, res) => {
 searchController.get('/query', async (req, res) => {
     try {
         //TODO Change based on search params
-        const {search, itemOptions} = req.query;
-        const items = await getFilteredData(search || '', itemOptions || '');
+        const {name, type} = req.query;
+        const items = await getFilteredData(name || '', type || '');
         res.render('search', {
             title: 'Search page',
             items,
-            search,
-            itemOptions
+            name,
+            type
         });
     } catch (error) {
         res.render('catalog', {
@@ -36,21 +36,5 @@ searchController.get('/query', async (req, res) => {
         });
     }
 });
-
-// searchController.post('/', async (req, res) => {
-//     try {
-//         const {search, itemOptions} = req.query;
-//         const items = await getFilteredData(search || '', itemOptions || '');
-//         res.render('search', {
-//             title: 'Search page',
-//             items
-//         });
-//     } catch (error) {
-//         res.render('catalog', {
-//             title: 'Unable to show Search page',
-//             error: errorParser(error)
-//         });
-//     }
-// });
 
 module.exports = searchController;
