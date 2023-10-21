@@ -10,12 +10,12 @@ function validationChecker (req) {
         errors.push('Type should be atleast 2 characters long!');
     }
 
-    if (req.body.damages.length < 2) {
+    if (req.body.damages.length < 10) {
         errors.push('Damages should be atleast 10 characters long!');
     }
 
     if (!/^(https?:\/\/)/.test(req.body.imageUrl)) {
-        errors.push('Image should start with http:// or https://!');
+        errors.push('Image should start with http:// or https://');
     }
 
     if (req.body.description.length < 10 || req.body.description.length > 200) {
