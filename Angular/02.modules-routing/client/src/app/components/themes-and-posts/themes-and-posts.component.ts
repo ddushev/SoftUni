@@ -6,9 +6,9 @@ import { PostsComponent } from './posts/posts.component';
   selector: 'app-main',
   standalone: true,
   imports: [ThemesComponent, PostsComponent],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  templateUrl: './themes-and-posts.component.html',
+  styleUrl: './themes-and-posts.component.scss'
 })
-export class MainComponent {
+export class ThemesAndPosts {
 
 }
