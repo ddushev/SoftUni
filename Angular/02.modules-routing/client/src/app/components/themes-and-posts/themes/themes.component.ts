@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Theme } from '../../../types/themes';
 import { ApiServiceService } from '../../../services/api.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-themes',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './themes.component.html',
   styleUrl: './themes.component.scss'
 })
