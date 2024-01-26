@@ -13,12 +13,12 @@ export class ApiServiceService {
   constructor() { }
 
   getPosts() {
-    const { appUrl } = environment;
-    return this.http.get<Post[]>(`${appUrl}/posts?limit=5`);
+    const { apiUrl } = environment;
+    return this.http.get<Post[]>(`${apiUrl}/posts?limit=5`);
   };
 
   getThemes() {
-    const { appUrl } = environment;
-    return this.http.get<Theme[]>(`${appUrl}/themes`);
+    const { apiUrl } = environment;
+    return this.http.get<Theme[]>(`${apiUrl}/themes`);
   }
 }
