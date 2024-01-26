@@ -4,14 +4,23 @@
           <p class="logo"><span class="logo">SoftUni Forum</span></p>
       </div>
       <div class="mini-navbar">
-          <ul>
-              <li>
-                  <a routerLink="/login">Login</a>
-              </li>
-              <li>
-                  <a routerLink="/register">Register</a>
-              </li>
-          </ul>
+        <ul>
+          @if (isLoggedIn) {
+            <li>
+              <a routerLink="/profile">{{this.user.username}}</a>
+            </li>
+            <li>
+              <a href="#">Logout</a>
+            </li>
+          }@else {
+            <li>
+              <a routerLink="/login">Login</a>
+            </li>
+            <li>
+              <a routerLink="/register">Register</a>
+            </li>
+          }
+        </ul>
       </div>
   </div>
   <nav>
