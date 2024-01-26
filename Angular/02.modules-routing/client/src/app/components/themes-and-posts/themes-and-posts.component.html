@@ -1,5 +1,8 @@
 <div class="container">
   <main>
+    @if(!userService.user) {
+      <app-home></app-home>
+    }
     <app-themes></app-themes>
   </main>
   <!-- aside component  -->
