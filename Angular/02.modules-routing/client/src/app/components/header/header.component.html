@@ -7,10 +7,10 @@
         <ul>
           @if (isLoggedIn) {
             <li>
-              <a routerLink="/profile">{{this.user.username}}</a>
+              <a routerLink="/profile">{{this.user?.username}}</a>
             </li>
             <li>
-              <a href="#">Logout</a>
+              <a (click)="logout = $event" href="#">Logout</a>
             </li>
           }@else {
             <li>

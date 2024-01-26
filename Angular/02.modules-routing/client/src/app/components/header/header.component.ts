@@ -18,7 +18,13 @@ export class HeaderComponent {
     return !!this.userService.user;
   }
 
-  get user(): UserId {
+  get user(): UserId | undefined {
     return this.userService.user;
   }
+
+  set logout(event: MouseEvent) {
+    event.preventDefault();
+    this.userService.logout();
+  }
+
 }

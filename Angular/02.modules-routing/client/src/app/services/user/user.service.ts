@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  user!: UserId;
+  user: UserId | undefined;
   apiUrl: string = environment.apiUrl
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -23,5 +23,9 @@ export class UserService {
           console.warn(err.message);
         },
       });
+  }
+
+  logout(): void {
+    this.user = undefined;
   }
 }
