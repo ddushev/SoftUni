@@ -28,8 +28,8 @@
       <!-- telephone -->
       <p class="field field-icon">
         <label for="tel"><span><i class="fas fa-phone"></i></span></label>
-        <select name="select-tel" id="select-tel" class="tel">
-          <option value="00359">+359</option>
+        <select #telCodeSelect name="select-tel" id="select-tel" class="tel">
+          <option value="+359">+359</option>
         </select>
         <input #telInput type="text" name="tel" id="tel" placeholder="885 888 888">
       </p>
@@ -60,7 +60,7 @@
             email: emailInput.value,
             password: passwordInput.value,
             rePassword: rePasswordInput.value,
-            tel: telInput.value
+            tel: telCodeSelect.value.concat(telInput.value)
           })">Create
         Account</button>
 
