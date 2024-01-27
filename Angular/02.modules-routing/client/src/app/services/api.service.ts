@@ -26,7 +26,11 @@ export class ApiServiceService {
     return this.http.get<Theme>(`${this.apiUrl}/themes/${id}`);
   }
 
-  subscribeForTheme(id: string) {
-    return this.http.put(`${this.apiUrl}/themes/${id}`, "");
+  createTheme(newTheme: {themeName: string, postText: string}) {
+    return this.http.post<Themes>(`${this.apiUrl}/themes`, newTheme);
   }
+
+  // subscribeForTheme(id: string) {
+  //   return this.http.put(`${this.apiUrl}/themes/${id}`, "");
+  // }
 }

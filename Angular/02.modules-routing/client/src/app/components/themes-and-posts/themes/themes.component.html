@@ -15,9 +15,11 @@
                       </div>
                   </div>
                   <div class="subscribers">
-                      <button class="subscribe" [class.subscribed]="theme.subscribers.includes(userService.user?._id!)">
-                       {{theme.subscribers.includes(userService.user?._id!) ? 'Unsubscribe' : 'Subscribe'}}
+                    @if (!!userService.user) {
+                      <button class="subscribe" [class.subscribed]="theme.subscribers.includes(userService.user._id!)">
+                       {{theme.subscribers.includes(userService.user._id!) ? 'Unsubscribe' : 'Subscribe'}}
                       </button>
+                    }
                       <p>Subscribers: <span>{{theme.subscribers.length}}</span></p>
                   </div>
               </div>
