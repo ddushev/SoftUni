@@ -8,17 +8,20 @@ import { Theme } from '../types/themes';
   providedIn: 'root'
 })
 export class ApiServiceService {
+  apiUrl: string = environment.apiUrl
   private http = inject(HttpClient);
 
   constructor() { }
 
   getPosts() {
-    const { apiUrl } = environment;
-    return this.http.get<Post[]>(`${apiUrl}/posts?limit=5`);
+    return this.http.get<Post[]>(`${this.apiUrl}/posts?limit=5`);
   };
 
   getThemes() {
-    const { apiUrl } = environment;
-    return this.http.get<Theme[]>(`${apiUrl}/themes`);
+    return this.http.get<Theme[]>(`${this.apiUrl}/themes`);
+  }
+
+  getSingleTheme(id: string) {
+    return this.http.get<Theme>(`${this.apiUrl}/themes/${id}`);
   }
 }

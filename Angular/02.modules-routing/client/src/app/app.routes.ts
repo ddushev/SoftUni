@@ -8,6 +8,7 @@ import { NewThemeComponent } from './components/new-theme/new-theme.component';
 import { ThemesAndPosts } from './components/themes-and-posts/themes-and-posts.component';
 import { ThemeContentComponent } from './components/themes-and-posts/theme-content/theme-content.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
+import { themeResolver } from './components/themes-and-posts/theme-content/theme.resolver';
 
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -15,7 +16,7 @@ export const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'home', component: HomeComponent},
   {path: 'themes', component: ThemesAndPosts},
-  {path: 'themes/id', component: ThemeContentComponent},
+  {path: 'themes/:id', component: ThemeContentComponent, resolve: {themeData: themeResolver}},
   {path: 'new-theme', component: NewThemeComponent},
   {path: '**', component: The404Component}
 ];
