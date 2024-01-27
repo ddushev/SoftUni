@@ -14,7 +14,7 @@ import { userGuard } from './guards/user.guard';
 export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [userGuard]},
   {path: 'home', component: HomeComponent},
   {path: 'themes', component: ThemesAndPosts},
   {path: 'themes/:id', component: ThemeContentComponent, resolve: {themeData: themeResolver}},
