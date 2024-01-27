@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import environment from '../environments/environment.development';
 import { Post } from '../types/posts';
-import { Theme } from '../types/themes';
+import { Themes } from '../types/themes';
+import { Theme } from '../types/theme';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,14 @@ export class ApiServiceService {
   };
 
   getThemes() {
-    return this.http.get<Theme[]>(`${this.apiUrl}/themes`);
+    return this.http.get<Themes[]>(`${this.apiUrl}/themes`);
   }
 
   getSingleTheme(id: string) {
     return this.http.get<Theme>(`${this.apiUrl}/themes/${id}`);
+  }
+
+  subscribeForTheme(id: string) {
+    return this.http.put(`${this.apiUrl}/themes/${id}`, "");
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { Theme } from '../../../types/themes';
+import { Themes } from '../../../types/themes';
 import { ApiServiceService } from '../../../services/api.service';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
@@ -12,7 +12,7 @@ import { UserService } from '../../../services/user/user.service';
   styleUrl: './themes.component.scss'
 })
 export class ThemesComponent implements OnInit {
-  themes: Theme[] = [];
+  themes: Themes[] = [];
 
   private service = inject(ApiServiceService);
   public userService = inject(UserService);

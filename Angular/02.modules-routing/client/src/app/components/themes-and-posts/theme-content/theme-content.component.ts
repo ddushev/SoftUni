@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Theme } from '../../../types/themes';
 import { UserService } from '../../../services/user/user.service';
 import { HomeComponent } from '../../home/home.component';
+import { Theme } from '../../../types/theme';
 
 @Component({
   selector: 'app-theme-content',
@@ -17,6 +17,7 @@ export class ThemeContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.data.subscribe((data) => {
+      console.log(data);
       this.theme = data['themeData']
     })
   }

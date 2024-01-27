@@ -1,4 +1,4 @@
-import { Theme } from './themes';
+import { Themes } from './themes';
 import { UserId } from './user-id';
 
 export interface Post {
@@ -6,7 +6,7 @@ export interface Post {
   _id: string;
   text: string;
   userId: UserId;
-  themeId: Theme;
+  themeId: Themes;
   created_at: string;
   updatedAt: string;
   __v: number;
