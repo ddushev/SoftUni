@@ -17,7 +17,6 @@ export class ThemeContentComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.data.subscribe((data) => {
-      console.log(data);
       this.theme = data['themeData']
     })
   }
