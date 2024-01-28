@@ -4,6 +4,7 @@ import { UserId } from '../../types/user-id';
 import environment from '../../environments/environment.development';
 import { Router } from '@angular/router';
 import { RegisterData } from '../../types/registerData';
+import { NgForm } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,9 @@ export class UserService {
   apiUrl: string = environment.apiUrl
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(loginData: {email: string, password: string}): void {
-      this.http.post<UserId>(`${this.apiUrl}/login`, loginData).subscribe({
+  login(form: NgForm): void {
+    form.reset();
+      this.http.post<UserId>(`${this.apiUrl}/login`, form.value).subscribe({
         next: (data) => {
           this.user = data;
           this.router.navigate(["/home"]);
