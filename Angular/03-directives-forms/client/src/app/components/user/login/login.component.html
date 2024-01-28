@@ -6,7 +6,9 @@
 
           <p class="field field-icon">
               <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-              <input required email #emailInput="ngModel" class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel>
+              <input required email #emailInput="ngModel"
+              [ngClass]="emailInput.touched && (emailInput.hasError('required') || emailInput.hasError('email')) ? 'input-error' : '' "
+              type="email" name="email" id="email" placeholder="john.doe@gmail.com" ngModel>
           </p>
           @if(emailInput.touched) {
             @if(emailInput.hasError('required')) {
@@ -24,7 +26,9 @@
 
           <p class="field field-icon">
               <label for="password"><span><i class="fas fa-lock"></i></span></label>
-              <input required minlength="4" #passwordInput="ngModel" type="password" name="password" id="password" placeholder="******" ngModel>
+              <input required minlength="4" #passwordInput="ngModel"
+              [ngClass]="passwordInput.touched && (passwordInput.hasError('required') || passwordInput.hasError('minlength')) ? 'input-error' : '' "
+               type="password" name="password" id="password" placeholder="******" ngModel>
           </p>
 
           @if(passwordInput.touched) {
@@ -43,7 +47,7 @@
 
 
           <!-- <button (click)="userService.login($event, emailInput.value, passwordInput.value)">Login</button> -->
-          <button >Login</button>
+          <button [disabled]="loginForm.invalid">Login</button>
 
           <p class="text-center">
               Have an account?

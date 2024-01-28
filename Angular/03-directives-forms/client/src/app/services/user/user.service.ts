@@ -16,6 +16,7 @@ export class UserService {
 
   login(form: NgForm): void {
     if (form.invalid) {
+      form.reset();
       return;
     }
       this.http.post<UserId>(`${this.apiUrl}/login`, form.value).subscribe({
