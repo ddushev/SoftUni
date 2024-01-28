@@ -24,7 +24,6 @@ export class RegisterReactiveFormComponent {
     if (this.registerForm.invalid) {
       return;
     }
-    console.log(this.registerForm.value);
     const registerData = {
       tel: this.registerForm.value.telCode?.concat(this.registerForm.value.tel!),
       email: this.registerForm.value.email,
