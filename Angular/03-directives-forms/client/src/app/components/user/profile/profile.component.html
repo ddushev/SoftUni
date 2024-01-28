@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="profile"><img src="/assets/images/profile.png" alt="default user">
+      <h3>User Info:</h3>
+      <div class="flex">
+          <p>Username: </p>
+          <p>{{userService.user?.username}}</p>
+      </div>
+      <div class="flex">
+          <p>Email: </p>
+          <p>{{userService.user?.email}}</p>
+      </div>
+      <div class="flex">
+          <p>Phone: </p>
+          <p>{{userService.user?.tel}}</p>
+      </div>
+      <button class="edit-button">Edit</button>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="container">
+  <main>
+    @if(!userService.user) {
+      <app-home></app-home>
+    }
+    <app-themes></app-themes>
+  </main>
+  <!-- aside component  -->
+  <aside>
+      <div class="aside">
+          <h2 class="title">
+              Recent posts
+          </h2>
+          <div>
+              <app-posts></app-posts>
+          </div>
+      </div>
+  </aside>
+</div>
