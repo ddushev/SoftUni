@@ -15,7 +15,6 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) { }
 
   login(form: NgForm): void {
-    form.reset();
     if (form.invalid) {
       return;
     }
@@ -28,6 +27,7 @@ export class UserService {
           console.warn(err.message);
         },
       });
+    form.reset();
   }
 
   register(registerData: RegisterData): void {
