@@ -13,9 +13,8 @@ export class UserService {
   apiUrl: string = environment.apiUrl
   constructor(private http: HttpClient, private router: Router) { }
 
-  login(event: MouseEvent, email: string, password: string): void {
-      event.preventDefault();
-      this.http.post<UserId>(`${this.apiUrl}/login`, {email, password}).subscribe({
+  login(loginData: {email: string, password: string}): void {
+      this.http.post<UserId>(`${this.apiUrl}/login`, loginData).subscribe({
         next: (data) => {
           this.user = data;
           this.router.navigate(["/home"]);
