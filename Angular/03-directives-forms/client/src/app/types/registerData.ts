@@ -1,7 +1,7 @@
 export interface RegisterData {
-    tel?: string;
-    email: string;
-    username: string;
-    password: string;
-    rePassword: string;
+    tel: string | null | undefined;
+    email: string | null | undefined;
+    username: string | null | undefined;
+    password: string | null | undefined;
+    rePassword: string | null | undefined;
 }

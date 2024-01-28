@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { UserId } from '../../types/user-id';
 import environment from '../../environments/environment.development';
 import { Router } from '@angular/router';
-import { RegisterData } from '../../types/registerData';
 import { NgForm } from '@angular/forms';
+import { RegisterData } from '../../types/registerData';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +30,7 @@ export class UserService {
       });
   }
 
-  register(event: MouseEvent, registerData: RegisterData): void {
-    event.preventDefault();
+  register(registerData: RegisterData): void {
     this.http.post<UserId>(`${this.apiUrl}/register`, registerData).subscribe({
       next: (data) => {
           this.user = data;
