@@ -40,7 +40,6 @@ export class RegisterReactiveFormComponent {
 
    isInputValid(field: string, error: string, group?: string): boolean {
     if (group) {
-      console.log(this.registerForm.get(group)?.get(field)?.errors);
       return !!this.registerForm.get(group)?.get(field)?.hasError(error);
     }
     return !!this.registerForm.get(field)?.hasError(error);
