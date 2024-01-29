@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user/user.service';
+import { passwordMatchValidator } from '../../../helpers/password-match-validator';
 
 @Component({
   selector: 'app-register-reactive-form',
@@ -17,8 +18,8 @@ export class RegisterReactiveFormComponent {
     telCode: ['', [Validators.required]],
     passGroup: this.FormBuilder.nonNullable.group({
       password: ['', [Validators.required, Validators.minLength(5)]],
-      rePassword: ['', [Validators.required]],
-    })
+      rePassword: ['', ],
+    }, {validators: [passwordMatchValidator('password', 'rePassword')]})
   });
   constructor(private FormBuilder: FormBuilder, private userService: UserService) { }
 
@@ -39,6 +40,7 @@ export class RegisterReactiveFormComponent {
 
    isInputValid(field: string, error: string, group?: string): boolean {
     if (group) {
+      console.log(this.registerForm.get(group)?.get(field)?.errors);
       return !!this.registerForm.get(group)?.get(field)?.hasError(error);
     }
     return !!this.registerForm.get(field)?.hasError(error);

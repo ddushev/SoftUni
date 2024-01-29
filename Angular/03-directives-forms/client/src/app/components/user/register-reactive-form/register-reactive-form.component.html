@@ -70,7 +70,12 @@
           <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
           <input formControlName="rePassword"  name="rePassword" id="rePassword" placeholder="******">
         </p>
-        <!-- <p class="error">Repeat Password does not match password!</p> -->
+        @if(registerForm.get('passGroup')?.get('rePassword')?.touched) {
+          @if(this.isInputValid('rePassword', 'passwordMatchValidator', 'passGroup')) {
+            <p class="error">Repeat Password does not match password!</p>
+          }
+        }
+
       </ng-container>
 
 
