@@ -18,13 +18,13 @@ export class RegisterReactiveFormComponent {
     telCode: ['', [Validators.required]],
     passGroup: this.FormBuilder.nonNullable.group({
       password: ['', [Validators.required, Validators.minLength(5)]],
-      rePassword: ['', ],
+      rePassword: ['', [Validators.required]],
     }, {validators: [passwordMatchValidator('password', 'rePassword')]})
   });
-  constructor(private FormBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private FormBuilder: FormBuilder, private userService: UserService) {
+  }
 
   handleSubmit() {
-    console.log(this.registerForm.invalid)
     if (this.registerForm.invalid) {
       return;
     }
@@ -45,5 +45,6 @@ export class RegisterReactiveFormComponent {
     }
     return !!this.registerForm.get(field)?.hasError(error);
   }
+
 
 }
