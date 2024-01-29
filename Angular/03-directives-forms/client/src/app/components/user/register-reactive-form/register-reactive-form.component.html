@@ -9,7 +9,7 @@
         <label for="username"><span><i class="fas fa-user"></i></span></label>
         <input formControlName="username" class="input-error" type="text" name="username" id="username" placeholder="Johny">
       </p>
-      @if(registerForm.touched) {
+      @if(registerForm.get('username')?.touched) {
         @if(registerForm.get('username')?.hasError('required')) {
           <p class="error">
             Username is required!
@@ -24,7 +24,7 @@
         <label for="email"><span><i class="fas fa-envelope"></i></span></label>
         <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
       </p>
-      @if(registerForm.touched) {
+      @if(registerForm.get('email')?.touched) {
         @if(registerForm.get('email')?.hasError('required')) {
           <p class="error">
             Email is required!
@@ -52,7 +52,7 @@
         <input formControlName="password" type="password" name="password" id="password" placeholder="******">
       </p>
 
-      @if(registerForm.touched) {
+      @if(registerForm.get('password')?.touched) {
         @if(registerForm.get('password')?.hasError('required')) {
           <p class="error">
             Password is required!
