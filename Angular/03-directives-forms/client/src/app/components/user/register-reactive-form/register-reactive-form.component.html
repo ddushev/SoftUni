@@ -10,7 +10,7 @@
         <input formControlName="username" class="input-error" type="text" name="username" id="username" placeholder="Johny">
       </p>
       @if(registerForm.get('username')?.touched) {
-        @if(registerForm.get('username')?.hasError('required')) {
+        @if(this.isInputValid('username', 'required')) {
           <p class="error">
             Username is required!
         </p>
@@ -25,12 +25,12 @@
         <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
       </p>
       @if(registerForm.get('email')?.touched) {
-        @if(registerForm.get('email')?.hasError('required')) {
+        @if(this.isInputValid('email', 'required')) {
           <p class="error">
             Email is required!
           </p>
         }
-        @if(registerForm.get('email')?.hasError('email')) {
+        @if(this.isInputValid('email', 'email')) {
           <p class="error">
             Email is not valid!
         </p>
@@ -47,29 +47,32 @@
       </p>
 
       <!-- password -->
-      <p class="field field-icon">
-        <label for="password"><span><i class="fas fa-lock"></i></span></label>
-        <input formControlName="password" type="password" name="password" id="password" placeholder="******">
-      </p>
+      <ng-container formGroupName="passGroup">
+        <p class="field field-icon">
+          <label for="password"><span><i class="fas fa-lock"></i></span></label>
+          <input formControlName="password"  name="password" id="password" placeholder="******">
+        </p>
 
-      @if(registerForm.get('password')?.touched) {
-        @if(registerForm.get('password')?.hasError('required')) {
-          <p class="error">
-            Password is required!
-          </p>
+        @if(registerForm.get('passGroup')?.get('password')?.touched) {
+          @if(this.isInputValid('password', 'required', 'passGroup')) {
+            <p class="error">
+              Password is required!
+            </p>
+          }
+          @if(this.isInputValid('password', 'minlength', 'passGroup')) {
+            <p class="error">
+              Password must be at least 5 characters!
+            </p>
+          }
         }
-        @if(registerForm.get('password')?.hasError('minlength')) {
-          <p class="error">
-            Password must be at least 4 characters!
-          </p>
-        }
-      }
-      <!-- rePassword -->
-      <p class="field field-icon">
-        <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
-        <input formControlName="rePassword" type="password" name="rePassword" id="rePassword" placeholder="******">
-      </p>
-      <!-- <p class="error">Repeat Password does not match password!</p> -->
+        <!-- rePassword -->
+        <p class="field field-icon">
+          <label for="rePassword"><span><i class="fas fa-lock"></i></span></label>
+          <input formControlName="rePassword"  name="rePassword" id="rePassword" placeholder="******">
+        </p>
+        <!-- <p class="error">Repeat Password does not match password!</p> -->
+      </ng-container>
+
 
         <button>Create Account</button>
 
