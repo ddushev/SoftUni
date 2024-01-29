@@ -12,7 +12,7 @@ import { userGuard } from './guards/user.guard';
 import { RegisterReactiveFormComponent } from './components/user/register-reactive-form/register-reactive-form.component';
 
 export const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: 'login', loadComponent: () => import('./components/user/login/login.component').then((mod) => mod.LoginComponent)},
   {path: 'register', component: RegisterReactiveFormComponent},
   {path: 'profile', component: ProfileComponent, canActivate: [userGuard]},
   {path: 'home', component: HomeComponent},
