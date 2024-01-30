@@ -22,7 +22,7 @@ export class UserService {
       this.http.post<UserId>(`${this.apiUrl}/login`, form.value).subscribe({
         next: (data) => {
           this.user = data;
-          this.router.navigate(["/home"]);
+          this.router.navigate(["/themes"]);
         },
         error(err) {
           console.warn(err.message);
@@ -35,7 +35,7 @@ export class UserService {
     this.http.post<UserId>(`${this.apiUrl}/register`, registerData).subscribe({
       next: (data) => {
           this.user = data;
-          this.router.navigate(["/home"]);
+          this.router.navigate(["/themes"]);
       },
       error(err) {
         console.warn(err.message);
@@ -44,7 +44,7 @@ export class UserService {
   }
 
   logout(): void {
-    this.user = undefined;
+    this.http.post<any>(`${this.apiUrl}/logout`, {}).subscribe((res) => this.user = res);
     this.router.navigate(["/home"]);
   }
 }
