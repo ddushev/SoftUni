@@ -47,4 +47,16 @@ export class UserService {
     this.http.post<any>(`${this.apiUrl}/logout`, {}).subscribe((res) => this.user = res);
     this.router.navigate(["/home"]);
   }
+
+  verifyUser(): void {
+    this.http.get<UserId>(`${this.apiUrl}/users/profile`).subscribe({
+      next: (user) => {
+        this.user = user;
+      },
+      error: (err) => {
+        this.user = undefined;
+        console.warn(err.message);
+      },
+    })
+  }
 }
