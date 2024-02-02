@@ -10,17 +10,12 @@ import { BehaviorSubject, Observable, Subscription, catchError, filter, tap } fr
 @Injectable({
   providedIn: 'root'
 })
-export class UserService implements OnDestroy {
-  private user$$ = new BehaviorSubject<undefined | UserId>(undefined);
-  user$ = this.user$$.asObservable();
+export class UserService {
 
   user: UserId | undefined;
   apiUrl: string = environment.apiUrl
-  subscription: Subscription;
   constructor(private http: HttpClient, private router: Router) {
-    this.subscription = this.user$.subscribe(user => {
-        this.user = user;
-      });
+
   }
 
   login(form: NgForm) {
@@ -30,7 +25,7 @@ export class UserService implements OnDestroy {
     }
     this.http.post<UserId>(`${this.apiUrl}/login`, form.value).subscribe({
         next: (user) => {
-          this.user$$.next(user);
+          this.user = user;
           this.router.navigate(["/themes"]);
         },
         error(err) {
@@ -44,7 +39,7 @@ export class UserService implements OnDestroy {
   register(registerData: RegisterData): void {
     this.http.post<UserId>(`${this.apiUrl}/register`, registerData).subscribe({
       next: (user) => {
-          this.user$$.next(user);
+          this.user = user;
           this.router.navigate(["/themes"]);
       },
       error(err) {
@@ -54,49 +49,12 @@ export class UserService implements OnDestroy {
   }
 
   logout(): void {
-    this.http.post<any>(`${this.apiUrl}/logout`, {}).subscribe((res) => this.user$$.next(res));
+    this.http.post<any>(`${this.apiUrl}/logout`, {}).subscribe((res) => this.user = res);
     this.router.navigate(["/home"]);
   }
 
-  // verifyUser(): void {
-  //   this.http.get<UserId>(`${this.apiUrl}/users/profile`).subscribe({
-  //     next: (user) => {
-  //       this.user = user;
-  //     },
-  //     error: (err) => {
-  //       this.user = undefined;
-  //       console.warn(err.message);
-  //     },
-  //   })
-  // }
-
-  // verifyUser(): Observable<UserId> {
-  //   return this.http.get<UserId>(`${this.apiUrl}/users/profile`).pipe(
-  //     tap((user) => {
-  //       this.user = user;
-  //     }),
-  //     catchError((err) => {
-  //       this.user = undefined;
-  //       console.warn(err.message);
-  //       throw err; // rethrow the error
-  //     })
-  //   );
-  // }
-
   verifyUser() {
-    return this.http.get<UserId>(`${this.apiUrl}/users/profile`).pipe(
-      tap((user) => {
-        this.user$$.next(user);
-      }),
-      catchError((err) => {
-        this.user$$.next(undefined);
-        console.warn(err.message);
-        throw err; // rethrow the error
-      })
-    );
+    return this.http.get<UserId>(`${this.apiUrl}/users/profile`);
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }

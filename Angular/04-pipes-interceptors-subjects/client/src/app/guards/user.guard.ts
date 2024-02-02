@@ -9,7 +9,6 @@ export const userGuard: CanActivateFn = (_route, _state) => {
   const userService = inject(UserService);
 
   return userService.verifyUser().pipe(
-    take(1),
     map((user) => {
       if (!user) {
         router.navigate(["login"]);
