@@ -3,22 +3,29 @@ import { Themes } from '../../../types/themes';
 import { ApiServiceService } from '../../../services/api.service';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
+import { Store } from '@ngrx/store';
+import { selectThemes, selectThemesCollection } from '../../../state/themes/themes.selectors';
+import { ThemesApiActions } from '../../../state/themes/themes.actions';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-themes',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe, JsonPipe],
   templateUrl: './themes.component.html',
   styleUrl: './themes.component.scss'
 })
-export class ThemesComponent implements OnInit {
-  themes: Themes[] = [];
 
+export class ThemesComponent implements OnInit {
+  private store = inject(Store);
   private service = inject(ApiServiceService);
   public userService = inject(UserService);
+
+  themes$ = this.store.select(selectThemes);
+
   constructor() { }
 
   ngOnInit(): void {
-    this.service.getThemes().subscribe((data) => this.themes = data);
+    this.service.getThemes().subscribe((themes) => this.store.dispatch(ThemesApiActions.retrievedThemesList({themes})));
   }
 }
