@@ -20,6 +20,8 @@
                        {{theme.subscribers.includes(userService.user._id!) ? 'Unsubscribe' : 'Subscribe'}}
                       </button>
                     }
+                    <!-- <button (click)="onAdd(theme._id)"> Add </button> -->
+                    <button (click)="onRemove(theme._id)">Remove</button>
                       <p>Subscribers: <span>{{theme.subscribers.length}}</span></p>
                   </div>
               </div>

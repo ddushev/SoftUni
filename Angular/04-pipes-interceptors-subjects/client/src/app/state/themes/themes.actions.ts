@@ -13,5 +13,6 @@ export const ThemesApiActions = createActionGroup({
   source: 'Themes API',
   events: {
     'Retrieved Themes List': props<{themes: ReadonlyArray<Themes>}>(),
+    'Remove Theme': props<{themeId: string}>(),
   }
 })

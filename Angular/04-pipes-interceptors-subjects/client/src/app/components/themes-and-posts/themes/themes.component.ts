@@ -5,8 +5,9 @@ import { RouterLink } from '@angular/router';
 import { UserService } from '../../../services/user/user.service';
 import { Store } from '@ngrx/store';
 import { selectThemes, selectThemesCollection } from '../../../state/themes/themes.selectors';
-import { ThemesApiActions } from '../../../state/themes/themes.actions';
+import { ThemesActions, ThemesApiActions } from '../../../state/themes/themes.actions';
 import { AsyncPipe, JsonPipe } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-themes',
@@ -28,4 +29,14 @@ export class ThemesComponent implements OnInit {
   ngOnInit(): void {
     this.service.getThemes().subscribe((themes) => this.store.dispatch(ThemesApiActions.retrievedThemesList({themes})));
   }
+
+  onAdd(themeId: string) {
+    this.store.dispatch(ThemesActions.addTheme({themeId}));
+  }
+
+  onRemove(themeId: string) {
+    this.store.dispatch(ThemesApiActions.removeTheme({themeId}));
+    // this.store.dispatch(ThemesActions.removeTheme({themeId}));
+  }
+
 }
