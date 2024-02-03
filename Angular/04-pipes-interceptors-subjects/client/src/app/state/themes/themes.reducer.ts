@@ -7,5 +7,5 @@ export const initialState: ReadonlyArray<Themes> = [];
 export const themesReducer = createReducer(
   initialState,
   on(ThemesApiActions.retrievedThemesList, (_state, { themes }) => themes),
-  on(ThemesApiActions.removeTheme, (state, { themeId }) => state.filter((theme) => theme._id !== themeId)),
+  on(ThemesApiActions.removeThemeFromList, (state, { themeId }) => state.filter((theme) => theme._id !== themeId)),
 )

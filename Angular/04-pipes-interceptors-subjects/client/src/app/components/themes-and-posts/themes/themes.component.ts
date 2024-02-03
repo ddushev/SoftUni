@@ -35,8 +35,7 @@ export class ThemesComponent implements OnInit {
   }
 
   onRemove(themeId: string) {
-    this.store.dispatch(ThemesApiActions.removeTheme({themeId}));
-    // this.store.dispatch(ThemesActions.removeTheme({themeId}));
+    this.store.dispatch(ThemesApiActions.removeThemeFromList({themeId}));
   }
 
 }
