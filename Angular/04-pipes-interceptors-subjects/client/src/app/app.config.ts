@@ -17,6 +17,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 import { themesReducer } from './state/themes/themes.reducer';
 import { collectionReducer } from './state/themes/collection.reducer';
+import * as themesEffects from './state/themes/themes.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch(), withInterceptors([authInterceptor])),
     provideStore({ themes: themesReducer, collection: collectionReducer }),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects(),
+    provideEffects(themesEffects),
   ],
 };

@@ -1,6 +1,6 @@
 import { Themes } from "../../types/themes";
 
 export interface AppState {
-  themes: ReadonlyArray<Themes>,
+  themes: Themes[],
   collection: ReadonlyArray<string>,
 }

@@ -1,7 +1,8 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { Themes } from "../../types/themes";
+import { AppState } from "./app.state";
 
-export const selectThemes = createFeatureSelector<ReadonlyArray<Themes>>('themes');
+export const selectThemes = (state: AppState) => state.themes;
 
 export const selectCollectionState = createFeatureSelector<ReadonlyArray<string>>('collection');
 

@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { selectThemes, selectThemesCollection } from '../../../state/themes/themes.selectors';
 import { ThemesActions, ThemesApiActions } from '../../../state/themes/themes.actions';
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { filter } from 'rxjs';
+import { Observable, filter } from 'rxjs';
 
 @Component({
   selector: 'app-themes',
@@ -22,12 +22,12 @@ export class ThemesComponent implements OnInit {
   private service = inject(ApiServiceService);
   public userService = inject(UserService);
 
-  themes$ = this.store.select(selectThemes);
+  themes$: Observable<Themes[]> = this.store.select(selectThemes);
 
   constructor() { }
 
   ngOnInit(): void {
-    this.service.getThemes().subscribe((themes) => this.store.dispatch(ThemesApiActions.retrievedThemesList({themes})));
+    this.store.dispatch(ThemesApiActions.retrievedThemesList());
   }
 
   onAdd(themeId: string) {
