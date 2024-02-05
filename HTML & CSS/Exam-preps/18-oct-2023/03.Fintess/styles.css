@@ -11,9 +11,9 @@ body {
     font-family: 'PT Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* h1, h2, h3, h4, h5, h6 {
     font-family: 'PT Serif', serif;
-}
+} */
 
 /* Header */
 
@@ -34,4 +34,69 @@ h1, h2, h3, h4, h5, h6 {
 
 .socials a {
     color: #fff;
+}
+
+/* Hero */
+
+.hero {
+    width: 100%;
+    height: 38rem;
+    background-image: url("./image/fitness-main.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top 50% right 85%;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap:1.8rem;
+    flex-direction: row-reverse;
+    list-style-type: none;
+    font-size: 1.2rem;
+}
+
+.nav-links li {
+    padding: 2rem;
+}
+
+.nav-links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.main {
+    margin-top: 6rem;
+    text-align: center;
+}
+
+.main h1 {
+    font-size: 3.5rem;
+    letter-spacing: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.main p {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    margin-bottom: 2.3rem;
+
+}
+
+.btn-link {
+    font-size: 1rem;
+    letter-spacing: 0.05rem;
+    display: inline-block;
+    background-color: #D01919;
+    padding: 0.6rem 1.5rem;
+    color:inherit;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 0.3rem;
+}
+
+/* Welcome */
+.welcome {
+    text-align: center;
 }
