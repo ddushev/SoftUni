@@ -1,0 +1,37 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'PT Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Serif', serif;
+}
+
+/* Header */
+
+.header {
+    background-color: #D01919;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.3rem 3rem;
+    font-size: 1.2rem;
+}
+
+.socials {
+    display: flex;
+    list-style-type: none;
+    gap: 0.7rem;
+}
+
+.socials a {
+    color: #fff;
+}
