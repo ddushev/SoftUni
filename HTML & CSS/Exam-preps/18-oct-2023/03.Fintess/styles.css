@@ -109,17 +109,15 @@ body {
     gap: 10rem;
 }
 
+.welcome h2, .coaches h2 {
+    font-size: 2.5rem;
+    padding: 2rem;
+}
+
 .container article {
     flex: 1 1 30%;
 }
 
-.red-underline {
-    display: inline-block;
-    width: 3rem;
-    height: 0.2rem;
-    background-color: #D01919;
-    margin-bottom: 2rem;
-}
 
 /* Welcome */
 
@@ -127,9 +125,12 @@ body {
     text-align: center;
 }
 
-.welcome h2 {
-    font-size: 2.5rem;
-    padding: 2rem;
+.welcome .red-underline {
+    display: inline-block;
+    width: 3rem;
+    height: 0.2rem;
+    background-color: #D01919;
+    margin-bottom: 2rem;
 }
 
 .welcome article img {
@@ -140,12 +141,49 @@ body {
 
 .welcome article h3 {
     color:#D01919;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     margin-bottom: 1.7rem;
 }
 
 .welcome article p {
     font-size: 1.3rem;
+}
+
+/* Coaches  */
+
+
+.coaches {
+    background-color: #EFEFEF;
+}
+
+.coaches .red-underline {
+    display: inline-block;
+    width: 3rem;
+    height: 0.3rem;
+    background-color: #D01919;
+    margin-bottom: 2rem;
+}
+
+.coaches article img {
+    width: 90%;
+    border-radius: 0.4rem;
+    height: auto;
+    margin-bottom: 1.1rem;
+}
+
+.coaches article h3 {
+    margin-bottom: 1rem;
+}
+
+.coaches article h4 {
+    color:#D01919;
+    font-size: 1.1rem;
+    margin-bottom: 1.7rem;
+}
+
+.coaches article p {
+    font-size: 1.2rem;
+    color: #A6A1A5;
 }
 
 
