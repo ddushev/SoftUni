@@ -96,7 +96,57 @@ body {
     border-radius: 0.3rem;
 }
 
+/* Welcome  & Coaches */
+
+.welcome, .coaches {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 0 10rem 5rem 10rem;
+    gap: 10rem;
+}
+
+.container article {
+    flex: 1 1 30%;
+}
+
+.red-underline {
+    display: inline-block;
+    width: 3rem;
+    height: 0.2rem;
+    background-color: #D01919;
+    margin-bottom: 2rem;
+}
+
 /* Welcome */
+
 .welcome {
     text-align: center;
 }
+
+.welcome h2 {
+    font-size: 2.5rem;
+    padding: 2rem;
+}
+
+.welcome article img {
+    width: 15%;
+    height: auto;
+    margin-bottom: 1.7rem;
+}
+
+.welcome article h3 {
+    color:#D01919;
+    font-size: 1.4rem;
+    margin-bottom: 1.7rem;
+}
+
+.welcome article p {
+    font-size: 1.3rem;
+}
+
+
+
