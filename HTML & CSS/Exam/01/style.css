@@ -1,0 +1,83 @@
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+  }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: #0E0E0E;
+  }
+
+  .section-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 4.5rem 2rem;
+    background-color: #85DCFF;
+    width: 66.2rem;
+    height: 38.4rem;
+  }
+
+  .section-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .details-heading {
+    line-height: 3.1rem;
+    font-size: 2.7rem;
+    width: 25rem;
+  }
+
+  .leaf-img {
+    width: 22.5rem;
+    height: 30rem;
+    box-shadow: 
+    0.125rem 0.125rem 0.3125rem rgba(0, 0, 0, 0.6), 
+    0.25rem 0.25rem 0.625rem rgba(0, 0, 0, 0.8);
+  }
+
+  .text-container {
+    font-size: 0.9rem;
+  }
+
+  .links-container {
+    display: flex;
+    gap: 0.9rem;
+  }
+
+  .links {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.9rem 1.8rem;
+    font-size: 0.9rem;
+    border-radius: 0.2rem;
+  }
+
+  .get-started {
+    border: 1px solid #000;
+    background-color: #42AA59;
+  }
+
+  .learn-more {
+    background-color: #FFF;
+  }
+
+  .get-started:hover {
+    background-color: #000000;
+    color: #fff;
+  }
